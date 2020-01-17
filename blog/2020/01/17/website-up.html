@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Strict.dev website is up · Strict Programming Language</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="After trying out https://jekyllrb.com/ and many themes and plugins after checking out the even more complex https://gohugo.io/ it turns out these are not good fits for the Strict language, which should be easy to install and work immediately. https://docusaurus.io/en/ is a project that is installed with one line and works instantly after downloading all the dependencies automatically, on any platform that supports node."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Strict.dev website is up · Strict Programming Language"/><meta property="og:type" content="website"/><meta property="og:url" content="https://strict-lang.github.io/strict.dev/blog/2020/01/17/website-up"/><meta property="og:description" content="After trying out https://jekyllrb.com/ and many themes and plugins after checking out the even more complex https://gohugo.io/ it turns out these are not good fits for the Strict language, which should be easy to install and work immediately. https://docusaurus.io/en/ is a project that is installed with one line and works instantly after downloading all the dependencies automatically, on any platform that supports node."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/strict.dev/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://strict-lang.github.io/strict.dev/blog/atom.xml" title="Strict Programming Language Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://strict-lang.github.io/strict.dev/blog/feed.xml" title="Strict Programming Language Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/strict.dev/js/scrollSpy.js"></script><link rel="stylesheet" href="/strict.dev/css/main.css"/><script src="/strict.dev/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/strict.dev/"><img class="logo" src="/strict.dev/img/StrictLogo.png" alt="Strict Programming Language"/><h2 class="headerTitleWithLogo">Strict Programming Language</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="/strict.dev/docs/GettingStarted" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/strict.dev/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/strict.dev/blog/2020/01/17/website-up">Strict.dev website is up</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/strict.dev/blog/2020/01/17/website-up">Strict.dev website is up</a></h1><p class="post-meta">January 17, 2020</p><div class="authorBlock"><p class="post-authorName"><a href="http://twitter.com/BennyNitschke" target="_blank" rel="noreferrer noopener">Benjamin Nitschke</a></p><div class="authorPhoto"><a href="http://twitter.com/BennyNitschke" target="_blank" rel="noreferrer noopener"><img src="https://graph.facebook.com/105557312835092/picture/?height=200&amp;width=200" alt="Benjamin Nitschke"/></a></div></div></header><div><span><p>After trying out <a href="https://jekyllrb.com/">https://jekyllrb.com/</a> and many themes and plugins after checking out the even more complex <a href="https://gohugo.io/">https://gohugo.io/</a> it turns out these are not good fits for the Strict language, which should be easy to install and work immediately. <a href="https://docusaurus.io/en/">https://docusaurus.io/en/</a> is a project that is installed with one line and works instantly after downloading all the dependencies automatically, on any platform that supports node.</p>
+<p>Well, not much on here yet, we will add documentation over time and get more speed on the road in 2020.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/strict.dev/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/strict.dev/" class="nav-home" style="width:160px"><img src="/strict.dev/img/StrictLogo.png" alt="Strict Programming Language" width="128" height="128"/></a><div><h5>Docs</h5><a href="/strict.dev/docs/en/GettingStarted">Getting Started</a><a href="/strict.dev/docs/en/Coding Style">Coding Style</a><a href="/strict.dev/docs/en/Keywords">API Reference</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/Strict" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/strict-lang" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/strict.dev/help">Help</a><a href="https://github.com/strict-lang">GitHub</a><a class="github-button" href="https://github.com/strict-lang/strict.dev" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 strict-lang</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'my-api-key',
+                indexName: 'my-index-name',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Coding Style · Strict Programming Language</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="# Overview"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Coding Style · Strict Programming Language"/><meta property="og:type" content="website"/><meta property="og:url" content="https://strict-lang.github.io/strict.dev/"/><meta property="og:description" content="# Overview"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/strict.dev/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://strict-lang.github.io/strict.dev/blog/atom.xml" title="Strict Programming Language Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://strict-lang.github.io/strict.dev/blog/feed.xml" title="Strict Programming Language Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/strict.dev/js/scrollSpy.js"></script><link rel="stylesheet" href="/strict.dev/css/main.css"/><script src="/strict.dev/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/strict.dev/"><img class="logo" src="/strict.dev/img/StrictLogo.png" alt="Strict Programming Language"/><h2 class="headerTitleWithLogo">Strict Programming Language</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/strict.dev/docs/GettingStarted" target="_self">Docs</a></li><li class=""><a href="/strict.dev/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Documentation</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Documentation<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/strict.dev/docs/GettingStarted">Getting Started</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/strict.dev/docs/CodingStyle">Coding Style</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">API<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/strict.dev/docs/Keywords">Keywords</a></li><li class="navListItem"><a class="navItem" href="/strict.dev/docs/Types">Types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Coding Style</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h1>
+<p>These guidelines force any developer (human or AI) to write clean <strong>Strict</strong> code. Strict looks most like Python and is similar to C++, C#, Java or Go. Unlike other languages testing is not optional and writing ugly code is made impossible by enforcing hard rules (nonsensical code still is possible). <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and <a href="http://clean-code-developer.com/">Clean Code</a> is the basis for <strong>Strict</strong>. While you can modify the rules via the <em>build.yml</em> file as described below, no code will be accepted into the official framework or packages as it simply won't build with the default settings. We will not dive into details like the naming style, suffixes, etc. like <a href="https://www.dofactory.com/reference/csharp-coding-standards">other guides</a> as it will be quite obvious when reading any code.</p>
+<h1><a class="anchor" aria-hidden="true" id="ide"></a><a href="#ide" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>IDE</h1>
+<p>The official <a href="https://github.com/strict-lang/ide">Strict IDE</a> is based on IntelliJ and should feel familiar to any Java or C# (with ReSharper) developer (or PyCharm, Kotlin, etc.). The IDE is not required, you can also use Visual Studio Code or simply any text editor, but it is highly recommended to use <a href="https://github.com/strict-lang/scrunch">SCrunch</a> continuous testing tool as build into the IDE.</p>
+<p>The strict runtime, the language, framework and IDE follow the motto of <em>no logs, no errors, no messing around</em>. Whenever there is an issue in the code, an error is displayed and building won't be possible, it must be fixed first. This includes trying to write code without writing test code first. Code is also immediately executed, tested and optimized, unused code parts will be deleted, imports will be removed and added when needed and Strict might also restructure your code directly if there is a more efficient way.</p>
+<h1><a class="anchor" aria-hidden="true" id="naming-conventions"></a><a href="#naming-conventions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Naming conventions</h1>
+<p>Like in the normal engine, but a common pattern for Backend services is to have the interfaces in the main namespace (e.g. .Hosting, .Builder, .Tachyon, etc.) and the default or base implementation in Default (.Hosting.Default, .Builder.Default, etc.) with special implementations in other namespaces (e.g. Mocks, Spys or concrete services).</p>
+<p>Example:</p>
+<pre><code class="hljs">DeltaEngineBackend.{<span class="hljs-type">name</span>}
+High <span class="hljs-keyword">level</span> API <span class="hljs-keyword">and</span> data <span class="hljs-keyword">types</span>, pretty much interfaces <span class="hljs-keyword">only</span>, this <span class="hljs-keyword">is</span> what <span class="hljs-keyword">is</span> usually referenced <span class="hljs-keyword">except</span> <span class="hljs-keyword">for</span> the implementation project.
+DeltaEngineBackend.{<span class="hljs-type">name</span>}.<span class="hljs-keyword">Default</span>
+<span class="hljs-keyword">Default</span> Implementations, which provide <span class="hljs-number">90</span>%+ <span class="hljs-keyword">of</span> the needed functionality, but <span class="hljs-keyword">is</span> extensible <span class="hljs-keyword">and</span> can be replaced <span class="hljs-keyword">when</span> needed. <span class="hljs-keyword">Only</span> referenced <span class="hljs-keyword">in</span> projects <span class="hljs-keyword">using</span> this (<span class="hljs-keyword">or</span> connecting the dots) plus tests. <span class="hljs-keyword">In</span> <span class="hljs-keyword">case</span> the <span class="hljs-keyword">default</span> implementation <span class="hljs-keyword">is</span> <span class="hljs-keyword">using</span> a specific framework, that <span class="hljs-type">name</span> <span class="hljs-keyword">is</span> used <span class="hljs-keyword">instead</span> (<span class="hljs-keyword">like</span> it <span class="hljs-keyword">is</span> done <span class="hljs-keyword">in</span> the engine <span class="hljs-keyword">for</span> OpenGL, SharpDX, GooglePlayServices, etc.)
+DeltaEngineBackend.{<span class="hljs-type">name</span>}.<span class="hljs-keyword">Server</span>
+</code></pre>
+<p>If this namespace provides a service. The same goes for actual implementations like {GameName}.Server, which uses the other projects and implements the server for the game. All this is internally wired via extensions, look up the test projects or any server project to see how easy it works.</p>
+<h1><a class="anchor" aria-hidden="true" id="tests"></a><a href="#tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tests</h1>
+<p>Tests are always written first, test classes end with Tests and are in a separate project.
+No Test project is allowed to reference any other Test project to keep projects testable independently.
+Mocks don't belong into Test projects, create a separate Mock project instant (see ﻿Mock guidance for more information).
+Always follow Clean Code and the TDD rules:</p>
+<ol>
+<li>Write test code before production code. Work together with a team member to learn, it will require a lot of discipline and training.</li>
+<li>Make tests work and only write what is necessary for the tests to work (no extra code, put research into extra tests or extra projects).</li>
+<li>Refactor and make sure to get 100% coverage.
+There are 3 kinds of tests, but all of them can be tested the same way (automatically via NCrunch (highly recommended), visually via ReSharper, or manually via Program.cs). With theTestWithMocksOrVisually class and the [Test] attribute you can easily combine automated tests and visual tests, with the [Test, CloseAfterFirstFrame] attributes you can mark tests as integration tests that will close immediately after running one frame. Both avoid duplicated code as everything in them is shared and tested automatically with Mocks using NCrunch all the time. This is especially true for integration tests, in particular graphics, multimedia, input, etc. tests, which need to be run with each framework separately. NCrunch will make sure that the overall logic works, manual testing is still required to confirm things are visible on screen, sound is working, etc. You can however also test all tests with ReSharper similar to our integration server, this will launch all tests and make sure they work (including making approval screenshots and comparing the result, quickly telling you if something broke).</li>
+</ol>
+<pre><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">DeviceTests</span> : <span class="hljs-symbol">TestWithMocksOrVisually</span>
+{
+  [Test, ApproveFirstFrameScreenshot]
+  <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> DrawRedBackground()
+  {
+    Resolve&lt;Window&gt;().BackgroundColor = Color.Red;
+  }
+ 
+  [Test] 
+  <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> SizeChanged()
+  {
+     Resolve&lt;Window&gt;().ViewportPixelSize = new Size(<span class="hljs-number">200</span>, <span class="hljs-number">100</span>); 
+     Assert.AreEqual(new Size(<span class="hljs-number">200</span>, <span class="hljs-number">100</span>), Resolve&lt;Window&gt;().ViewportPixelSize);
+   }
+ }
+</code></pre>
+<p>Not only does this test all the code with NCrunch automatically, but you can also let NCrunch test all integration tests automatically for you when setting TestStarter.NCrunchIgnoreSlowTests = false;. This is normally annoying when actually working on code, but still great for code reviews and testing functionality of hundereds of tests quickly before starting to confirm them visually as well.</p>
+<p>ReSharper (via F6, F8 or F9) or other test runners also work great together with the [Test] attribute, which utilizes the resolver in the current framework you are using (e.g. TestWithGLFW3 uses GLFW3Resolver in its TestWithMocksOrVisually class).</p>
+<p>Of course all 3 test types are still available:
+Automatic Unit Tests marked with the Test attribute (tested with NCrunch all day, each test MUST execute in below 10ms (without initialization), otherwise move it to Integration tests).
+Note: When testing with ReSharper or NCrunch the first test might take an extra 100-200ms (or more when Moq is used) because of starting up and loading the assemblies for the first time, this can be ignored, all other tests will execute quickly. When just executing a single test, this overhead is also there, so don't use that time to measure automatic unit tests, always run them all.</p>
+<pre><code class="hljs">[<span class="hljs-meta">Test</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">PointToString</span>(<span class="hljs-params"></span>)</span>
+{
+    <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> Point(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+    Assert.AreEqual(<span class="hljs-string">"(3, 4)"</span>, p.ToString());
+}
+</code></pre>
+<h1><a class="anchor" aria-hidden="true" id="mocks"></a><a href="#mocks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mocks</h1>
+<p>Mocking is not easy, especially not for beginners and if the code is not written in a test driven manner or if the code comes from an outside framework that is generally hard to test. It is often misunderstood and not liked by many (even professional) programmers because it ads lots of extra code and overhead to your code base without any visible benefits to production code. Mocking is however crucial to testing and the code that is required to make code mock-able is usually required to get rid of dependencies anyway and will make the code much more stable, robust and easier to change because of tests that run all the time (via NCrunch). Visual and functional tests are great to verify UI and graphical behaviour, but you cannot run all visual tests in a project for every little change. You can however let NCrunch run all the tests all the time in the background! The most important aspect of mocking is making slow and external code run fast by just not executing it at all. Also only with Mocks it is possible to accomplish 100% automated code coverage (except for stuff that is mocked away like external frameworks and slow code, which we usually test with automated integration tests that run nightly).
+To learn how to use mocking see how the Time class gets transformed to make it mockable and also easily extensible.
+Most mocks are just stubs or fake objects to be able to test quickly without invoking slow framework methods (IO, GPU, API calls). Some times a spy is also useful to inspect inner data. For this reason mock, fake and spy classes can break some rules defined below for easy access (public static). For details see <a href="http://en.wikipedia.org/wiki/Test_double">http://en.wikipedia.org/wiki/Test_double</a></p>
+<h1><a class="anchor" aria-hidden="true" id="limits"></a><a href="#limits" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Limits</h1>
+<p>Public methods are also limited by 10 per class, private methods are not limited, but a class should be as short and concise as possible (around max. 200-400 lines). Each public method should be followed by the private methods that are called in it in the same order.</p>
+<p>Each method should do one thing, and only have zero or one parameter. If required use two parameters, three should be the absolute limit. The same is true for constructor parameters, split up your functionality into several classes or use Property Injection if you need access to more things. The only exception should be constructors of manager type classes (but don't name them manager or helper), for example it is perfectly okay for the Input class to get injected by all kind of devices because that is what this class is for. Doing one thing means:
+Methods called Get, Is, etc. should only grab data and not modify the instance at all! The should also not &quot;do&quot; anything except return existing values. Using simple calculations, ifs or dictionaries is okay.
+Other methods should do something with the instance based on the passed in parameters (e.g. Save(filename) will save out the data to disk, Update will update a game tick) and not return anything.
+Only Create or Load methods should actually create new instances and return them (e.g. Content.Load or BinaryFactory.Create)
+Keep methods short. One method should not do all initialization, all loading, all conditional logic and all rendering functionality, split it up into multiple methods and call them all in your method (then it still does the same thing, but nothing of the original &quot;doing&quot; is left, the method has a new purpose now to call multiple low level methods).
+Exception handling should be in its own method, it should only have one line to try something and the exception handler block (usually one line as well, max 3-5 lines per handler block, max 3handlers). See an example below.</p>
+<p>Normally a method should only need 3-5 lines of code, the limit is 10 lines of code. The absolute limit is 20 lines and this should only be done in private methods and when you cannot avoid it (when switch statements or legacy code handling is required). Code reviews are essential to keep the code this simple! Comments are rarely needed for methods and it is usually a violation if you see any comment inside a method, especially for if statements or method calls. Try to incorporate the comment into the method call and simplify.</p>
+<h2><a class="anchor" aria-hidden="true" id="number-of-code-lines"></a><a href="#number-of-code-lines" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Number Of Code Lines</h2>
+<table>
+<thead>
+<tr><th style="text-align:right">Code block</th><th>Minimum</th><th>Good</th><th>Limit</th><th style="text-align:center">Notes</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:right">test length</td><td>1</td><td>1-3</td><td>10</td><td style="text-align:center">Every method needs at least one test</td></tr>
+<tr><td style="text-align:right">method length</td><td>1</td><td>1-5</td><td>12</td><td style="text-align:center">Every method should be short and needs to return or do something</td></tr>
+<tr><td style="text-align:right">parameters</td><td>0</td><td>0-2</td><td>3</td><td style="text-align:center">Parameters should be kept to a minimum</td></tr>
+<tr><td style="text-align:right">fields</td><td>0</td><td>0-3</td><td>10</td><td style="text-align:center">Classes should not have too many parameters, split them up</td></tr>
+<tr><td style="text-align:right">public methods</td><td>1</td><td>0-3</td><td>5</td><td style="text-align:center">Classes must have at least one callable method, but not more than a few</td></tr>
+<tr><td style="text-align:right">private methods</td><td>0</td><td>0-5</td><td>16</td><td style="text-align:center">Short helper methods are usually needed to get stuff done</td></tr>
+<tr><td style="text-align:right">line count</td><td>2</td><td>5-50</td><td>256</td><td style="text-align:center">Classes must be short and easily readable</td></tr>
+<tr><td style="text-align:right">nesting</td><td>0</td><td>1-3</td><td>5</td><td style="text-align:center">Do not use identation too much, same for packages and namespaces</td></tr>
+</tbody>
+</table>
+<p>Compiling code that exceeds the limits is not possible unless you change the <em>build.yml</em> file. All limits can be configured manually in this file, but any code exceeding any of the limits above will not be accepted into the strict language sdk or default packages repository.</p>
+<pre><code class="hljs css language-yml"><span class="hljs-comment"># build.yml</span>
+<span class="hljs-attr">limits:</span>
+  <span class="hljs-string">publicMethods:17</span>
+  <span class="hljs-string">testLength:23</span>
+  <span class="hljs-string">nesting:7</span>
+</code></pre>
+<h1><a class="anchor" aria-hidden="true" id="concurrency"></a><a href="#concurrency" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Concurrency</h1>
+<p>TODO: add concurrency discussion notes</p>
+<p>Immutable types and thread safety
+Like in many programming languages (Java, C#, Python) string and other build in types (number, int, bool) are immutable. Basically whenever you assign something different to them, they are a new instance. This makes them thread safe. In addition all types created in Strict are immutable (like in functional languages like F# or Clojure, which focuses on multithreaded robust programs by using immutable values).</p>
+<p>Idea: Maybe all data should work like Event Sourcing, which means all data changes are recorded and can be played back: <a href="https://www.youtube.com/watch?v=8JKjvY4etTY">https://www.youtube.com/watch?v=8JKjvY4etTY</a> This could help a lot, basically any variable is just created and from then on things are just applied on top of it (e.g. number starts with 0, then we add +1, and the result is the original number and everything that was applied to it). Obviously some caching would be useful, this would be very bad for performance.</p>
+<p>As you can see from the operators on the statements page creating types happens via the build in create method, which is always available, but can also be customized for each type (like a constructor). Often writing this create method is not required and many types can be thought of as data containers like in Go. Go however has no constructors and you just would write a method to create your type, which is usually not required in Strict. For example simple data types almost require no special code like a Vector2D class has tons of build in functionality like a create method, adding, subtracting, etc. without having to write a single method.</p>
+<p>Vector2D.type
+number x
+number y
+Some methods are still useful to have like calculating the length of a vector.</p>
+<p>length.x.y.method
+return System.Math().Sqrt(x * x + y * y)</p>
+<p>Like explained in the overview, any type that has x and y can now call this length method. You might notice that the Sqrt method of Math was invoked via System.Math(), which is calling the get method of System.Math. In this case System.Math is a static .NET class and we can access its static members this way via this default instance.</p>
+<p>Not very useful for a Vector2D, you can also get a created instance via the get operator by writing Vector2D(x is 1). This will always return a valid Vector2D instance (remember, there are no null values allowed in Strict), if no Vector2D with x = 1 was ever created, a new Vector2D is created automatically. Alternatively you can ask if a Vector2D exists via Vector2D.exists(x is 1), which returns a bool. A better example would be a User with some simple members:</p>
+<p>User.type</p>
+<p>number id
+string name
+string email
+You can immediately use this type, create new instances via User.create(1, &quot;Ben&quot;) or check if a user exists via User.exists(id is 1) or User.exists(name is &quot;Ben&quot;) or grab a user by its id or name in the same way, e.g. User(id is 1). However this might not be the way you want to create such users. Maybe you want to enforce a valid email and the id should never be set by the caller, but instead be calculated in the create method automatically. Then you would add a create method like this:</p>
+<p>User.create.name.email.method</p>
+<p>static number idCounter = 0
+id = idCounter++
+Since all instances are immutable we cannot store a unique id somewhere in the class accessible for all new instances. Instead we have to declare a static member (only visible to this method), which will only be created once and is available to all threads. Static members can only be thread safe types (build in types, like number, bool, string, list and map) and they work pretty much like const, except they are NOT immutable and can be changed via each call made to them. We exploit this here to easily count up the id. Please note that name and email are set automatically from the parameters of the method to the members of the type, no further action is required. User.create(1, &quot;Ben&quot;) cannot compile now and needs to be changed. Using User.create() or User.create(&quot;Ben&quot;) is also not allowed as there is no explicit create method for those cases. In case we want to make email optional two methods are created.</p>
+<p>Thread Safety
+Here is a great long article of Threading in C#, and you can see from its length it is not an easy topic. We want to avoid all that hassle and provide a solid foundation in Strict so we can just write code and let it be executed on different threads automatically.</p>
+<p>If immutable types are too restrictive we can fallback to STM (Software transactional memory) to easily allow changing data, there are some nice implementations available and this is what Clojure uses.</p>
+<p>All Strict code must be thread safe as we will always execute it on multiple threads and machines, not knowing who executes it right now and we don't want to bother locking or taking care of race conditions.</p>
+<p>Links</p>
+<p><a href="http://blogs.msdn.com/b/ericlippert/archive/2007/11/13/immutability-in-c-part-one-kinds-of-immutability.aspx">http://blogs.msdn.com/b/ericlippert/archive/2007/11/13/immutability-in-c-part-one-kinds-of-immutability.aspx</a>
+<a href="https://github.com/jbakic/Shielded">https://github.com/jbakic/Shielded</a> (.NET implementation of Software transactional memory)
+<a href="http://en.wikipedia.org/wiki/Thread_safety">http://en.wikipedia.org/wiki/Thread_safety</a>
+<a href="http://www.drdobbs.com/architecture-and-design/the-need-for-immutability/231000092">http://www.drdobbs.com/architecture-and-design/the-need-for-immutability/231000092</a></p>
+<h1><a class="anchor" aria-hidden="true" id="parallelism"></a><a href="#parallelism" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parallelism</h1>
+<p>Strict programming is not parallel, the code that is executed very much is so. You or Strict just write sequential code because that is how the hardware works on a low level. You can certainly call parallel methods (like Parallel.For for number crunching or even GPU code like with Cuda or OpenCL), but in general code that is written is executed sequentially (even without things like async and await, which are not present in the language, you would need to hock up a simple state machine to do that).</p>
+<p>However, each call made to a function is not necessarily sequential, each call might be executed on a different task (locally on a machine via thread, but also can be on a different machine, see below). The language does not know anything about this, it just evaluates a statement and will wait by default a maximum of 1 second for Strict calls, anything longer is not allowed, external calls can take longer, but Strict keeps counting the time and might abort if it gets bored by waiting on any task for more than 60 seconds. Internally most calls happens on the same task, but depending on the structure of the code more tasks might be invoked. Strict knows the complexity of each thing that it calls, if it exceeds more than 1000 instructions or much more (10x+) than whatever the task switch cost is going to be, then each branch of calling the code (like a method call in a loop) is going to be executed in a different task.</p>
+<p>Early versions of strict will just run locally in one thread (one task) and be fast because not much is going on. As things get slower and we will hit the 1 second call limit, things need to be parallelized. On a machine with 8 hyper threads this is going to work out for a while, but again at some point code needs to be moved from one machine to another and be executed remotely. Talking over threads or machines is going to be the same thing for tasks, the overhead for talking to other machines is however added to the task switching, which means if I can calculate it faster locally, then I am not going to call other machines for it.</p>
+<p>It is very important to note that each task has its own memory and when spinning up a new task all input data needs to be fed into it, which might be huge and not worth the effort (especially sending big data over the network). Then tasks must be executed locally on a thread with a shared state, which will look EVERY non simple data type for each access (basically everything that is not a int, bool or number). This can be bad too, but slow code like that should be avoided and the system needs to refactor itself if it finds itself in a situation with slow code like this.</p>
+<p>Implementation
+Early implementations will just use Plinq and Parallel.Task, but only do so if the loop is huge or the statements called exceed a threshold (like the 1000 instructions listed above).</p>
+<p>Here is a great read about Plinq, Parallel.Task and Concurrency in C# in general.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/17/2020 by Benjamin Nitschke</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/strict.dev/docs/GettingStarted"><span class="arrow-prev">← </span><span>Getting Started</span></a><a class="docs-next button" href="/strict.dev/docs/Keywords"><span>Keywords</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#number-of-code-lines">Number Of Code Lines</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/strict.dev/" class="nav-home" style="width:160px"><img src="/strict.dev/img/StrictLogo.png" alt="Strict Programming Language" width="128" height="128"/></a><div><h5>Docs</h5><a href="/strict.dev/docs/en/GettingStarted">Getting Started</a><a href="/strict.dev/docs/en/Coding Style">Coding Style</a><a href="/strict.dev/docs/en/Keywords">API Reference</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/Strict" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/strict-lang" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/strict.dev/help">Help</a><a href="https://github.com/strict-lang">GitHub</a><a class="github-button" href="https://github.com/strict-lang/strict.dev" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 strict-lang</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'my-api-key',
+                indexName: 'my-index-name',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
