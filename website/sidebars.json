@@ -1,0 +1,6 @@
+{
+  "docs": {
+	"Documentation": ["GettingStarted", "CodingStyle"],
+    "API": ["Keywords", "Types"]
+  }
+}
