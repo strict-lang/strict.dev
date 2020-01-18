@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Concurrency · Strict Programming Language</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Strict Solutions:"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Concurrency · Strict Programming Language"/><meta property="og:type" content="website"/><meta property="og:url" content="https://strict-lang.github.io/strict.dev/"/><meta property="og:description" content="Strict Solutions:"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/strict.dev/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://strict-lang.github.io/strict.dev/blog/atom.xml" title="Strict Programming Language Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://strict-lang.github.io/strict.dev/blog/feed.xml" title="Strict Programming Language Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/strict.dev/js/scrollSpy.js"></script><link rel="stylesheet" href="/strict.dev/css/main.css"/><script src="/strict.dev/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/strict.dev/"><img class="logo" src="/strict.dev/img/StrictLogo.png" alt="Strict Programming Language"/><h2 class="headerTitleWithLogo">Strict Programming Language</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/strict.dev/docs/Overview" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/strict.dev/docs/Keywords" target="_self">API</a></li><li class=""><a href="/strict.dev/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Documentation</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Documentation</h3><ul class=""><li class="navListItem"><a class="navItem" href="/strict.dev/docs/Overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/strict.dev/docs/GettingStarted">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/strict.dev/docs/CodingStyle">Coding Style</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/strict.dev/docs/Concurrency">Concurrency</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/strict.dev/docs/Keywords">Keywords</a></li><li class="navListItem"><a class="navItem" href="/strict.dev/docs/Types">Types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Concurrency</h1></header><article><div><span><p>Strict Solutions:</p>
+<ul>
+<li>Coroutines</li>
+<li>Compiler Generated Fork Join and parallel Computation evaluation</li>
+<li>Thread Local Storage is injected</li>
+<li>Communication wise, start by offering simple NIO and later look at stuff like grpc</li>
+</ul>
+<h1><a class="anchor" aria-hidden="true" id="work-in-progress-examples-thinking-out-loud"></a><a href="#work-in-progress-examples-thinking-out-loud" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Work in progress examples, thinking out loud</h1>
+<p>LocationDistance.strict</p>
+<pre><code class="hljs">implement ManhattanDistance&lt;Location&gt;
+
+Location source
+Location target
+
+<span class="hljs-function"><span class="hljs-keyword">method</span> <span class="hljs-title">Number</span> <span class="hljs-title">Compute</span><span class="hljs-params">()</span>
+  <span class="hljs-title">return</span> <span class="hljs-title">Sum</span><span class="hljs-params">([
+    NumberDistance(source.X, target.X)</span>,
+    <span class="hljs-title">NumberDistance</span><span class="hljs-params">(source.Y, target.Y)</span>,
+    <span class="hljs-title">NumberDistance</span><span class="hljs-params">(source.Z, target.Z)</span>
+  ])
+
+<span class="hljs-title">let</span> <span class="hljs-title">distance</span> = <span class="hljs-title">myPosition</span>.<span class="hljs-title">DistanceTo</span><span class="hljs-params">(bigApplePosition)</span>
+<span class="hljs-title">let</span> <span class="hljs-title">distanceToBigApple</span> = <span class="hljs-title">VectorMath</span>.<span class="hljs-title">Distance</span><span class="hljs-params">(myPosition, bigApplePosition)</span> + <span class="hljs-title">amountOfStairs</span>
+</span></code></pre>
+<p>NumberDistance.strict</p>
+<pre><code class="hljs">implement Distance&lt;Number&gt;
+
+Number source
+Number target
+
+<span class="hljs-function"><span class="hljs-keyword">method</span> <span class="hljs-title">Number</span> <span class="hljs-title">Compute</span><span class="hljs-params">()</span>
+  <span class="hljs-title">let</span> [<span class="hljs-title">smaller</span>, <span class="hljs-title">higher</span>] = <span class="hljs-title">BiOrder</span><span class="hljs-params">(source, target)</span>
+  <span class="hljs-title">return</span> <span class="hljs-title">higher</span> - <span class="hljs-title">smaller</span>
+</span></code></pre>
+<p>Range.strict</p>
+<pre><code class="hljs">implement Computation&lt;Number&gt;
+
+Number <span class="hljs-keyword">begin</span>
+Number <span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">method</span> <span class="hljs-title">Number</span> <span class="hljs-title">Compute</span><span class="hljs-params">()</span>
+</span></code></pre>
+<p>BiOrder.strict</p>
+<pre><code class="hljs">generic Value is Ordered
+implement Computation&lt;Value[]&gt;
+
+Value <span class="hljs-built_in">left</span>
+Value <span class="hljs-built_in">right</span>
+
+method Value[] <span class="hljs-keyword">Compute</span>()
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">match</span>
+    <span class="hljs-built_in">right</span> &gt; <span class="hljs-built_in">left</span> =&gt; [<span class="hljs-built_in">left</span>, <span class="hljs-built_in">right</span>]
+    <span class="hljs-keyword">else</span> =&gt; [<span class="hljs-built_in">right</span>, <span class="hljs-built_in">left</span>]
+
+method add(Number <span class="hljs-built_in">left</span>, Number <span class="hljs-built_in">right</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">match</span> 
+    <span class="hljs-built_in">left</span> == <span class="hljs-number">0</span> and <span class="hljs-built_in">right</span> == <span class="hljs-number">0</span> =&gt; <span class="hljs-number">0</span>
+    <span class="hljs-built_in">left</span> == <span class="hljs-number">1</span> and <span class="hljs-built_in">right</span> == <span class="hljs-number">1</span> =&gt; <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span> =&gt; <span class="hljs-built_in">left</span> + <span class="hljs-built_in">right</span>
+
+<span class="hljs-keyword">let</span> computation = BiOrder(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>)
+</code></pre>
+<p>PrimeNumbers.strict</p>
+<pre><code class="hljs">implement Computation&lt;<span class="hljs-built_in">Number</span>&gt;
+
+factory (upTo: <span class="hljs-built_in">Number</span> upperBound)
+
+<span class="hljs-built_in">Number</span> upperBound
+
+method <span class="hljs-built_in">Number</span> Compute()
+  <span class="hljs-keyword">for</span> entry from <span class="hljs-number">0</span> <span class="hljs-keyword">to</span> upperBound <span class="hljs-keyword">step</span> <span class="hljs-number">2</span>
+    <span class="hljs-keyword">if</span> isPrime(entry)
+      yield entry
+
+method Boolean isPrime(<span class="hljs-built_in">Number</span> prime)
+  <span class="hljs-keyword">for</span> <span class="hljs-built_in">number</span> from <span class="hljs-number">0</span> <span class="hljs-keyword">to</span> prime 
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">number</span> % prime is <span class="hljs-number">0</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span> 
+     
+---
+// RandomNumber.strict
+implement Computation&lt;<span class="hljs-built_in">Number</span>&gt;
+
+<span class="hljs-built_in">Number</span> upperBound
+ThreadLocal&lt;<span class="hljs-built_in">Random</span>&gt; <span class="hljs-built_in">random</span>
+
+method <span class="hljs-built_in">Number</span> Compute()
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">random</span>.GenerateNumber(upTo: upperBound)
+</code></pre>
+<p>World.strict</p>
+<pre><code class="hljs">@mutable Tree[] trees
+
+@mutable <span class="hljs-function"><span class="hljs-keyword">method</span> <span class="hljs-title">Timber</span><span class="hljs-params">(Tree tree)</span>
+  <span class="hljs-title">test</span> <span class="hljs-title">with</span> <span class="hljs-params">(10, 20)</span>
+</span></code></pre>
+<p>Player.strict</p>
+<pre><code class="hljs"><span class="hljs-built_in">Score</span> <span class="hljs-built_in">score</span>
+
+win(<span class="hljs-built_in">player</span>)
+  <span class="hljs-built_in">score</span> = copy(<span class="hljs-built_in">player</span>.<span class="hljs-built_in">score</span>)
+  <span class="hljs-built_in">score</span>.points += <span class="hljs-number">100</span>
+  <span class="hljs-built_in">player</span>.<span class="hljs-built_in">score</span> = <span class="hljs-built_in">score</span>
+ 
+addKillReward(<span class="hljs-built_in">player</span>)
+  <span class="hljs-built_in">score</span> = copy(<span class="hljs-built_in">player</span>.<span class="hljs-built_in">score</span>)
+  <span class="hljs-built_in">score</span>.points += <span class="hljs-number">100</span>
+  <span class="hljs-built_in">player</span>.<span class="hljs-built_in">score</span> = <span class="hljs-built_in">score</span>
+</code></pre>
+<p>Score.strict</p>
+<pre><code class="hljs"><span class="hljs-built_in">Count</span> points
+
+win(<span class="hljs-built_in">player</span>)
+  <span class="hljs-built_in">player</span>.<span class="hljs-built_in">score</span>.IncreasePoints(<span class="hljs-number">100</span>)
+</code></pre>
+<p>older concepts:</p>
+<h1><a class="anchor" aria-hidden="true" id="concurrency"></a><a href="#concurrency" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Concurrency</h1>
+<p>Immutable types and thread safety
+Like in many programming languages (Java, C#, Python) string and other build in types (number, int, bool) are immutable. Basically whenever you assign something different to them, they are a new instance. This makes them thread safe. In addition all types created in Strict are immutable (like in functional languages like F# or Clojure, which focuses on multithreaded robust programs by using immutable values).</p>
+<p>Idea: Maybe all data should work like Event Sourcing, which means all data changes are recorded and can be played back: <a href="https://www.youtube.com/watch?v=8JKjvY4etTY">https://www.youtube.com/watch?v=8JKjvY4etTY</a> This could help a lot, basically any variable is just created and from then on things are just applied on top of it (e.g. number starts with 0, then we add +1, and the result is the original number and everything that was applied to it). Obviously some caching would be useful, this would be very bad for performance.</p>
+<p>As you can see from the operators on the statements page creating types happens via the build in create method, which is always available, but can also be customized for each type (like a constructor). Often writing this create method is not required and many types can be thought of as data containers like in Go. Go however has no constructors and you just would write a method to create your type, which is usually not required in Strict. For example simple data types almost require no special code like a Vector2D class has tons of build in functionality like a create method, adding, subtracting, etc. without having to write a single method.</p>
+<p>Vector2D.type
+number x
+number y
+Some methods are still useful to have like calculating the length of a vector.</p>
+<p>length.x.y.method
+return System.Math().Sqrt(x * x + y * y)</p>
+<p>Like explained in the overview, any type that has x and y can now call this length method. You might notice that the Sqrt method of Math was invoked via System.Math(), which is calling the get method of System.Math. In this case System.Math is a static .NET class and we can access its static members this way via this default instance.</p>
+<p>Not very useful for a Vector2D, you can also get a created instance via the get operator by writing Vector2D(x is 1). This will always return a valid Vector2D instance (remember, there are no null values allowed in Strict), if no Vector2D with x = 1 was ever created, a new Vector2D is created automatically. Alternatively you can ask if a Vector2D exists via Vector2D.exists(x is 1), which returns a bool. A better example would be a User with some simple members:</p>
+<p>User.type</p>
+<p>number id
+string name
+string email
+You can immediately use this type, create new instances via User.create(1, &quot;Ben&quot;) or check if a user exists via User.exists(id is 1) or User.exists(name is &quot;Ben&quot;) or grab a user by its id or name in the same way, e.g. User(id is 1). However this might not be the way you want to create such users. Maybe you want to enforce a valid email and the id should never be set by the caller, but instead be calculated in the create method automatically. Then you would add a create method like this:</p>
+<p>User.create.name.email.method</p>
+<p>static number idCounter = 0
+id = idCounter++
+Since all instances are immutable we cannot store a unique id somewhere in the class accessible for all new instances. Instead we have to declare a static member (only visible to this method), which will only be created once and is available to all threads. Static members can only be thread safe types (build in types, like number, bool, string, list and map) and they work pretty much like const, except they are NOT immutable and can be changed via each call made to them. We exploit this here to easily count up the id. Please note that name and email are set automatically from the parameters of the method to the members of the type, no further action is required. User.create(1, &quot;Ben&quot;) cannot compile now and needs to be changed. Using User.create() or User.create(&quot;Ben&quot;) is also not allowed as there is no explicit create method for those cases. In case we want to make email optional two methods are created.</p>
+<p>Thread Safety
+Here is a great long article of Threading in C#, and you can see from its length it is not an easy topic. We want to avoid all that hassle and provide a solid foundation in Strict so we can just write code and let it be executed on different threads automatically.</p>
+<p>If immutable types are too restrictive we can fallback to STM (Software transactional memory) to easily allow changing data, there are some nice implementations available and this is what Clojure uses.</p>
+<p>All Strict code must be thread safe as we will always execute it on multiple threads and machines, not knowing who executes it right now and we don't want to bother locking or taking care of race conditions.</p>
+<p>Links</p>
+<p><a href="http://blogs.msdn.com/b/ericlippert/archive/2007/11/13/immutability-in-c-part-one-kinds-of-immutability.aspx">http://blogs.msdn.com/b/ericlippert/archive/2007/11/13/immutability-in-c-part-one-kinds-of-immutability.aspx</a>
+<a href="https://github.com/jbakic/Shielded">https://github.com/jbakic/Shielded</a> (.NET implementation of Software transactional memory)
+<a href="http://en.wikipedia.org/wiki/Thread_safety">http://en.wikipedia.org/wiki/Thread_safety</a>
+<a href="http://www.drdobbs.com/architecture-and-design/the-need-for-immutability/231000092">http://www.drdobbs.com/architecture-and-design/the-need-for-immutability/231000092</a></p>
+<h1><a class="anchor" aria-hidden="true" id="parallelism"></a><a href="#parallelism" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parallelism</h1>
+<p>Strict programming is not parallel, the code that is executed very much is so. You or Strict just write sequential code because that is how the hardware works on a low level. You can certainly call parallel methods (like Parallel.For for number crunching or even GPU code like with Cuda or OpenCL), but in general code that is written is executed sequentially (even without things like async and await, which are not present in the language, you would need to hock up a simple state machine to do that).</p>
+<p>However, each call made to a function is not necessarily sequential, each call might be executed on a different task (locally on a machine via thread, but also can be on a different machine, see below). The language does not know anything about this, it just evaluates a statement and will wait by default a maximum of 1 second for Strict calls, anything longer is not allowed, external calls can take longer, but Strict keeps counting the time and might abort if it gets bored by waiting on any task for more than 60 seconds. Internally most calls happens on the same task, but depending on the structure of the code more tasks might be invoked. Strict knows the complexity of each thing that it calls, if it exceeds more than 1000 instructions or much more (10x+) than whatever the task switch cost is going to be, then each branch of calling the code (like a method call in a loop) is going to be executed in a different task.</p>
+<p>Early versions of strict will just run locally in one thread (one task) and be fast because not much is going on. As things get slower and we will hit the 1 second call limit, things need to be parallelized. On a machine with 8 hyper threads this is going to work out for a while, but again at some point code needs to be moved from one machine to another and be executed remotely. Talking over threads or machines is going to be the same thing for tasks, the overhead for talking to other machines is however added to the task switching, which means if I can calculate it faster locally, then I am not going to call other machines for it.</p>
+<p>It is very important to note that each task has its own memory and when spinning up a new task all input data needs to be fed into it, which might be huge and not worth the effort (especially sending big data over the network). Then tasks must be executed locally on a thread with a shared state, which will look EVERY non simple data type for each access (basically everything that is not a int, bool or number). This can be bad too, but slow code like that should be avoided and the system needs to refactor itself if it finds itself in a situation with slow code like this.</p>
+<p>Implementation
+Early implementations will just use Plinq and Parallel.Task, but only do so if the loop is huge or the statements called exceed a threshold (like the 1000 instructions listed above).</p>
+<p>Here is a great read about Plinq, Parallel.Task and Concurrency in C# in general.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/18/2020 by Benjamin Nitschke</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/strict.dev/docs/CodingStyle"><span class="arrow-prev">← </span><span>Coding Style</span></a><a class="docs-next button" href="/strict.dev/docs/Keywords"><span>Keywords</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/strict.dev/" class="nav-home" style="width:160px"><img src="/strict.dev/img/StrictLogo.png" alt="Strict Programming Language" width="128" height="128"/></a><div><h5>Docs</h5><a href="/strict.dev/docs/en/GettingStarted">Getting Started</a><a href="/strict.dev/docs/en/Coding Style">Coding Style</a><a href="/strict.dev/docs/en/Keywords">API Reference</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/Strict" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/strict-lang" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/strict.dev/help">Help</a><a href="https://github.com/strict-lang">GitHub</a><a class="github-button" href="https://github.com/strict-lang/strict.dev" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 strict-lang</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'my-api-key',
+                indexName: 'my-index-name',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
