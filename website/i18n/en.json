@@ -8,12 +8,18 @@
       "CodingStyle": {
         "title": "Coding Style"
       },
+      "Concurrency": {
+        "title": "Concurrency"
+      },
       "GettingStarted": {
         "title": "Getting Started"
       },
       "Keywords": {
         "title": "Keywords",
         "sidebar_label": "Keywords"
+      },
+      "Overview": {
+        "title": "Overview"
       },
       "Types": {
         "title": "Types",
@@ -22,6 +28,7 @@
     },
     "links": {
       "Docs": "Docs",
+      "API": "API",
       "Blog": "Blog"
     },
     "categories": {

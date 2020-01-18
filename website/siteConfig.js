@@ -22,36 +22,29 @@ const siteConfig = {
     indexName: 'my-index-name',
     algoliaOptions: {} // Optional, if provided by Algolia
   },
-  // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {search: true},
-    {doc: 'GettingStarted', label: 'Docs'},
+    {doc: 'Overview', label: 'Docs'},
+    {doc: 'Keywords', label: 'API'},
     {blog: true, label: 'Blog'},
   ],
-  /* path to images for header/footer */
   headerIcon: 'img/StrictLogo.png',
   footerIcon: 'img/StrictLogo.png',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#5DACBD',
-    secondaryColor: '#24527A',
+    primaryColor: '#52A0C6',
+    secondaryColor: '#21434C',
   },
 
   /* Custom fonts for website */
-  /*
   fonts: {
     myFont: [
-      "Times New Roman",
+      "Verdana",
       "Serif"
     ],
-    myOtherFont: [
-      "-apple-system",
-      "system-ui"
-    ]
   },
-  */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} strict-lang`,
@@ -71,7 +64,7 @@ const siteConfig = {
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
-  docsSideNavCollapsible: true,
+  //docsSideNavCollapsible: true,
 
   // Show documentation's last contributor's name.
   enableUpdateBy: true,
