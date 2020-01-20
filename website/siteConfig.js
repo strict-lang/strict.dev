@@ -9,8 +9,8 @@
 const siteConfig = {
   title: 'Strict Programming Language', // Title for your website.
   tagline: 'Strict is a simple to understand programming language for humans and AI',
-  url: 'https://strict-lang.github.io', // Your website URL
-  baseUrl: '/strict.dev/', // Base URL for your project */
+  url: 'https://strict.dev', // Your website URL
+  baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
@@ -18,8 +18,8 @@ const siteConfig = {
   projectName: 'strict.dev',
   organizationName: 'strict-lang',
   algolia: {
-    apiKey: 'my-api-key',
-    indexName: 'my-index-name',
+    apiKey: '7f6e29123c9235b4420f116e437ef737',
+    indexName: 'strict-lang',
     algoliaOptions: {} // Optional, if provided by Algolia
   },
   headerLinks: [
