@@ -10,7 +10,7 @@ const siteConfig = {
   title: 'Strict Programming Language', // Title for your website.
   tagline: 'Strict is a simple to understand programming language for humans and AI',
   url: 'https://strict.dev', // Your website URL
-  baseUrl: '/', // Base URL for your project */
+  baseUrl: '/strict.dev/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
