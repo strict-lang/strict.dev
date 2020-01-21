@@ -4,27 +4,26 @@ title: Overview
 ---
 
 A typical *Strict* file is easy to understand and following the [Coding Style](CodingStyle.md) is important
-```
-implements Sort<Element>
-Element implements Compared
+```ocaml
+implement Sort<generic Element is Compared>
 MutableList<Element> elements
 
-Element[] Sort()
+method Element[] Sort()
   test with [3, 2, 1]
-	Sort() is [1, 2, 3]
+	  assert Sort() is [1, 2, 3]
   test with [7, 77, 111, -1, 11]
-	Sort() is [-1, 7, 11, 77, 111]
+	  assert Sort() is [-1, 7, 11, 77, 111]
   for rightIndex from elements.Range()
     for leftIndex from 0 to elements.Range().End - rightIndex
       maybeSwap(leftIndex)
 
-maybeSwap(Number index)
+method maybeSwap(Number index)
   test with [1, 2, 3]
-	maybeSwap(1) 
-    elements is [1, 2, 3]
+	  maybeSwap(1) 
+    assert elements is [1, 2, 3]
   test with [3, 1]
     maybeSwap(0)
-    elements is [1, 3]
+    assert elements is [1, 3]
   if elements[index] > elements[index+1]
     elements.Swap(index, index + 1)
 ```
