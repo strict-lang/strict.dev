@@ -2,21 +2,21 @@
 <rss version="2.0">
     <channel>
         <title>Strict Programming Language Blog</title>
-        <link>https://strict-lang.github.io/strict.dev/blog</link>
+        <link>https://strict.dev/strict.dev/blog</link>
         <description>The best place to stay up-to-date with the latest Strict Programming Language news and events.</description>
         <lastBuildDate>Fri, 17 Jan 2020 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
             <title>Strict Programming Language Blog</title>
-            <url>https://strict-lang.github.io/strict.dev/img/StrictLogo.png</url>
-            <link>https://strict-lang.github.io/strict.dev/blog</link>
+            <url>https://strict.dev/strict.dev/img/StrictLogo.png</url>
+            <link>https://strict.dev/strict.dev/blog</link>
         </image>
         <copyright>Copyright © 2020 strict-lang</copyright>
         <item>
             <title><![CDATA[Strict.dev website is up]]></title>
-            <link>https://strict-lang.github.io/strict.dev/blog/2020/01/17/website-up.html</link>
-            <guid>https://strict-lang.github.io/strict.dev/blog/2020/01/17/website-up.html</guid>
+            <link>https://strict.dev/strict.dev/blog/2020/01/17/website-up.html</link>
+            <guid>https://strict.dev/strict.dev/blog/2020/01/17/website-up.html</guid>
             <pubDate>Fri, 17 Jan 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>After trying out <a href="https://jekyllrb.com/">https://jekyllrb.com/</a> and many themes and plugins after checking out the even more complex <a href="https://gohugo.io/">https://gohugo.io/</a> it turns out these are not good fits for the Strict language, which should be easy to install and work immediately. <a href="https://docusaurus.io/en/">https:/...</a></p>]]></description>
         </item>
