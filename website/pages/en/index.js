@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
+const React = require("react");
 
-const CompLibrary = require('../../core/CompLibrary.js');
+const CompLibrary = require("../../core/CompLibrary.js");
 
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
@@ -15,10 +15,10 @@ const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
   render() {
-    const {siteConfig, language = ''} = this.props;
-    const {baseUrl, docsUrl} = siteConfig;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-    const langPart = `${language ? `${language}/` : ''}`;
+    const { siteConfig, language = "" } = this.props;
+    const { baseUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const SplashContainer = props => (
@@ -61,10 +61,16 @@ class HomeSplash extends React.Component {
     return (
       <SplashContainer>
         <div className="inner">
-          <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} />
+          {/* <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} /> */}
+          <img src="/img/StrictBanner.png" alt={siteConfig.title} />
+          <MarkdownBlock>{siteConfig.tagline}</MarkdownBlock>
           <PromoSection>
-            <Button href="https://github.com/strict-lang/strict">Try It Out</Button>
-            <Button href="https://github.com/strict-lang/packages">Packages</Button>
+            <Button href="https://github.com/strict-lang/strict">
+              Try It Out
+            </Button>
+            <Button href="https://github.com/strict-lang/packages">
+              Packages
+            </Button>
             <Button href="https://github.com/strict-lang/vm">Strict VM</Button>
           </PromoSection>
         </div>
@@ -75,14 +81,15 @@ class HomeSplash extends React.Component {
 
 class Index extends React.Component {
   render() {
-    const {config: siteConfig, language = ''} = this.props;
-    const {baseUrl} = siteConfig;
+    const { config: siteConfig, language = "" } = this.props;
+    const { baseUrl } = siteConfig;
 
     const Block = props => (
       <Container
-        padding={['bottom', 'top']}
+        padding={["bottom", "top"]}
         id={props.id}
-        background={props.background}>
+        background={props.background}
+      >
         <GridBlock
           align="center"
           contents={props.children}
@@ -94,7 +101,8 @@ class Index extends React.Component {
     const FeatureCallout = () => (
       <div
         className="productShowcaseSection paddingBottom"
-        style={{textAlign: 'center'}}>
+        style={{ textAlign: "center" }}
+      >
         <h2>Feature Callout</h2>
         <MarkdownBlock>These are features of this project</MarkdownBlock>
       </div>
@@ -105,11 +113,11 @@ class Index extends React.Component {
         {[
           {
             content:
-              'Strict is a simple to understand programming language that not only humans can read and understand, but also AI is able to read, modify and write. It has backends for many common frameworks like JDK, .NET and allows you to generate C++, C#, Java, etc. code or run in its own VM.',
-            image: `${baseUrl}img/StrictLogo.png`,
-            imageAlign: 'right',
-            title: 'Strict is a language computers can understand',
-          },
+              "Strict is a simple to understand programming language that not only humans can read and understand, but also AI is able to read, modify and write. It has backends for many common frameworks like JDK, .NET and allows you to generate C++, C#, Java, etc. code or run in its own VM.",
+            image: `${baseUrl}img/StrictLogoBlue256x256.png`,
+            imageAlign: "right",
+            title: "Strict is a language computers can understand"
+          }
         ]}
       </Block>
     );
@@ -119,13 +127,13 @@ class Index extends React.Component {
         {[
           {
             content:
-              'To make your landing page more attractive, use illustrations! Check out ' +
-              '[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. ' +
-              'The illustrations you see on this page are from unDraw.',
+              "To make your landing page more attractive, use illustrations! Check out " +
+              "[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. " +
+              "The illustrations you see on this page are from unDraw.",
             image: `${baseUrl}img/undraw_code_review.svg`,
-            imageAlign: 'left',
-            title: 'Wonderful SVG Illustrations',
-          },
+            imageAlign: "left",
+            title: "Wonderful SVG Illustrations"
+          }
         ]}
       </Block>
     );
@@ -135,11 +143,11 @@ class Index extends React.Component {
         {[
           {
             content:
-              'This is another description of how this project is useful',
+              "This is another description of how this project is useful",
             image: `${baseUrl}img/undraw_note_list.svg`,
-            imageAlign: 'right',
-            title: 'Description',
-          },
+            imageAlign: "right",
+            title: "Description"
+          }
         ]}
       </Block>
     );
@@ -148,17 +156,17 @@ class Index extends React.Component {
       <Block layout="fourColumn">
         {[
           {
-            content: 'This is the content of my feature',
+            content: "This is the content of my feature",
             image: `${baseUrl}img/undraw_react.svg`,
-            imageAlign: 'top',
-            title: 'Feature One',
+            imageAlign: "top",
+            title: "Feature One"
           },
           {
-            content: 'The content of my second feature',
+            content: "The content of my second feature",
             image: `${baseUrl}img/undraw_operating_system.svg`,
-            imageAlign: 'top',
-            title: 'Feature Two',
-          },
+            imageAlign: "top",
+            title: "Feature Two"
+          }
         ]}
       </Block>
     );
@@ -176,7 +184,7 @@ class Index extends React.Component {
           </a>
         ));
 
-      const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page;
+      const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
       return (
         <div className="productShowcaseSection paddingBottom">
@@ -184,7 +192,7 @@ class Index extends React.Component {
           <p>This project is used by all these people</p>
           <div className="logos">{showcase}</div>
           <div className="more-users">
-            <a className="button" href={pageUrl('users.html')}>
+            <a className="button" href={pageUrl("users.html")}>
               More {siteConfig.title} Users
             </a>
           </div>

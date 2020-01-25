@@ -4,12 +4,27 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
- 
-/* your custom css */
 
-.logo{
-	display:none;
+/* your custom css */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+.fixedHeaderContainer header .headerTitleWithLogo {
+  font-size: 1.45em;
+}
+.logo {
+  transition: all 0.2s ease-in-out;
+}
+.logo:hover {
+  transform: scale(1.1);
+}
+.logo:after {
+  background-image: "/img/StrictProgrammingLanguageFontWhite.png";
+  background-repeat: no-repeat;
+  width: 643px;
+  height: 18px;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 

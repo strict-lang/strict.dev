@@ -7,44 +7,42 @@
 
 // See https://docusaurus.io/docs/site-config
 const siteConfig = {
-  title: 'Strict Programming Language', // Title for your website.
-  tagline: 'Strict is a simple to understand programming language for humans and AI',
-  cname: 'strict.dev',
-  url: 'https://strict.dev', // Your website URL
-  baseUrl: '/', // Base URL for your project */
+  title: "Strict Programming Language", // Title for your website.
+  tagline:
+    "Strict is a simple to understand programming language for humans and AI",
+  cname: "strict.dev",
+  url: "https://strict.dev", // Your website URL
+  baseUrl: "/", // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
   // Used for publishing and more
-  projectName: 'strict.dev',
-  organizationName: 'strict-lang',
+  projectName: "strict.dev",
+  organizationName: "strict-lang",
   algolia: {
-    apiKey: '7f6e29123c9235b4420f116e437ef737',
-    indexName: 'strict-lang',
+    apiKey: "7f6e29123c9235b4420f116e437ef737",
+    indexName: "strict-lang",
     algoliaOptions: {} // Optional, if provided by Algolia
   },
   headerLinks: [
-    {search: true},
-    {doc: 'Overview', label: 'Docs'},
-    {doc: 'Keywords', label: 'API'},
-    {blog: true, label: 'Blog'},
+    { search: true },
+    { doc: "Overview", label: "Docs" },
+    { doc: "Keywords", label: "API" },
+    { blog: true, label: "Blog" }
   ],
-  headerIcon: 'img/StrictLogo.png',
-  footerIcon: 'img/StrictLogo.png',
-  favicon: 'img/favicon.ico',
+  headerIcon: "img/StrictLogoWhite64x64.png",
+  footerIcon: "img/StrictLogoBlue128x128.png",
+  favicon: "img/favicon.ico",
 
   /* Colors for website */
   colors: {
-    primaryColor: '#52A0C6',
-    secondaryColor: '#21434C',
+    primaryColor: "#52A0C6",
+    secondaryColor: "#21434C"
   },
 
   /* Custom fonts for website */
   fonts: {
-    myFont: [
-      "Verdana",
-      "Serif"
-    ],
+    myFont: ["Verdana", "Serif"]
   },
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
@@ -52,14 +50,14 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: "default"
   },
 
   // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: ["https://buttons.github.io/buttons.js"],
 
   // On page navigation for the current documentation page.
-  onPageNav: 'separate',
+  onPageNav: "separate",
   // No .html extensions for paths.
   cleanUrl: true,
 
@@ -75,7 +73,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  repoUrl: 'https://github.com/strict-lang/strict.dev',
+  repoUrl: "https://github.com/strict-lang/strict.dev"
 };
 
 module.exports = siteConfig;
