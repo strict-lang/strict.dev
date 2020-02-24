@@ -6,10 +6,26 @@ title: Overview
 A typical _Strict_ file is easy to understand. Unlike other languages following the [Coding Style](CodingStyle.md) is enforced!
 
 ```ocaml
-implement Sort<generic Element is Compared>
-MutableList<Element> elements
+implement App
+has log Log
 
-method Element[] Sort()
+method Run()
+  test()
+    log.LastLine() is "4"
+  log.Write("Hello World")
+  log.Write(double(2))
+
+method double(number Number) returns Number
+  test
+	  double(1) is 2
+  return number * 2
+```
+
+```ocaml
+implement Sort<generic Element is Compared>
+has elements MutableList<Element>
+
+method Sort() returns Element[]
   test with [3, 2, 1]
 	  Sort() is [1, 2, 3]
   test with [7, 77, 111, -1, 11]
@@ -18,7 +34,7 @@ method Element[] Sort()
     for leftIndex from 0 to elements.Range().End - rightIndex
       maybeSwap(leftIndex)
 
-method maybeSwap(Number index)
+method maybeSwap(index Number)
   test with [1, 2, 3]
 	  maybeSwap(1)
     elements is [1, 2, 3]

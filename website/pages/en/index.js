@@ -68,10 +68,16 @@ class HomeSplash extends React.Component {
             <Button href="https://github.com/strict-lang/strict">
               Try It Out
             </Button>
+            <Button href="https://github.com/strict-lang/strict-intellij">
+              IDE
+            </Button>
             <Button href="https://github.com/strict-lang/packages">
               Packages
             </Button>
-            <Button href="https://github.com/strict-lang/vm">Strict VM</Button>
+            <Button href="https://github.com/strict-lang/sdk">SDK</Button>
+            <Button href="https://github.com/strict-lang/bloom">
+              Strict VM
+            </Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -108,12 +114,27 @@ class Index extends React.Component {
       </div>
     );
 
+    const Layers = () => {
+      return (
+        <div
+          className="productShowcaseSection"
+          style={{
+            paddingTop: "30px",
+            paddingBottom: "30px",
+            background: "#f7f7f7"
+          }}
+        >
+          <img src="img/StrictLayers.svg" width="1280px" />
+        </div>
+      );
+    };
+
     const LearnHow = () => (
-      <Block background="light">
+      <Block>
         {[
           {
             content:
-              "Strict is a simple to understand programming language that not only humans can read and understand, but also AI is able to read, modify and write. It has backends for many common frameworks like JDK, .NET and allows you to generate C++, C#, Java, etc. code or run in its own VM.",
+              "Strict is a simple to understand programming language that not only humans can read and understand, but also computer AI is able to read, modify and write. It has backends for many common frameworks like JDK, .NET and allows you to generate C++, C#, Java, etc. code or run in its own VM.",
             image: `${baseUrl}img/StrictLogoBlue256x256.png`,
             imageAlign: "right",
             title: "Strict is a language computers can understand"
@@ -152,58 +173,11 @@ class Index extends React.Component {
       </Block>
     );
 
-    const Features = () => (
-      <Block layout="fourColumn">
-        {[
-          {
-            content: "This is the content of my feature",
-            image: `${baseUrl}img/undraw_react.svg`,
-            imageAlign: "top",
-            title: "Feature One"
-          },
-          {
-            content: "The content of my second feature",
-            image: `${baseUrl}img/undraw_operating_system.svg`,
-            imageAlign: "top",
-            title: "Feature Two"
-          }
-        ]}
-      </Block>
-    );
-
-    const Showcase = () => {
-      if ((siteConfig.users || []).length === 0) {
-        return null;
-      }
-
-      const showcase = siteConfig.users
-        .filter(user => user.pinned)
-        .map(user => (
-          <a href={user.infoLink} key={user.infoLink}>
-            <img src={user.image} alt={user.caption} title={user.caption} />
-          </a>
-        ));
-
-      const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
-
-      return (
-        <div className="productShowcaseSection paddingBottom">
-          <h2>Who is Using This?</h2>
-          <p>This project is used by all these people</p>
-          <div className="logos">{showcase}</div>
-          <div className="more-users">
-            <a className="button" href={pageUrl("users.html")}>
-              More {siteConfig.title} Users
-            </a>
-          </div>
-        </div>
-      );
-    };
-
     return (
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
         <div className="mainContainer">
+          <Layers />
           <LearnHow />
         </div>
       </div>
