@@ -7,6 +7,12 @@ title: Coding Style
 
 These guidelines force any developer (human or AI) to write clean **Strict** code. Strict looks most like Python and is similar to C++, C#, Java or Go. Unlike other languages testing is not optional and writing ugly code is made impossible by enforcing hard rules (nonsensical code still is possible and humans will sort out what makes sense and looks smart). [TDD](https://en.wikipedia.org/wiki/Test-driven_development) and [Clean Code](http://clean-code-developer.com/) is the basis for **Strict**. While you can modify the rules via the _build.yml_ file as described below, no code will be accepted into the official framework or packages as it simply won't build with the default settings. We will not dive into details like the naming style, suffixes, etc. like [other guides](https://www.dofactory.com/reference/csharp-coding-standards) as it will be quite obvious when reading any code. Strict doesn't use fluff like curly brackets, colons, empty lines and comments are super rare, most code is simply code. Strict uses tabs (2 spaces per tab) and looks most like Python, but is much shorter and compact as methods are not allowed to be longer than a few lines (usually around 1-5 lines plus tests, max. 12 lines)
 
+# Refactoring
+
+Refactoring code is a big topic in major programming languages to clean up the mess programmers just do when experimenting, learning and quickly writing some code. Refactoring uses many rules to help you creating clean code. [Refactoring.guru]([https://refactoring.guru/refactoring/what-is-refactoring) is a great catolog for Refactoring, Code Smells and contains many examples.
+
+In Strict it is simply not allowed to compile code that violates clean code or refactoring rules, the strict ruleset just does not allow to write bad code (you could still write useless or senseless code, but not in the sense of clean code). This is our main design goal when tuning the language).
+
 # Recommended reading
 
 We don't want to repeat other great style guides here, many things in Strict will be obvious once you see and understand any code for the first time. None of these guides are for Strict, but you get the point that a clear ruleset is great for very flexible languages like C, Java, C# or Python. With Strict these kind of guides are not really needed as the IDE and compiler will enforce the hard rules anyway, so it is impossible to write code that doesn't follow those rules (unlike all the guides linked here). Still these are great reads:

@@ -19,6 +19,8 @@ Location source
 Location target
 
 method Number Compute()
+  test
+    ...
   return Sum([
     NumberDistance(source.X, target.X),
     NumberDistance(source.Y, target.Y),
