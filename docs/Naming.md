@@ -10,6 +10,7 @@ What usually happens is some kind of copy+paste from some existing project archi
 - Docs belong in /docs), database schema is in /db, external libraries go into /lib, etc.
 - Inside of each of those there are many more existing naming rules or we just use what already exists (e.g. naming from external libraries, documentation tools, scripts)
 
+Uncle Bob shows this point in his great [Architecture: The Lost Years talk](https://www.youtube.com/watch?v=HhNIttd87xs&t=1402).
 
 The code itself is also often structured in the same way based on a design pattern (like MVC)
 - models
