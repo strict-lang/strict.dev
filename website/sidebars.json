@@ -1,6 +1,7 @@
 {
   "docs": {
-	"Documentation": ["Overview", "GettingStarted", "CodingStyle", "Concurrency"],
-    "API": ["Keywords", "Types"]
+	  "Documentation": ["Overview", "GettingStarted", "CodingStyle"],
+    "API": ["Keywords"],
+    "Future": ["Concurrency", "Ideas", "Types"]
   }
 }
