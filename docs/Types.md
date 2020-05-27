@@ -4,6 +4,9 @@ title: Types
 sidebar_label: Types
 ---
 
+Please see [Keywords](/docs/Keywords) for current up to date information about keywords and base types available.
+
+
 # Custom Types
 Everything in Strict should use custom reusable types if there is any unit or measurement involved, here is a great talk from Bjarne Stroustrup about using a unit type system (in C++ at compile time, ignore that). Plain numbers are only used in methods for low level calculations and once a type has a build in type member, it is not allowed to have anything else. This means you cannot simply create a type with number age, string name, string city, number zip, even though Strict would know from the names where age or zip is also used and get some context out of that. Instead you will have to create new types for things like Age, Person, City, Address, etc. and then use those types in a composed type that tries to describe a person or user. Yes, that is more work, but it is needed to help Strict understand the purpose of each member and allow easy refactoring, type checking, constraints, etc. The same applies for method parameters, always pass in custom type, build in types like in some early examples will not compile, Strict needs to understand what you are passing into each method.
 

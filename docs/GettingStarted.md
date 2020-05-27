@@ -5,7 +5,6 @@ title: Getting Started
 
 Introduction guide and tutorials go here!
 
-
 # Strict Is
 A computer language to be written by a computer programs (and humans) intelligently (not really calling this AI)
 Also readable by humans and convertible from other languages (starting with C#, must be TDD and functional, converting not functional .NET code is possible, but might lead to side effects and bad performance)

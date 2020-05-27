@@ -18,12 +18,21 @@
         "title": "Keywords",
         "sidebar_label": "Keywords"
       },
+      "Naming": {
+        "title": "Naming"
+      },
+      "obsolete": {
+        "title": "obsolete"
+      },
       "Overview": {
         "title": "Overview"
       },
       "Types": {
         "title": "Types",
         "sidebar_label": "Types"
+      },
+      "UsingApis": {
+        "title": "Using APIs"
       }
     },
     "links": {
@@ -33,7 +42,8 @@
     },
     "categories": {
       "Documentation": "Documentation",
-      "API": "API"
+      "API": "API",
+      "Future": "Future"
     }
   },
   "pages-strings": {

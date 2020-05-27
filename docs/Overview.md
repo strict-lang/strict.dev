@@ -80,7 +80,7 @@ takes the burdon of synchronization and shared state management of the programme
 
 ## Parallel
 
-By default all code is executed in parallel (think async/await/coroutines/tasks in other languages), but the compiler will automatically inline code and execute loops sequentially for performance reasons. However in theory all tests, all methods, all calls, all loops are executed in parallel and have to be designed that way (immutable and threadsafe), it is up to the compiler to optimize code paths (unlike other languages were parallelism is optional and hard to enforce correctly). For details see [Concurrency](Concurrency.md)
+By default all code is executed in parallel (think async/await/coroutines/tasks in other languages), but the compiler will automatically inline code and execute loops sequentially for performance reasons. However in theory all tests, all methods, all calls, all loops are executed in parallel and have to be designed that way (immutable and threadsafe), it is up to the compiler to optimize code paths (unlike other languages were parallelism is optional and hard to enforce correctly). For details see [Concurrency](/docs/Concurrency)
 
 ## Composition instead of just Object Oriented
 
