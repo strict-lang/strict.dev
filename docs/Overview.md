@@ -55,6 +55,12 @@ _Strict_ is both readable by humans and machines. It has a simple syntax and thr
 code that has to be written in other languages. The language constructs are easy to understand and code can be
 read like a good novel. In the compiler pipeline the full source code and the ast are always available to let tools go back and forth easily and quickly.
 
+## Reusable
+
+The main goal of any strict package is to be as reusable as possible. The main problem with most of the code out there, especially with very low level languages is that the code is NOT reusable. If anything changes, any library is different, the PC achitecture is different, if the sun is shining or there isn't a full moon, the code breaks and it is certainly not reusable in all other domains. Code is usually rigid, fragile, we cannot take code and reuse it, etc. it is always coupling and dependencies! [Uncle Bob explains this well in this video](https://www.youtube.com/watch?v=QHnLmvDxGTY).
+
+How do we archive this? Strict checks ALL public code that exists at all times, if there is a package, type, method or even clever algorithm that already exists, it will refuse to compile the code again and force the code to resue the existing code instead. This means there is NO copy+pasting, you can't just take a library you like and make a 5% change to it, you can't take a type or method and just change a detail that doesn't really change the algorithm. High level policies and algorithms should not be coupled with low level crap (as Uncle Bob says in the above video at 34:20).
+
 ## Why another language?
 
 We really did not want to invent another language and are great fans and users of .NET, Java, Python, Go and many more good languages. However none of them can be easily understood or written by a computer itself. The syntax for most languages nowadays are easy to learn. However the ecosystems are growing more and more complex, mastering tricks, libraries and frameworks can take many years. So instead of reinventing the wheel, _Strict_ allows you to use any framework or library you like, no matter if it is coming from the Java world, .NET, Python, Go, Javascript, etc.
