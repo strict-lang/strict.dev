@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Using APIs · Strict Programming Language</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Strict doesn&#x27;t try to reinvent the wheel. If there there is any library, framework or engine already out there in a supported backend language (C++, Java, C#, Ardunio, etc.) then lets use it. There is a lot of good talk about this in the [Entity-Boundary-Interactor docs](https://ebi.readthedocs.io/en/latest/index.html) used in Go or Elixir: [Talking to the External World](https://ebi.readthedocs.io/en/latest/external.html)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Using APIs · Strict Programming Language"/><meta property="og:type" content="website"/><meta property="og:url" content="https://strict.dev/"/><meta property="og:description" content="Strict doesn&#x27;t try to reinvent the wheel. If there there is any library, framework or engine already out there in a supported backend language (C++, Java, C#, Ardunio, etc.) then lets use it. There is a lot of good talk about this in the [Entity-Boundary-Interactor docs](https://ebi.readthedocs.io/en/latest/index.html) used in Go or Elixir: [Talking to the External World](https://ebi.readthedocs.io/en/latest/external.html)"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://strict.dev/blog/atom.xml" title="Strict Programming Language Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://strict.dev/blog/feed.xml" title="Strict Programming Language Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/StrictLogoWhite64x64.png" alt="Strict Programming Language"/><h2 class="headerTitleWithLogo">Strict Programming Language</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/docs/Overview" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/Keywords" target="_self">API</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Documentation</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Documentation</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/Overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/GettingStarted">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/CodingStyle">Coding Style</a></li><li class="navListItem"><a class="navItem" href="/docs/Naming">Naming</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/UsingApis">Using APIs</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/Keywords">Keywords</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Future</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/Concurrency">Concurrency</a></li><li class="navListItem"><a class="navItem" href="/docs/Types">Types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Using APIs</h1></header><article><div><span><p>Strict doesn't try to reinvent the wheel. If there there is any library, framework or engine already out there in a supported backend language (C++, Java, C#, Ardunio, etc.) then lets use it. There is a lot of good talk about this in the <a href="https://ebi.readthedocs.io/en/latest/index.html">Entity-Boundary-Interactor docs</a> used in Go or Elixir: <a href="https://ebi.readthedocs.io/en/latest/external.html">Talking to the External World</a></p>
+<p>Sometimes things are not that simple and we can't just call a few methods and be done with it. A good example is integrating database storage support, where we need to map all of the types we want to store and maybe also have a layer of business logic to handle transformations and computations on top of the data.</p>
+<p>Usual Database design goes like this (clean TDD way):</p>
+<ul>
+<li>Interfaces and abstract classes in some MyProject.Database project</li>
+<li>Adding MyProject.Database.Tests and MyProject.Database.Mocks</li>
+<li>Now implement actual database storage code like MyProject.Database.MongoDB</li>
+<li>Now onwards to the logic on top in another bunch of projects: MyProject.Logic, .Mocks, .Tests, etc.</li>
+<li>And so on till the application layer</li>
+</ul>
+<p>We haven't even talked about what is in MyProject.Database and which other projecs need it. While it is easy to find database related code, this leads to a lot of messes. Each project and type that wants to do some database storage, needs to include the whole MyProject.Database project and all of its types and dependencies even if it only cares about 1-2 types in there.</p>
+<h1><a class="anchor" aria-hidden="true" id="solution"></a><a href="#solution" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Solution</h1>
+<p><a href="https://pasztor.at/blog/structure-based-on-intent">Structure based on Intent</a>, which basically tells us to structuing types by where they are used and needed, not by &quot;database&quot;, &quot;controllers&quot;, &quot;models&quot;, etc.
+There is also a <a href="https://www.youtube.com/watch?v=HhNIttd87xs">great video by Uncle Bob (plus some Clean Coders episodes talk about this as well)</a></p>
+<p>The first step to solve the problem from above is to make using the Database as simple as possible, so no helper classes needed, no base classes required. Just a library we can use and that works and is well tested internally already, lets say there is a Strict.Database.MongoDB package we can use. Now we just design the different use cases:</p>
+<ul>
+<li>MyProject.ImageProcessors (tests and mocks are all build in in Strict)</li>
+<li>MyProject.Robotics</li>
+<li>etc.</li>
+</ul>
+<h1><a class="anchor" aria-hidden="true" id="useful-links"></a><a href="#useful-links" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Useful Links</h1>
+<p><a href="https://pasztor.at/blog/functional-object-oriented-programming">Functional Object Oriented Programming - FP and OOP working well together</a>
+<a href="https://pasztor.at/blog/one-controller-one-action">One Controller One Action</a></p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 5/24/2020 by Benjamin Nitschke</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/Naming"><span class="arrow-prev">← </span><span>Naming</span></a><a class="docs-next button" href="/docs/Keywords"><span>Keywords</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home" style="width:160px"><img src="/img/StrictLogoBlue128x128.png" alt="Strict Programming Language" width="128" height="128"/></a><div><h5>Docs</h5><a href="/docs/en/GettingStarted">Getting Started</a><a href="/docs/en/Coding Style">Coding Style</a><a href="/docs/en/Keywords">API Reference</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/Strict" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/strict-lang" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/help">Help</a><a href="https://github.com/strict-lang">GitHub</a><a class="github-button" href="https://github.com/strict-lang/strict.dev" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 strict-lang</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '7f6e29123c9235b4420f116e437ef737',
+                indexName: 'strict-lang',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
