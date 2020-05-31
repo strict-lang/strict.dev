@@ -4,14 +4,16 @@ title: Concurrency
 ---
 
 Strict Solutions:
-  - Coroutines
-  - Compiler Generated Fork Join and parallel Computation evaluation
-  - Thread Local Storage is injected
-  - Communication wise, start by offering simple NIO and later look at stuff like grpc
-  
+
+- Coroutines
+- Compiler Generated Fork Join and parallel Computation evaluation
+- Thread Local Storage is injected
+- Communication wise, start by offering simple NIO and later look at stuff like grpc
 
 # Work in progress examples, thinking out loud
+
 LocationDistance.strict
+
 ```
 implement ManhattanDistance<Location>
 
@@ -32,6 +34,7 @@ let distanceToBigApple = VectorMath.Distance(myPosition, bigApplePosition) + amo
 ```
 
 NumberDistance.strict
+
 ```
 implement Distance<Number>
 
@@ -44,6 +47,7 @@ method Number Compute()
 ```
 
 Range.strict
+
 ```
 implement Computation<Number>
 
@@ -54,6 +58,7 @@ method Number Compute()
 ```
 
 BiOrder.strict
+
 ```
 generic Value is Ordered
 implement Computation<Value[]>
@@ -67,7 +72,7 @@ method Value[] Compute()
 	else => [right, left]
 
 method add(Number left, Number right)
-  return match 
+  return match
 	left == 0 and right == 0 => 0
     left == 1 and right == 1 => 1
 	else => left + right
@@ -76,6 +81,7 @@ let computation = BiOrder(10, 20)
 ```
 
 PrimeNumbers.strict
+
 ```
 implement Computation<Number>
 
@@ -89,10 +95,10 @@ method Number Compute()
 	  yield entry
 
 method Boolean isPrime(Number prime)
-  for number from 0 to prime 
+  for number from 0 to prime
     if number % prime is 0
-	  return True 
-	 
+	  return True
+
 ---
 // RandomNumber.strict
 implement Computation<Number>
@@ -105,6 +111,7 @@ method Number Compute()
 ```
 
 World.strict
+
 ```
 @mutable Tree[] trees
 
@@ -113,6 +120,7 @@ World.strict
 ```
 
 Player.strict
+
 ```
 Score score
 
@@ -120,7 +128,7 @@ win(player)
   score = copy(player.score)
   score.points += 100
   player.score = score
- 
+
 addKillReward(player)
   score = copy(player.score)
   score.points += 100
@@ -128,6 +136,7 @@ addKillReward(player)
 ```
 
 Score.strict
+
 ```
 Count points
 
@@ -136,7 +145,9 @@ win(player)
 ```
 
 older concepts:
+
 # Concurrency
+
 Immutable types and thread safety
 Like in many programming languages (Java, C#, Python) string and other build in types (number, int, bool) are immutable. Basically whenever you assign something different to them, they are a new instance. This makes them thread safe. In addition all types created in Strict are immutable (like in functional languages like F# or Clojure, which focuses on multithreaded robust programs by using immutable values).
 
@@ -150,7 +161,7 @@ number y
 Some methods are still useful to have like calculating the length of a vector.
 
 length.x.y.method
-return System.Math().Sqrt(x * x + y * y)
+return System.Math().Sqrt(x _ x + y _ y)
 
 Like explained in the overview, any type that has x and y can now call this length method. You might notice that the Sqrt method of Math was invoked via System.Math(), which is calling the get method of System.Math. In this case System.Math is a static .NET class and we can access its static members this way via this default instance.
 
@@ -174,7 +185,7 @@ Here is a great long article of Threading in C#, and you can see from its length
 
 If immutable types are too restrictive we can fallback to STM (Software transactional memory) to easily allow changing data, there are some nice implementations available and this is what Clojure uses.
 
-All Strict code must be thread safe as we will always execute it on multiple threads and machines, not knowing who executes it right now and we don't want to bother locking or taking care of race conditions. 
+All Strict code must be thread safe as we will always execute it on multiple threads and machines, not knowing who executes it right now and we don't want to bother locking or taking care of race conditions.
 
 Links
 
@@ -184,6 +195,7 @@ http://en.wikipedia.org/wiki/Thread_safety
 http://www.drdobbs.com/architecture-and-design/the-need-for-immutability/231000092
 
 # Parallelism
+
 Strict programming is not parallel, the code that is executed very much is so. You or Strict just write sequential code because that is how the hardware works on a low level. You can certainly call parallel methods (like Parallel.For for number crunching or even GPU code like with Cuda or OpenCL), but in general code that is written is executed sequentially (even without things like async and await, which are not present in the language, you would need to hock up a simple state machine to do that).
 
 However, each call made to a function is not necessarily sequential, each call might be executed on a different task (locally on a machine via thread, but also can be on a different machine, see below). The language does not know anything about this, it just evaluates a statement and will wait by default a maximum of 1 second for Strict calls, anything longer is not allowed, external calls can take longer, but Strict keeps counting the time and might abort if it gets bored by waiting on any task for more than 60 seconds. Internally most calls happens on the same task, but depending on the structure of the code more tasks might be invoked. Strict knows the complexity of each thing that it calls, if it exceeds more than 1000 instructions or much more (10x+) than whatever the task switch cost is going to be, then each branch of calling the code (like a method call in a loop) is going to be executed in a different task.
