@@ -2,16 +2,52 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://strict.dev/blog</id>
     <title>Strict Programming Language Blog</title>
-    <updated>2020-02-24T06:00:00.000Z</updated>
+    <updated>2020-06-11T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://strict.dev/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Strict Programming Language news and events.</subtitle>
     <logo>https://strict.dev/img/StrictLogoWhite64x64.png</logo>
     <rights>Copyright © 2020 strict-lang</rights>
     <entry>
-        <title type="html"><![CDATA[Strict is still work in progress]]></title>
-        <id>https://strict.dev/blog/2020/02/24/work-in-progress.html</id>
-        <link href="https://strict.dev/blog/2020/02/24/work-in-progress.html"/>
+        <title type="html"><![CDATA[Jun 2020 Back to blogging]]></title>
+        <id>https://strict.dev/blog/2020/06/11/back-to-blogging.html</id>
+        <link href="https://strict.dev/blog/2020/06/11/back-to-blogging.html"/>
+        <updated>2020-06-11T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>My employee Abir poked me to blog more about Strict and the decisions I recently took for the IDE development. My old blog at <a href="https://BenjaminNitschke.com">https://BenjaminNitschke.com</a> (2004-2016) is pretty much dead and I never found time to continue talking about Game Developme...</p>]]></summary>
+        <author>
+            <name>Benjamin Nitschke</name>
+            <email/>
+            <uri>http://twitter.com/BennyNitschke</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[May 2020 Slow and not steady]]></title>
+        <id>https://strict.dev/blog/2020/05/04/slow-and-not-steady.html</id>
+        <link href="https://strict.dev/blog/2020/05/04/slow-and-not-steady.html"/>
+        <updated>2020-05-04T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>The corona pandemic didn't affect us much, but we did do home office work for most employees away from the Delta Engine company since mid March, for some employees things worked out great, for others it wasn't a very productive time. Also talking abo...</p>]]></summary>
+        <author>
+            <name>Benjamin Nitschke</name>
+            <email/>
+            <uri>http://twitter.com/BennyNitschke</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Apr 2020 Sdk going open source]]></title>
+        <id>https://strict.dev/blog/2020/04/08/strict-sdk-is-going-open-source.html</id>
+        <link href="https://strict.dev/blog/2020/04/08/strict-sdk-is-going-open-source.html"/>
+        <updated>2020-04-08T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>Strict was always supposed to be open source, Merlin pushed a bit to get some parts released. Upcoming work is to write the low level language framework (apps, io, logs, math, files, etc.) and to allow anyone writing any code, the strict compiler nee...</p>]]></summary>
+        <author>
+            <name>Benjamin Nitschke</name>
+            <email/>
+            <uri>http://twitter.com/BennyNitschke</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Feb 2020 Still work in progress]]></title>
+        <id>https://strict.dev/blog/2020/02/24/strict-is-still-work-in-progress.html</id>
+        <link href="https://strict.dev/blog/2020/02/24/strict-is-still-work-in-progress.html"/>
         <updated>2020-02-24T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>We didn't have much time to work on the website, the language changed quite a lot into a more functional style, while still being fully declarative and test driven. The IntelliJ IDE is still being worked on and once that is finished the language will...</p>]]></summary>
         <author>
@@ -21,11 +57,11 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Strict.dev website is up]]></title>
-        <id>https://strict.dev/blog/2020/01/17/website-up.html</id>
-        <link href="https://strict.dev/blog/2020/01/17/website-up.html"/>
+        <title type="html"><![CDATA[Jan 2020 website is up]]></title>
+        <id>https://strict.dev/blog/2020/01/17/strict.dev-website-up.html</id>
+        <link href="https://strict.dev/blog/2020/01/17/strict.dev-website-up.html"/>
         <updated>2020-01-17T06:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>After trying out <a href="https://jekyllrb.com/">https://jekyllrb.com/</a> and many themes and plugins after checking out the even more complex <a href="https://gohugo.io/">https://gohugo.io/</a> it turns out these are not good fits for the Strict language, which should be easy to install and work immediately. <a href="https://docusaurus.io/en/">https:/...</a></p>]]></summary>
+        <summary type="html"><![CDATA[<p>This blog is all about the development of the Strict programming language, which has the main goal allowing computers/AI to understand and write their own code with it. While Strict might look similar to C like languages or python, go, lua or lisp, c...</p>]]></summary>
         <author>
             <name>Benjamin Nitschke</name>
             <email/>
