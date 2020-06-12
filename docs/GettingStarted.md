@@ -6,12 +6,13 @@ title: Getting Started
 Introduction guide and tutorials go here!
 
 # Strict Is
+
 A computer language to be written by a computer programs (and humans) intelligently (not really calling this AI)
 Also readable by humans and convertible from other languages (starting with C#, must be TDD and functional, converting not functional .NET code is possible, but might lead to side effects and bad performance)
 Strongly typed, statically typed, while still looking dynamic and uses very strong references (null is never allowed, assignment is not allowed, reassigning to the same name is allowed, but otherwise a very functional like language)
-able to infer types automatically, you never have to declare types in methods as variables (members) will be evaluated 
+able to infer types automatically, you never have to declare types in methods as variables (members) will be evaluated
 without access modifiers (public, private, protected, sealed, etc.) and has no static types, methods or members
-without classes or OOP. There are only types (like structs in Go) and methods (like functions) plus members in those (which are all statements after all and are assigned statement values). Still supports polymorphism through type nesting! 
+without classes or OOP. There are only types (like structs in Go) and methods (like functions) plus members in those (which are all statements after all and are assigned statement values). Still supports polymorphism through type nesting!
 data is stored in components, which are used together in processors that do stuff with them (derived from DeltaEngine)
 thread safe and uses threads automatically to execute any work (no need to worry about race conditions or locking)
 Uses fluent syntax (written as plain text with spaces, no . or camel case required) in Collapsed Mode
@@ -21,11 +22,11 @@ The purpose of Strict is not to be human like or Artificially Intelligent, but a
 
 When a type like "size" is defined somewhere and we want to add new features, we do not have to derive from it. We can simply create a new size type matching the data and it can be used instead. A really bad example is C#, where you need many different size, point, etc. classes for different frameworks (Windows Forms, WPF, DirectX, XNA, DeltaEngine, OpenTK, etc.), but they are all identical except for maybe some additional methods here and there. Of course if we have access to the original "size" definition, we can just use that, which is the normal way to handle this. We also cannot have two conflicting size defined at the same time (or any method or member, or even anything conflicting with a sub context name, everything must be unique).
 
-
 # Overview
+
 Created types are immutable and thread safe, type definitions are rarely changed, methods on them are very much so
 There are standard ways to process data via an always defined "process" method, which is called automatically
-Every type automatically has all operators defined, plus any member used it in allows it to be called for any method using that member as an parameter (e.g. "age" with "number years" can be called on any number method and if that method returns a number it will return "age" instead when called with "age" instead of number). 
+Every type automatically has all operators defined, plus any member used it in allows it to be called for any method using that member as an parameter (e.g. "age" with "number years" can be called on any number method and if that method returns a number it will return "age" instead when called with "age" instead of number).
 Any created type (above build in types) can be accessed easily using a filter (e.g. User(id is 1) returns the user with id 1)
 Tests and TDD are mandatory, you cannot write any type or method without starting with failing tests first
 Contracts help you and Strict to limit what a method allows as input and output (important to help Strict understand)
@@ -45,10 +46,11 @@ Strict is by no means a solution to writing computer programs for humans. Humans
 Dynamic languages would traditionally be a better fit for AI projects and one could argue a language like C# with dynamic features would be a good starting point (especially since Benjamin Nitschke, the inventor of Strict is extremely proficient at it). Strict is however 100% statically types and everything is known before any code is run. Its dynamic look comes from evaluating statements early and correctly connecting them to the correct types instead of duck typing and figuring it out at runtime (what dynamic languages do and give them a lot of flexibility, which is not needed in Strict anyway). The Strict language parser and evaluator itself is written in C# and 100% test driven, which is why it derives many features from it (especially expression trees to convert input code into Strict statements as described below).
 
 # Importing Code
+
 Importing code is not that hard, but very time consuming until it fits into the model of Strict. All language aspects need to be fully specified and filled out, Strict is a more detailed language, 100% tests and test coverage are needed, not just on a global scale, but each method itself must test itself, which is very different on how most programmers write code. It is much easier to just call external code, which is completely allowed (all .NET types and basic namespaces are always available, other things will be found in the GAC automatically, later we might include extra import statements to load more types or get external data over the internet or native code or other means). It is important to note that external code is NEVER understood by Strict or its governing intelligence, it is just something that can be called, but except for the context where it is used, there is no understanding how it works. This means the more external code Strict uses, the more powerful it gets, but also the more stupid it is. The goal is to use a few IO related external methods, but keep everything else inside of Strict so the AI can benefit.
 
-
 # Files: Types, Methods and their Statements
+
 Files are only used to save the internal data of Strict. For simplicity and merging with source control tools these are just utf-8 files, but the internal structure might change. Those files should not be edited outside of the IDE as there is no guarantee an edit (even as simple as just adding a space or changing a single letter) will not destroy all of the code in the file and everything referencing it! Naming files is also not possible, the names come from how the language looks at the syntax.
 
 Files are NOT saved as plain editable text files, you can input statements and expressions as text, but internally everything is always stored, handled and displayed as nodes that can be expanded and collapsed, the whole IDE revolves around that fact (even though it might store it as mergeable utf-8 text).
@@ -75,6 +77,7 @@ return
       first.y
       second.y
 ```
+
 The Vector2D.type class just describes the members of the Vector2D type, where it is defined is given by the folder name the file sits in. There is no more information in that file, all other information comes from users of this Vector2D type. The add method is accepting two parameters (first and second), which both must have x and y members that can be added. It does not care if the input is a Vector2D or anything else. A Vector3D would work as well or any other type that has x and y, but only if there is not another add method for it (would make sense to have a add.first(x.y.z).second(x.y.z).Method for Vector3D of course). Please note that add is internally a special method that applies to all add calls, but that is no different from any other method call (they all share the same features), it is automatically converted from collapsed code where + operators are used.
 
 Please note that this is just an example, add, subtract, multiply, divide, etc. are provided automatically for all types just containing numbers, you would never have to write those yourself, only if you want to change their behavior (multiply for matrix is not simply multiplying all values and you might want to have matrix multiplication with vectors).
@@ -87,6 +90,7 @@ Sometimes you might want to reuse the same value over and over. If it just neede
 For loop iterators, list and map their values have to change over time. They are still immutable, but can point to a new instance when reassigning them (or when the next for loop iteration is started). For all other composed types the same applies, they are immutable too and assigning them again will just create a new instance and throw the old one away.
 
 Static is very similar, but should be used less often and only if there is no way around it. The difference is that static allows remapping of the value as many times as you want and all threads get the new value when they access it next. Static is only allowed for number, bool and string, all other types cannot be safely modified and you should use different constructs to do static like things. Go and clojure have tons of tips on this. If possible try to use static only in the method where you need a static number you want to count up. If you really need it in multiple methods and have to share the same value, put it in the type. Strict will automatically refactor it into a method when only one method uses a static. Some examples:
+
 ```
 user.type
 
@@ -102,8 +106,10 @@ idCounter
     idCounter
     1
 ```
+
 Note: As described in Statements, where this example is from, name and email are automatically assigned to the type members. All parameters of a method must always be used, otherwise the code is not valid.
 calculator.type
+
 ```
 Pi = 3.1415926
 PiTimesTwo = 6.2831852
@@ -118,10 +124,11 @@ if parts[1] is "+"
   return number.parse(parts[0]) + number.parse(parts[2])
 error parts[1] + " is not supported"
 ```
- 
 
 # The Name Strict
-Why the name Strict? Well, the language is very strict about its input, much more than all other languages, even python is more flexible with empty lines, continuation lines, comments, etc. which are all absent in Strict. Even in collapsed mode the language looks always the same way, formatting is always the same and there is usually just one way to do things. Collapsed mode is only there for easier reading by humans and programmers and it reflects the expanded mode always in the same manner. If you look at the resulting expanded mode it is ridiculously easy with supporting only a few build in types and a handful of statements (around 10). Normally languages have 20-50 expressions supported build in and depending on the language 20-100 statements and build in keywords supported. Collapsed strict is similar, but smaller, expanded strict is much simpler (10x less). This is only possible by limiting on what the language can do and hiding away many facets (like threading, exception handling, no generics, no overloading, etc.). Strict is not limiting itself to hurt a programmer (which is not supposed to write much code in the language anyway), but instead to enable its Intelligence to write code inside a very strict and rigid system where it cannot make many mistakes. By following TDD problems are also always encountered in a small context and refactorings help to only work on one issue at a time. 
+
+Why the name Strict? Well, the language is very strict about its input, much more than all other languages, even python is more flexible with empty lines, continuation lines, comments, etc. which are all absent in Strict. Even in collapsed mode the language looks always the same way, formatting is always the same and there is usually just one way to do things. Collapsed mode is only there for easier reading by humans and programmers and it reflects the expanded mode always in the same manner. If you look at the resulting expanded mode it is ridiculously easy with supporting only a few build in types and a handful of statements (around 10). Normally languages have 20-50 expressions supported build in and depending on the language 20-100 statements and build in keywords supported. Collapsed strict is similar, but smaller, expanded strict is much simpler (10x less). This is only possible by limiting on what the language can do and hiding away many facets (like threading, exception handling, no generics, no overloading, etc.). Strict is not limiting itself to hurt a programmer (which is not supposed to write much code in the language anyway), but instead to enable its Intelligence to write code inside a very strict and rigid system where it cannot make many mistakes. By following TDD problems are also always encountered in a small context and refactorings help to only work on one issue at a time.
 
 # AI
+
 It is not clear yet, but Strict is probably way too restricted and extremely low level (much lower than C#, Java or C++) for a high level AI (like typical use scenarios for nowadays AIs). It is not the goal of Strict to talk to humans, detect pattern in the real world (pattern matching is however an important feature inside Stricts own language), interpret images or english language or do human like things, it is not the goal of this project whatsoever. Future projects build on top of this can have this goal and the hope is that things will get easier once Strict is up and running, but it is hard to look into the future. It is more important to get this idea running and then see how it works out and how it can be used productively and scientifically. This means Strict is "just" the base level and higher constructs are build on top, think of it like neurons work, they are important, but you don't have think about them or even know them to make a thought. There are however still quite a few new different ideas directly in Strict, which is the reason it was invented instead of sticking to an existing language as you can see above.

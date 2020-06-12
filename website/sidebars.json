@@ -8,6 +8,6 @@
       "UsingApis"
     ],
     "API": ["Keywords"],
-    "Future": ["Concurrency", "Ideas", "Types"]
+    "Future": ["Concurrency", "Microservices", "Ideas", "Types"]
   }
 }
