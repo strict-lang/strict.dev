@@ -18,6 +18,9 @@
         "title": "Keywords",
         "sidebar_label": "Keywords"
       },
+      "Microservices": {
+        "title": "Microservices"
+      },
       "Naming": {
         "title": "Naming"
       },

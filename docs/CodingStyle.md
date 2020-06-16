@@ -131,3 +131,7 @@ limits: publicMethods:17
   testLength:23
   nesting:7
 ```
+
+# References
+
+Fun read of a 25+ year old Java Convention from Oracle, so much fluff: https://www.oracle.com/java/technologies/javase/codeconventions-fileorganization.html

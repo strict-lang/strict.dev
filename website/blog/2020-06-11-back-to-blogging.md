@@ -34,7 +34,7 @@ Visual Studio Code
 - Greatest plugin ecosystem of all IDEs, really small and fast plugins, similar to Chrome plugins, just nice
 - Not as powerful, haven't seen a really nice IDE experience or language implementation as good as Visual Studio or IntelliJ provide
 
-![alt text](https://docs.microsoft.com/en-us/visualstudio/ide/media/vs-2019/live-share.gif?view=vs-2019 "Visual Studio 2019")
+![alt text](https://visualstudio.microsoft.com/wp-content/uploads/2019/04/Socialsharing2-500px.gif "Visual Studio 2019")
 Visual Studio 2019
 - Community edition is free as well
 - IMO best IDE for the past 20 years by far, pretty much any professional C# or C++ developer uses it (especially game developers, which is the world I am coming from)
