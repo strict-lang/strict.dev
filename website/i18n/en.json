@@ -30,6 +30,10 @@
       "Overview": {
         "title": "Overview"
       },
+      "Streams": {
+        "title": "Streams",
+        "sidebar_label": "Streams"
+      },
       "Types": {
         "title": "Types",
         "sidebar_label": "Types"
