@@ -4,7 +4,7 @@
         <title>Strict Programming Language Blog</title>
         <link>https://strict.dev/blog</link>
         <description>The best place to stay up-to-date with the latest Strict Programming Language news and events.</description>
-        <lastBuildDate>Thu, 11 Jun 2020 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 17 Jun 2020 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,13 @@
             <link>https://strict.dev/blog</link>
         </image>
         <copyright>Copyright © 2020 strict-lang</copyright>
+        <item>
+            <title><![CDATA[Jun 2020 As Simple As Possible]]></title>
+            <link>https://strict.dev/blog/2020/06/17/as-simple-as-possible.html</link>
+            <guid>https://strict.dev/blog/2020/06/17/as-simple-as-possible.html</guid>
+            <pubDate>Wed, 17 Jun 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>While exploring options yesterday and today for creating a great editor experience for Strict, I discovered some new options. We already got a <a href="https://github.com/strict-lang/vscode-strict">VSCode integration</a> that provides basic syntax highlighting and works to write a few lines, but is not a fun...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Jun 2020 Back to blogging]]></title>
             <link>https://strict.dev/blog/2020/06/11/back-to-blogging.html</link>

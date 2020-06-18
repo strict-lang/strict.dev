@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Streams · Strict Programming Language</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Streams (also called [pipelines or pipes from the functional world](https://martinfowler.com/articles/collection-pipeline/)) help us to process data in an easy way and also handles asyncronly nicely for us. It lets the caller decide what to do and gives the implementation the flexibility to go over the data in various forms. Programming streams is a bit different from sequential or procedual programming and needs some time to get used to. In functional languages it often simplifies problems a lot."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Streams · Strict Programming Language"/><meta property="og:type" content="website"/><meta property="og:url" content="https://strict.dev/"/><meta property="og:description" content="Streams (also called [pipelines or pipes from the functional world](https://martinfowler.com/articles/collection-pipeline/)) help us to process data in an easy way and also handles asyncronly nicely for us. It lets the caller decide what to do and gives the implementation the flexibility to go over the data in various forms. Programming streams is a bit different from sequential or procedual programming and needs some time to get used to. In functional languages it often simplifies problems a lot."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://strict.dev/blog/atom.xml" title="Strict Programming Language Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://strict.dev/blog/feed.xml" title="Strict Programming Language Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/StrictLogoWhite64x64.png" alt="Strict Programming Language"/><h2 class="headerTitleWithLogo">Strict Programming Language</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/docs/Overview" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/Keywords" target="_self">API</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>API</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Documentation</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/Overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/GettingStarted">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/CodingStyle">Coding Style</a></li><li class="navListItem"><a class="navItem" href="/docs/Naming">Naming</a></li><li class="navListItem"><a class="navItem" href="/docs/UsingApis">Using APIs</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/Keywords">Keywords</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/Streams">Streams</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Future</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/Concurrency">Concurrency</a></li><li class="navListItem"><a class="navItem" href="/docs/Microservices">Microservices</a></li><li class="navListItem"><a class="navItem" href="/docs/Types">Types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Streams</h1></header><article><div><span><p>Streams (also called <a href="https://martinfowler.com/articles/collection-pipeline/">pipelines or pipes from the functional world</a>) help us to process data in an easy way and also handles asyncronly nicely for us. It lets the caller decide what to do and gives the implementation the flexibility to go over the data in various forms. Programming streams is a bit different from sequential or procedual programming and needs some time to get used to. In functional languages it often simplifies problems a lot.</p>
+<p><img src="https://mdn.mozillademos.org/files/15911/promises.png" alt="Async flow"></p>
+<h1><a class="anchor" aria-hidden="true" id="haskell"></a><a href="#haskell" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Haskell</h1>
+<pre><code class="hljs css language-haskell"><span class="hljs-keyword">import</span> Control.Monad (<span class="hljs-title">unless</span>)
+<span class="hljs-keyword">import</span> Pipes
+<span class="hljs-keyword">import</span> System.IO (<span class="hljs-title">isEOF</span>)
+
+<span class="hljs-comment">--         +--------+-- A 'Producer' that yields 'String's</span>
+<span class="hljs-comment">--         |        |</span>
+<span class="hljs-comment">--         |        |      +-- Every monad transformer has a base monad.</span>
+<span class="hljs-comment">--         |        |      |   This time the base monad is 'IO'.</span>
+<span class="hljs-comment">--         |        |      |  </span>
+<span class="hljs-comment">--         |        |      |  +-- Every monadic action has a return value.</span>
+<span class="hljs-comment">--         |        |      |  |   This action returns '()' when finished</span>
+<span class="hljs-comment">--         v        v      v  v</span>
+<span class="hljs-title">stdinLn</span> :: <span class="hljs-type">Producer</span> <span class="hljs-type">String</span> <span class="hljs-type">IO</span> ()
+<span class="hljs-title">stdinLn</span> = <span class="hljs-keyword">do</span>
+    eof &lt;- lift isEOF        <span class="hljs-comment">-- 'lift' an 'IO' action from the base monad</span>
+    unless eof $ <span class="hljs-keyword">do</span>
+        str &lt;- lift getLine
+        yield str            <span class="hljs-comment">-- 'yield' the 'String'</span>
+        stdinLn              <span class="hljs-comment">-- Loop</span>
+</code></pre>
+<p>Here a standard input <em>producer</em> gives us data, which is passed along into the code below it. When eof is reached, the pipe stops, otherwise it goes on and grabs <em>str</em> from the current line input, yields it out as string and recursively loops.</p>
+<p>Here is another example from the Haskell pipes tutorial passing data from a Producer <em>a</em> through an effect <em>m</em> and returning the result <em>r</em>.</p>
+<pre><code class="hljs css language-haskell"><span class="hljs-title">for</span> :: <span class="hljs-type">Monad</span> m =&gt; <span class="hljs-type">Producer</span> a m r -&gt; (a -&gt; <span class="hljs-type">Effect</span> m ()) -&gt; <span class="hljs-type">Effect</span> m r
+</code></pre>
+<h1><a class="anchor" aria-hidden="true" id="javascript"></a><a href="#javascript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JavaScript</h1>
+<p>Here is an example from the JavaScript world:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Fetch the original image</span>
+fetch(<span class="hljs-string">'./tortoise.png'</span>)
+<span class="hljs-comment">// Retrieve its body as ReadableStream</span>
+.then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.body)
+.then(<span class="hljs-function"><span class="hljs-params">body</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> reader = body.getReader();
+  ...
+})
+</code></pre>
+<p>Here we grab an image over http and then get the body inside of the response, which is a ReadableStream we can then pass into the next <em>then</em> call, which gets the reader and so on (the .body.getReader is syncronous and doesn't need to be done this way, but you get the idea you can pass things along and you don't have to wait for each call to complete).</p>
+<p>If you want to return the whole thing you get a Promise object and not the original http fetch request or the body or reader or whatever else is at the end of your stream pipe. The promise object needs to be awaited at the caller in the same manner (via <em>.then</em> or using <em>await</em>).</p>
+<h1><a class="anchor" aria-hidden="true" id="f"></a><a href="#f" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>F#</h1>
+<pre><code class="hljs css language-fs"><span class="hljs-keyword">let</span> finalSeq = 
+    seq { <span class="hljs-number">0.</span><span class="hljs-number">.10</span> }
+    |&gt; Seq.filter (<span class="hljs-keyword">fun</span> c -&gt; (c % <span class="hljs-number">2</span>) = <span class="hljs-number">0</span>)
+    |&gt; Seq.map (<span class="hljs-comment">(*) 2)
+    |&gt; Seq.map (sprintf "The value is %i.")
+</span></code></pre>
+<p>F# is very similar to C# and shows how to write functional code in the .NET world nicely. It also matches what we want to do in Strict except of the seq and |&gt; keyword.</p>
+<p>This code creates a sequence of 10 numbers (from 0 to 10, which is Range(0, 10) in Strict), then passed it through 3 pipes and returns the result all the way up to the original <em>finalSeq</em> definition. The first pipe does filters out uneven numbers, the next one multiplies each number by two and the final one converts each filtered and modified number to a string.</p>
+<h1><a class="anchor" aria-hidden="true" id="strict"></a><a href="#strict" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Strict</h1>
+<p>Streams are used in Strict via the simple stream keyword, which does all of the above automatically, there is nothing else needed. Just keep in mind that every line that follows stream is operating on that stream and types often change along the way. The editor will tell you which type is used on each line and keep your Auto Complete clever and easy to use. Its probably easier to just write this code than to explain it or read it without an editor at hand:</p>
+<pre><code class="hljs css language-ocaml"><span class="hljs-keyword">method</span> <span class="hljs-type">PipeFSharpExample</span><span class="hljs-literal">()</span>
+  test<span class="hljs-literal">()</span> is (<span class="hljs-string">"value=0"</span>, <span class="hljs-string">"value=1"</span>, <span class="hljs-string">"value=2"</span>)
+  return stream number from <span class="hljs-type">Range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)
+    number % <span class="hljs-number">2</span>
+    number * <span class="hljs-number">2</span>
+    <span class="hljs-string">"value="</span> + number
+</code></pre>
+<p>The method will return a <em>Sequence</em> of strings (the Editor will show you that always) and you can see it anyways from the test in the first line. The stream is constructed on the Range 0, 1, 2 and number is used in the first line of the pipe (at any point you can create new types and whatever is returned is used downwards, simple things like filters are done via booleans and any operator on an existing type will return the type again).</p>
+<p>Pretty selfexplanatory for now. This is not implemented in the <a href="https://github.com/strict-lang/sdk">sdk</a> yet and this documentation needs to be updated one that is done.</p>
+<h1><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h1>
+<p><a href="https://hackage.haskell.org/package/pipes-4.3.13/docs/Pipes-Tutorial.html">https://hackage.haskell.org/package/pipes-4.3.13/docs/Pipes-Tutorial.html</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">https://developer.mozilla.org/en-US/docs/Web/API/Streams_API</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams">https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams</a></p>
+<p><a href="https://riptutorial.com/fsharp/example/14158/pipe-forward-and-backward">https://riptutorial.com/fsharp/example/14158/pipe-forward-and-backward</a></p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/18/2020 by Benjamin Nitschke</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/Keywords"><span class="arrow-prev">← </span><span>Keywords</span></a><a class="docs-next button" href="/docs/Concurrency"><span>Concurrency</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home" style="width:160px"><img src="/img/StrictLogoBlue128x128.png" alt="Strict Programming Language" width="128" height="128"/></a><div><h5>Docs</h5><a href="/docs/en/GettingStarted">Getting Started</a><a href="/docs/en/Coding Style">Coding Style</a><a href="/docs/en/Keywords">API Reference</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/Strict" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/strict-lang" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/help">Help</a><a href="https://github.com/strict-lang">GitHub</a><a class="github-button" href="https://github.com/strict-lang/strict.dev" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 strict-lang</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '7f6e29123c9235b4420f116e437ef737',
+                indexName: 'strict-lang',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

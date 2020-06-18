@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Jun 2020 As Simple As Possible · Strict Programming Language</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="While exploring options yesterday and today for creating a great editor experience for Strict, I discovered some new options. We already got a [VSCode integration](https://github.com/strict-lang/vscode-strict) that provides basic syntax highlighting and works to write a few lines, but is not a fun experience at all if you are used to fully fletched IDEs. The Strict IntelliJ plugin we recently got working is good enough for some basic Auto Completion / IntelliSense, but there are thousand little issues, which makes the experience not very good yet (which is why it is not released yet and we have noone using or working it daily atm, as opposed to the sdk, Strict and VSCode code bases). I am by no means a Java Guru and don&#x27;t really like working on top of the [IntelliJ platform sdk](https://www.jetbrains.org/intellij/sdk/docs/intro/welcome.html), so I am unsure when this plugin is gonna be improved."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Jun 2020 As Simple As Possible · Strict Programming Language"/><meta property="og:type" content="website"/><meta property="og:url" content="https://strict.dev/blog/2020/06/17/as-simple-as-possible"/><meta property="og:description" content="While exploring options yesterday and today for creating a great editor experience for Strict, I discovered some new options. We already got a [VSCode integration](https://github.com/strict-lang/vscode-strict) that provides basic syntax highlighting and works to write a few lines, but is not a fun experience at all if you are used to fully fletched IDEs. The Strict IntelliJ plugin we recently got working is good enough for some basic Auto Completion / IntelliSense, but there are thousand little issues, which makes the experience not very good yet (which is why it is not released yet and we have noone using or working it daily atm, as opposed to the sdk, Strict and VSCode code bases). I am by no means a Java Guru and don&#x27;t really like working on top of the [IntelliJ platform sdk](https://www.jetbrains.org/intellij/sdk/docs/intro/welcome.html), so I am unsure when this plugin is gonna be improved."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://strict.dev/blog/atom.xml" title="Strict Programming Language Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://strict.dev/blog/feed.xml" title="Strict Programming Language Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/StrictLogoWhite64x64.png" alt="Strict Programming Language"/><h2 class="headerTitleWithLogo">Strict Programming Language</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="/docs/Overview" target="_self">Docs</a></li><li class=""><a href="/docs/Keywords" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2020/06/17/as-simple-as-possible">Jun 2020 As Simple As Possible</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/06/11/back-to-blogging">Jun 2020 Back to blogging</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/04/slow-and-not-steady">May 2020 Slow and not steady</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/04/08/strict-sdk-is-going-open-source">Apr 2020 Sdk going open source</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/02/24/strict-is-still-work-in-progress">Feb 2020 Still work in progress</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/06/17/as-simple-as-possible">Jun 2020 As Simple As Possible</a></h1><p class="post-meta">June 17, 2020</p><div class="authorBlock"><p class="post-authorName"><a href="http://twitter.com/BennyNitschke" target="_blank" rel="noreferrer noopener">Benjamin Nitschke</a></p></div></header><div><span><p>While exploring options yesterday and today for creating a great editor experience for Strict, I discovered some new options. We already got a <a href="https://github.com/strict-lang/vscode-strict">VSCode integration</a> that provides basic syntax highlighting and works to write a few lines, but is not a fun experience at all if you are used to fully fletched IDEs. The Strict IntelliJ plugin we recently got working is good enough for some basic Auto Completion / IntelliSense, but there are thousand little issues, which makes the experience not very good yet (which is why it is not released yet and we have noone using or working it daily atm, as opposed to the sdk, Strict and VSCode code bases). I am by no means a Java Guru and don't really like working on top of the <a href="https://www.jetbrains.org/intellij/sdk/docs/intro/welcome.html">IntelliJ platform sdk</a>, so I am unsure when this plugin is gonna be improved.</p>
+<p>What sounds very promising is the <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> and the growing numbers of <a href="https://langserver.org/">implementations</a>. Doing some early experiments a Stritc language server works in Visual Studio Code, Visual Studio 2019 and even IntelliJ (plus a lot of other IDEs and Editors that support it like Emacs, Vim, Atom, whatever people like to use). More on that in the next blog post.</p>
+<h1><a class="anchor" aria-hidden="true" id="as-simple-as-possible-but-not-simpler"></a><a href="#as-simple-as-possible-but-not-simpler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>As Simple As Possible, but not simpler</h1>
+<p>&quot;Everything should be as simple as it can be but not simpler!&quot; - Albert Einstein</p>
+<p>While trying to get the Strict Language server plugin up and running for testing, I still noticed some pain points. I am currently preparing the upcoming work for the new employee Mahmoud (starting tomorrow). I can explain away most design decissions, but there are some open issues plus some simplifications that Merlin and me talked about in the past, but are not implemented yet. So instead of continuing with the current <a href="https://github.com/strict-lang/sdk">sdk in go</a>, I thought why not try starting to bootstrap the Strict compiler directly in Strict .. but no, its not ready yet, I got stuck very quickly.</p>
+<p>The sdk code base is already too large for quick experiments, so I just created a new one in c# (where I feel most comfortable until Strict is hopefully more useable later this year) and keep staring at the very old design, the redesign from last year and the redesign from this year (in go). The main thing I noticed is that many checks are just not needed and Strict is very clear on what is valid code and what isn't, so why not get away with no lexing or parsing at the file level at all.</p>
+<p>We know a .strict file is describing a type. A type can either be just a trait (think interface) describing what should be implemented, or it is a class optionally implementing one or multiple traits. From the outside it doesn't really matter, you want to use some functionality like Account, Count, Computation, Number, Iteration, etc.</p>
+<p>Everthing automatically derives from the Any.strict trait, which looks like this (notice there is no implementation):</p>
+<pre><code class="hljs css language-ocaml"><span class="hljs-keyword">method</span> <span class="hljs-type">ComputeHashCode</span><span class="hljs-literal">()</span> returns <span class="hljs-type">Number</span>
+<span class="hljs-keyword">method</span> <span class="hljs-type">IsEqualTo</span>(target <span class="hljs-type">Any</span>) returns <span class="hljs-type">Boolean</span>
+</code></pre>
+<p>Either a file contains no implementations, then it is a trait, or it has just implementations, which is most files. Let's look at some String.strict examples while simplifying the language.</p>
+<h1><a class="anchor" aria-hidden="true" id="iteration-1"></a><a href="#iteration-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Iteration 1</h1>
+<pre><code class="hljs css language-ocaml">implement <span class="hljs-type">Sequence</span>&lt;<span class="hljs-type">Character</span>&gt;
+has characters
+factory <span class="hljs-type">From</span>(number)
+  <span class="hljs-type">From</span>(<span class="hljs-number">5</span>) is <span class="hljs-string">"5"</span>
+  <span class="hljs-type">From</span>(<span class="hljs-number">123</span>) is <span class="hljs-string">"123"</span>
+  <span class="hljs-keyword">let</span> result = create <span class="hljs-type">StringBuilder</span><span class="hljs-literal">()</span>
+  <span class="hljs-keyword">while</span> number &gt; <span class="hljs-number">0</span>
+    result = <span class="hljs-string">"0"</span> + (number % <span class="hljs-number">10</span>) + result
+    number = number / <span class="hljs-number">10</span>
+  return result
+</code></pre>
+<p>This was an early implementation idea, close to the current <a href="https://github.com/strict-lang/Strict.Base/blob/master/src/String/String.strict">String.strict code</a>. You can see it starts with a bunch of tests to make sure what we are doing makes sense and works. Strict enforces to have at least one test condition for every method (which can be any expression returning true, anything else would fail the test and thus compilation).</p>
+<p>Here we implement the generic trait <em>Sequence</em> with the Character class, which is used in the next line to create an <em>array</em> (which is immutable like everything else not marked with the mutable trait). Next we have a special factory method called <em>From</em>, which has no <strong>method</strong> and no <strong>return</strong> type as it is a factory method to construct this type based on a number.</p>
+<p>Next we create a result, which is not a class name, so here we see a type definition for the first time as the compiler can't figure out what we mean by result automatically (string, text, name would all be <em>string</em>s, stringBuilder would be a <em>StringBuilder</em>, but that is long and ugly). The <em>StringBuilder</em> internally keeps a mutable array of characters we can append to, which is useful in this usecase. Now we use a simple formula to add each base10 number at the beginning of result, then reducing the number by a factor of 10. Finally we return the <em>StringBuilder</em>, which has a <strong>to</strong> method to give us a <em>String</em>, which matches the <em>characters</em> defined above.</p>
+<p>Now there are several problems with this code, first of all the number can't be mutated as everything is immutable by default in Strict. We can change that by making it mutable. Next is that we don't even have while loops, there is currently only one form of loops, which is the good old for loop.</p>
+<h1><a class="anchor" aria-hidden="true" id="iteration-2"></a><a href="#iteration-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Iteration 2</h1>
+<p>Let's skin the code another way:</p>
+<pre><code class="hljs css language-ocaml">implement <span class="hljs-type">Sequence</span>&lt;<span class="hljs-type">Character</span>&gt;
+has characters
+from(<span class="hljs-keyword">mutable</span> number)
+  test(<span class="hljs-number">5</span>) is <span class="hljs-string">"5"</span>
+  test(<span class="hljs-number">123</span>) is <span class="hljs-string">"123"</span>
+  create result <span class="hljs-type">StringBuilder</span>
+  <span class="hljs-keyword">for</span> digit <span class="hljs-keyword">in</span> <span class="hljs-type">Range</span>(<span class="hljs-number">0</span>, <span class="hljs-type">Log10</span>(number))
+    result = <span class="hljs-string">"0"</span> + (number % <span class="hljs-number">10</span>) + result
+    number = number / <span class="hljs-number">10</span>
+  return result
+</code></pre>
+<p>Ok, here we removed factory, just named it <em>from</em>, which is a reserved keyword anyway to convert stuff <em>to</em> something else. We also added a mutable to the number (which is still of type <em>Number</em>) to allow changing it in our loop. The tests look better as they directly tell us what we are asserting (btw: complex tests with multiple lines can be written as indented code blocks like everything else). Also calling yourself and trying the method name again and again isn't produce, lets just use the test keyword and pass the parameters directly in here.</p>
+<p>Next I have renamed <strong>let</strong> to <strong>create</strong> and removed all the assignment stuff and the parentheses as there is nothing we pass as parameters. The loop is now a for loop and got the <em>Range</em> going over the digits of the <em>number</em> and still does the same logic inside the loop.</p>
+<h1><a class="anchor" aria-hidden="true" id="iteration-3"></a><a href="#iteration-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Iteration 3</h1>
+<p>This is still not very functional and it seems I am still trying to low level optimize, which should be the job of the compiler and not the coder. Let's try to go a more functional approach.</p>
+<pre><code class="hljs css language-ocaml">implement <span class="hljs-type">Sequence</span>&lt;<span class="hljs-type">Character</span>&gt;
+has characters
+from(number)
+  test(<span class="hljs-number">45</span>) is <span class="hljs-string">"45"</span>
+  return stream digit from digits(number)
+    create <span class="hljs-type">Character</span>(digit)
+<span class="hljs-keyword">method</span> digits(number)
+  test(<span class="hljs-number">1</span>) is <span class="hljs-number">1</span>
+  test(<span class="hljs-number">123</span>) is <span class="hljs-number">3</span>
+  <span class="hljs-keyword">if</span> number / <span class="hljs-number">10</span> &gt; <span class="hljs-number">0</span>
+    yield digits(number / <span class="hljs-number">10</span>)
+  yield number % <span class="hljs-number">10</span>
+</code></pre>
+<p>Here we use streams, which are not documented well yet. I just added the <a href="/docs/Streams">streams page</a>. Basically they grab any array, collection, sequence or data and pass it though the pipe in the lines below. Here we simply create a <em>Character</em> for each digit (which does the <strong>&quot;0&quot; + number</strong> thing for us). The stream combines it all back to an array of characters, which automatically matches our <em>String</em> we wanted to build (any type can be constructed by supplying the has members, no need to write any method, constructor or factory like that, as usual this is forbidden in Strict ^^).</p>
+<h1><a class="anchor" aria-hidden="true" id="iteration-x"></a><a href="#iteration-x" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Iteration X</h1>
+<p>This is not done yet and will be changed many times. I am currently just experimenting with parsing the above code and see if the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a> that pops out makes any sense.</p>
+<p>Anyway, methods contain code that needs to be parsed, everything else (implement, has, from, method) we can make up from simple rules, which is what I am currently trying at <a href="https://github.com/strict-lang/Strict">https://github.com/strict-lang/Strict</a></p>
+<p>One final note: I completely removed <strong>imports</strong> as the <em>Context</em> that is used to parse a file knows all types already and if any unknown type is used in a .strict file, the parsing (and thus compiler) stops. There is probably some ordering that needs to be done and the optional <strong>build.yml</strong> file needs to allow users to point to more than just the <a href="https://github.com/strict-lang">default repository</a> for all known types.</p>
+<h1><a class="anchor" aria-hidden="true" id="summary"></a><a href="#summary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Summary</h1>
+<p>Just two nightly code sessions with most of the time thinking about simplifications what what makes sense, this repository will stay in flux for some time and should not be considered stable (the sdk repo works and is usable and any bugs there we will still fix till the new repo is remotely usable). The main goal here is to make the editor support and language server implementation much easier and also think on what makes sense while adding some code we can compile and run soon (using as much as possible from existing blocks).</p>
+<p>Todays goal is just to get it all green on TeamCity CI (Continuous Integration), which is still complaining about some ugly comments, some small issues and not having 100% coverage yet .. no biggy.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home" style="width:160px"><img src="/img/StrictLogoBlue128x128.png" alt="Strict Programming Language" width="128" height="128"/></a><div><h5>Docs</h5><a href="/docs/en/GettingStarted">Getting Started</a><a href="/docs/en/Coding Style">Coding Style</a><a href="/docs/en/Keywords">API Reference</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/Strict" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/strict-lang" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/help">Help</a><a href="https://github.com/strict-lang">GitHub</a><a class="github-button" href="https://github.com/strict-lang/strict.dev" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 strict-lang</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '7f6e29123c9235b4420f116e437ef737',
+                indexName: 'strict-lang',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
