@@ -4,7 +4,7 @@
         <title>Strict Programming Language Blog</title>
         <link>https://strict.dev/blog</link>
         <description>The best place to stay up-to-date with the latest Strict Programming Language news and events.</description>
-        <lastBuildDate>Wed, 17 Jun 2020 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 25 Jun 2020 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,13 @@
             <link>https://strict.dev/blog</link>
         </image>
         <copyright>Copyright © 2020 strict-lang</copyright>
+        <item>
+            <title><![CDATA[Jun 2020 Parsing Methods]]></title>
+            <link>https://strict.dev/blog/2020/06/25/parsing-methods.html</link>
+            <guid>https://strict.dev/blog/2020/06/25/parsing-methods.html</guid>
+            <pubDate>Thu, 25 Jun 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>As described last week I tried to simplify the Strict syntax and get some low level type, member and method parsing working in a new simplified respository: <a href="https://github.com/strict-lang/Strict">https://github.com/strict-lang/Strict</a></p> <p>It took a few evenings to make sense of it, now we got ...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Jun 2020 As Simple As Possible]]></title>
             <link>https://strict.dev/blog/2020/06/17/as-simple-as-possible.html</link>
