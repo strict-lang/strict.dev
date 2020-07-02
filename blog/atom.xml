@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://strict.dev/blog</id>
     <title>Strict Programming Language Blog</title>
-    <updated>2020-06-25T06:00:00.000Z</updated>
+    <updated>2020-07-01T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://strict.dev/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Strict Programming Language news and events.</subtitle>
     <logo>https://strict.dev/img/StrictLogoWhite64x64.png</logo>
     <rights>Copyright © 2020 strict-lang</rights>
+    <entry>
+        <title type="html"><![CDATA[Jul 2020 Package Loading]]></title>
+        <id>https://strict.dev/blog/2020/07/01/package-loading.html</id>
+        <link href="https://strict.dev/blog/2020/07/01/package-loading.html"/>
+        <updated>2020-07-01T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>Tons of changes have been made in the last few days to load packages with all types and all their methods. The reason and use case was trying to put Strict into production already. Having a few unit tests work and experimenting around with simplified...</p>]]></summary>
+        <author>
+            <name>Benjamin Nitschke</name>
+            <email/>
+            <uri>http://twitter.com/BennyNitschke</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Jun 2020 Parsing Methods]]></title>
         <id>https://strict.dev/blog/2020/06/25/parsing-methods.html</id>
