@@ -76,8 +76,8 @@ This code creates a sequence of 10 numbers (from 0 to 10, which is Range(0, 10) 
 Streams are used in Strict via the simple stream keyword, which does all of the above automatically, there is nothing else needed. Just keep in mind that every line that follows stream is operating on that stream and types often change along the way. The editor will tell you which type is used on each line and keep your Auto Complete clever and easy to use. Its probably easier to just write this code than to explain it or read it without an editor at hand:
 
 ```ocaml
-method PipeFSharpExample()
-  test() is ("value=0", "value=1", "value=2")
+PipeFSharpExample
+  test is ("value=0", "value=1", "value=2")
   return stream number from Range(0, 3)
     number % 2
     number * 2

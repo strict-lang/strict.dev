@@ -27,8 +27,7 @@ You will understand any .strict code you read, writing code is much harder due t
 - as, to (type conversion)
 - and, or (english words instead of strange C operators)
 - +, -, \*, /, %, xor (for math)
-- () for method parameters, do not use for loops, if, do, conditions, but allowed to complex computations
-- [] for list access
+- () for lists/arrays, which includes method parameters and method call arguments, there is no empty list (), it is never written and just None. Thus method and method calls must not use empty ().
 
 # General
 
@@ -38,7 +37,6 @@ You will understand any .strict code you read, writing code is much harder due t
 - create
 - throw
 - try
-- method
 - returns
 - return
 - let and = to assign initial value
@@ -85,11 +83,6 @@ for index in Range(0, 10)
 # Comments
 
 Any comment is considered bad. Only add comments to methods to explain functionality or link to more information, comments for members, types, inside methods are all not allowed. Like in C, Java or C# comments start with //, no other type of comment is allowed, multiline comments are not needed, if your comment is more than 3 lines, the compiler will refuse it.
-
-```ocaml
-method let number = 5
-let text = "Hey"
-```
 
 # Everything is an expression
 

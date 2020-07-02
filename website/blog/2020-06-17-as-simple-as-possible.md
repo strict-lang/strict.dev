@@ -82,8 +82,8 @@ from(number)
   return stream digit from digits(number)
     create Character(digit)
 method digits(number)
-  test(1) is 1
-  test(123) is 3
+  test(1) is (1)
+  test(123) is (1, 2, 3)
   if number / 10 > 0
     yield digits(number / 10)
   yield number % 10
