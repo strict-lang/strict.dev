@@ -4,7 +4,7 @@
         <title>Strict Programming Language Blog</title>
         <link>https://strict.dev/blog</link>
         <description>The best place to stay up-to-date with the latest Strict Programming Language news and events.</description>
-        <lastBuildDate>Wed, 01 Jul 2020 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 05 Jul 2020 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,13 @@
             <link>https://strict.dev/blog</link>
         </image>
         <copyright>Copyright © 2020 strict-lang</copyright>
+        <item>
+            <title><![CDATA[Jul 2020 Optimizing FindType]]></title>
+            <link>https://strict.dev/blog/2020/07/05/optimizing-findtype.html</link>
+            <guid>https://strict.dev/blog/2020/07/05/optimizing-findtype.html</guid>
+            <pubDate>Sun, 05 Jul 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Still working on the package loading code from the <a href="https://strict.dev/blog/2020/07/01/package-loading">last blog entry</a>. The main issue was the dummy repositories system I build a few days ago to grab code from a fixed folder, which didn't exist on the CI server. So instead of hacking another quick sol...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Jul 2020 Package Loading]]></title>
             <link>https://strict.dev/blog/2020/07/01/package-loading.html</link>
