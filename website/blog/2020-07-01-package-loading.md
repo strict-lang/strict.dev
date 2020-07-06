@@ -12,7 +12,7 @@ After some back and forth and trying different solutions I went back to Roslyn, 
 
 Back to the problem at hand: Loading packages, which contain class types and sub packages. Types contain methods and all the statements are in those.
 
-# Packages
+## Packages
 
 A good example for a package is the Strict.Base package, which gives us all the base types we usually need anyway (reduced the implementation to what is working now, there will be more types soon).
 
@@ -179,6 +179,9 @@ Run
 
 Another very simple trait just telling us to implement *Run*, which is the entry point for our package (in case we want to run it, most packages will just be libraries).
 
-# Loading Order
+## Loading Order
 
 All this was just done to force me to implement pre-loading types in a package for the current *LoadStrictBaseTypes* test, then pre-load each of the implementations, members and methods (which might use other not yet loaded types from the same package). And then do the same for the methods, which are evalutated lazily until they are needed. All types and methods defined in a method body need to be available to compile correctly.
+
+This is not easy at all, I tried several approaches and had to revisit and update this a few times until it all made sense and worked, luckily unit tests helped to stay sane. The following picture shows the typical search steps and optimizations done. It is different from simple binary searchs or finding types in other languages because in Strict any public type can be used at any place. There is much more to be done to make this work by discovering types from packages.strict.dev, more on that later.
+![FindType](https://strict.dev/img/FindType2020-07-01.png)

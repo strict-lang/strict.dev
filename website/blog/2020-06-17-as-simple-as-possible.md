@@ -8,7 +8,7 @@ While exploring options yesterday and today for creating a great editor experien
 
 What sounds very promising is the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) and the growing numbers of [implementations](https://langserver.org/). Doing some early experiments a Stritc language server works in Visual Studio Code, Visual Studio 2019 and even IntelliJ (plus a lot of other IDEs and Editors that support it like Emacs, Vim, Atom, whatever people like to use). More on that in the next blog post.
 
-# As Simple As Possible, but not simpler
+## As Simple As Possible, but not simpler
 
 "Everything should be as simple as it can be but not simpler!" - Albert Einstein
 
@@ -26,7 +26,7 @@ method IsEqualTo(target Any) returns Boolean
 
 Either a file contains no implementations, then it is a trait, or it has just implementations, which is most files. Let's look at some String.strict examples while simplifying the language.
 
-# Iteration 1
+## Iteration 1
 
 ```ocaml
 implement Sequence<Character>
@@ -49,7 +49,7 @@ Next we create a result, which is not a class name, so here we see a type defini
 
 Now there are several problems with this code, first of all the number can't be mutated as everything is immutable by default in Strict. We can change that by making it mutable. Next is that we don't even have while loops, there is currently only one form of loops, which is the good old for loop.
 
-# Iteration 2
+## Iteration 2
 
 Let's skin the code another way:
 
@@ -70,7 +70,7 @@ Ok, here we removed factory, just named it *from*, which is a reserved keyword a
 
 Next I have renamed **let** to **create** and removed all the assignment stuff and the parentheses as there is nothing we pass as parameters. The loop is now a for loop and got the *Range* going over the digits of the *number* and still does the same logic inside the loop.
 
-# Iteration 3
+## Iteration 3
 
 This is still not very functional and it seems I am still trying to low level optimize, which should be the job of the compiler and not the coder. Let's try to go a more functional approach.
 
@@ -91,7 +91,7 @@ method digits(number)
 
 Here we use streams, which are not documented well yet. I just added the [streams page](/docs/Streams). Basically they grab any array, collection, sequence or data and pass it though the pipe in the lines below. Here we simply create a *Character* for each digit (which does the **"0" + number** thing for us). The stream combines it all back to an array of characters, which automatically matches our *String* we wanted to build (any type can be constructed by supplying the has members, no need to write any method, constructor or factory like that, as usual this is forbidden in Strict ^^).
 
-# Iteration X
+## Iteration X
 
 This is not done yet and will be changed many times. I am currently just experimenting with parsing the above code and see if the [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that pops out makes any sense.
 
@@ -99,7 +99,7 @@ Anyway, methods contain code that needs to be parsed, everything else (implement
 
 One final note: I completely removed **imports** as the *Context* that is used to parse a file knows all types already and if any unknown type is used in a .strict file, the parsing (and thus compiler) stops. There is probably some ordering that needs to be done and the optional **build.yml** file needs to allow users to point to more than just the [default repository](https://github.com/strict-lang) for all known types.
 
-# Summary
+## Summary
 
 Just two nightly code sessions with most of the time thinking about simplifications what what makes sense, this repository will stay in flux for some time and should not be considered stable (the sdk repo works and is usable and any bugs there we will still fix till the new repo is remotely usable). The main goal here is to make the editor support and language server implementation much easier and also think on what makes sense while adding some code we can compile and run soon (using as much as possible from existing blocks).
 

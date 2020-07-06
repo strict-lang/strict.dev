@@ -10,15 +10,15 @@ It took a few evenings to make sense of it, now we got a pretty decent simple pa
 
 However with methods there is obviously a lot of flexibility and even more rules, this approach isn't going to work. However using a full parser is not the best choice either as it allows way too flexible input (ignoring whitespaces, comments, tabs, spaces, extra spaces at end of lines or files), which we want to avoid. The goal is still to get a 1:1 mapping of compiled packages back to their source code without losing anything going back and forth. Plus we want to find one true solution to a problem and not allow many possible ways to do it (which is impossible to archieve, but at least we can limit the search space a lot).
 
-# Alternatives
+## Alternatives
 
 So I looked around in old code (including the sdk in go, older strict versions in C#, lua, python and C++). Code I found ranged from Domain-specific languages, simple state machine parsers, regex parsers, cool projects like [Sprache](https://github.com/sprache/Sprache) and [Superpower](https://github.com/datalust/superpower) and of course the many available full fletched parsers ([ANTLR](https://www.antlr.org/), [Irony](https://github.com/IronyProject/Irony), [etc.](https://tomassetti.me/parsing-in-csharp/#parseTree)), but nothing really fit out of the box. I tried plugging in some old code and got a few lines working, but I wasn't happy with the extra complexity.
 
-# Parsing manually
+## Parsing manually
 
 I started back from the beginning with a very simple lexer and spits out tokens, which are then consumed by the MethodParser. Some parts might even be merged because the lexer isn't really doing much and the tokens have to be in an expected order anyway. But error reporting is nice this way and I am not sure about the complexity yet and we might be better off separating lexer, tokens and parsing so applying things like Observer pattern stays easy (have no usecase yet for that, so it is not implemented).
 
-# Implemented Tokens
+## Implemented Tokens
 
 We use the lexer for each line and always start looking at the tabs first, we start at 1 and go deeper for nested statements (if, for, stream), there is no space following this token, but a space must be between every other token except ( and ).
 
@@ -34,7 +34,7 @@ returns also has been removed in the last post, the last statement in a method m
 
 if, for, etc. coming soon.
 
-# Statements
+## Statements
 
 - **MethodCall** test or any other method call, currently must include () to tell the parser this is a method call as opposed to a member or let
 - **LetAssignment** assigns a value or expression to a local field
@@ -42,7 +42,7 @@ if, for, etc. coming soon.
 
 As you can see all this is still very easy and allows me to experiment around with different ideas very quickly.
 
-# Example
+## Example
 
 ```ocaml
 method Double(number)
