@@ -4,7 +4,7 @@
         <title>Strict Programming Language Blog</title>
         <link>https://strict.dev/blog</link>
         <description>The best place to stay up-to-date with the latest Strict Programming Language news and events.</description>
-        <lastBuildDate>Sun, 05 Jul 2020 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 29 Jul 2020 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,13 @@
             <link>https://strict.dev/blog</link>
         </image>
         <copyright>Copyright © 2020 strict-lang</copyright>
+        <item>
+            <title><![CDATA[Jul 2020 Getting Back Into It]]></title>
+            <link>https://strict.dev/blog/2020/07/29/getting-back-into-it.html</link>
+            <guid>https://strict.dev/blog/2020/07/29/getting-back-into-it.html</guid>
+            <pubDate>Wed, 29 Jul 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>There are always times when something important has to be fixed or be ready for a presentation, release or milestone. In these times the temptation is very strong to just quickly hack it together and test test test until it works. Short term this is ...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Jul 2020 Optimizing FindType]]></title>
             <link>https://strict.dev/blog/2020/07/05/optimizing-findtype.html</link>

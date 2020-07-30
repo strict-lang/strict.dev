@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Jul 2020 Getting Back Into It · Strict Programming Language</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="There are always times when something important has to be fixed or be ready for a presentation, release or milestone. In these times the temptation is very strong to just quickly hack it together and test test test until it works. Short term this is fine and this is pretty much how any Game Jam works, sadly for most games it leads to throw-away code which most people just notice when they start the next project."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Jul 2020 Getting Back Into It · Strict Programming Language"/><meta property="og:type" content="website"/><meta property="og:url" content="https://strict.dev/blog/2020/07/29/getting-back-into-it"/><meta property="og:description" content="There are always times when something important has to be fixed or be ready for a presentation, release or milestone. In these times the temptation is very strong to just quickly hack it together and test test test until it works. Short term this is fine and this is pretty much how any Game Jam works, sadly for most games it leads to throw-away code which most people just notice when they start the next project."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://strict.dev/blog/atom.xml" title="Strict Programming Language Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://strict.dev/blog/feed.xml" title="Strict Programming Language Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/StrictLogoWhite64x64.png" alt="Strict Programming Language"/><h2 class="headerTitleWithLogo">Strict Programming Language</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="/docs/Overview" target="_self">Docs</a></li><li class=""><a href="/docs/Keywords" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2020/07/29/getting-back-into-it">Jul 2020 Getting Back Into It</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/05/optimizing-findtype">Jul 2020 Optimizing FindType</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/01/package-loading">Jul 2020 Package Loading</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/06/25/parsing-methods">Jun 2020 Parsing Methods</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/06/17/as-simple-as-possible">Jun 2020 As Simple As Possible</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/07/29/getting-back-into-it">Jul 2020 Getting Back Into It</a></h1><p class="post-meta">July 29, 2020</p><div class="authorBlock"><p class="post-authorName"><a href="http://twitter.com/BennyNitschke" target="_blank" rel="noreferrer noopener">Benjamin Nitschke</a></p></div></header><div><span><p>There are always times when something important has to be fixed or be ready for a presentation, release or milestone. In these times the temptation is very strong to just quickly hack it together and test test test until it works. Short term this is fine and this is pretty much how any Game Jam works, sadly for most games it leads to throw-away code which most people just notice when they start the next project.</p>
+<p>We just had such a week last week and I tried to steer the team away from hacking it quickly together for the presentation/milestone. It was still stressful and I didn't really have time to finish my refactoring work on Strict. Since two weeks ago I am still in the process of changing the parsing to the Pidgin library, which works great, but I still have to go through most lines of code, throw away stuff, fix tests and coverage, etc.</p>
+<h2><a class="anchor" aria-hidden="true" id="parsing-libraries"></a><a href="#parsing-libraries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parsing libraries</h2>
+<p><a href="https://github.com/benjamin-hodgson/Pidgin">Pidgin</a> is a pretty good library similar to <a href="https://github.com/sprache/Sprache">Sprache</a> or <a href="https://github.com/datalust/superpower">Superpower</a> with even better performance. It is very similar to the <a href="https://hackage.haskell.org/package/parsec-3.1.11">Parsec Monadic parser from the Haskell world</a>, which combines lexing and parsing into a bunch of functions to find expressions this way. Debugging and developing parsing this way is much more comfortable than going the lexer/parser route or using external lexer/parser code generator tools. These work great if you want to do exactly what many have done before you, they generate much better code than a newbie can write himself and it will perform much better. However Strict is not doing much in the traditional way and I still am constantly changing how things work, the more complicated it is to change how the parsing works, the more work it is. Originally I was writing my own parsing (as you see from the earlier commits) and I might continue with that later on, but for now it is nicer to have something working quickly to experiment around until the language is more fleshed out. Pidgin is very well tested and fast, only method bodies need complex parsing in Strict and they are evaluted lazily when needed, most code is not executed and there is no point in loading it or getting it ready. This makes loading files in Strict much faster than in any other programming language, you can load as many files as you like in parallel, more similar to database or json loading and less like c++ compiling.</p>
+<p>A good example is the strict ruleset for source code in Strict, we do not want multiple ways to write code (very similar to Python, just more strict and even more basic). There shouldn't be multiple ways to format your code, write loops or indent code or blocks for your conditions. Since the end goal is to generate code via the Stricti AI, there should be the least amount of possible variations leading to compiling code producing the right results (most preferbly there should be exactly one solution).</p>
+<h2><a class="anchor" aria-hidden="true" id="own-company-cryptocurrency-token"></a><a href="#own-company-cryptocurrency-token" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Own company cryptocurrency token</h2>
+<p>Another small side project I had over the past two weekends was to create a cryptocurrency token for our company, we have a little internal economy going, basically giving employees a way to earn extra story points from sprints or just a thank you for doing good work. Originally I tried creating an Ethereum smart contract, but fees are crazy high plus things are still very hard to do and test. After looking around a while (haven't done much crypto work for about a year) I went back to Neo and some other smart contract coins like Waves, which I immediately liked. It fit very well to our economy and idea, it also gives the new employees an easy way to get started and learn all about crypto. Things are heating up recently again, Ethereum went up 50% this month, Bitcoin just did a 20% move as well.</p>
+<p>However the token was still not a good idea, the experiment ran fine, I got everyone to be their own bank, handle the tokens and explained how to use them. One guy played around with trading, but everyone else didn't do anything last week with it, it seems it still felt like Monopoly Money for most guys here. So I tried to assign a value to the token, but that didn't really work either, no one was exchanging it or even &quot;getting&quot; it.</p>
+<p>So this week I discussed all these points with the team and we decided to switch to a stable coin instead (and burn all our tokens). This takes out all the fluctuations and makes it very clear how much each point is worth. Also if one stablecoin dollar is exactly one USD, it is clear what it means, even if it is still hard for some people to understand that have not done anything in crypto yet .. well, learning by doing I guess.</p>
+<p>The other change was to change the way that everyone is their own bank back to the MyDashWallet bot system, where the bot has full control over your account and shares the private keys with you if you also want to have control. This way the Telegram bot we are using internally (like several others we have written before) can do whatever you want very easily and securely: tipping, receiving or sending coins, exchanging, raining, price information and many other cool features.</p>
+<p>Had a short presentation today at our local crypto meetup and everyone got it immediately there and was very impressed, hopefully the employees will get it as well when using it more :)</p>
+<h2><a class="anchor" aria-hidden="true" id="coverage-back-to-100"></a><a href="#coverage-back-to-100" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Coverage back to 100%</h2>
+<p>Similar to our company work where we had to cleanup last weeks presentation work to get everything nice and clean again, all tests passing and coverage back to 100%, removing any dummy or hacky code immediatly I still have to do the same for Strict. I am still kinda stuck in the MethodBody parsing, which has to be rewritten as the old LineLexer and Tokenizer parsing logic doesn't make much sense anymore. Should hopefully be finished by tomorrow, I will try to blog more in August on more progress there. We are also discussing creating another blog for our Towers game development starting up right now (or in general game engine development, vr, games, etc.). On <a href="https://benjaminnitschke.com">my old blog</a> I had a lot of categories, my focus is still just this blog and hopefully the other blogs can be done by other team members.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#parsing-libraries">Parsing libraries</a></li><li><a href="#own-company-cryptocurrency-token">Own company cryptocurrency token</a></li><li><a href="#coverage-back-to-100">Coverage back to 100%</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home" style="width:160px"><img src="/img/StrictLogoBlue128x128.png" alt="Strict Programming Language" width="128" height="128"/></a><div><h5>Docs</h5><a href="/docs/en/GettingStarted">Getting Started</a><a href="/docs/en/Coding Style">Coding Style</a><a href="/docs/en/Keywords">API Reference</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/Strict" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/strict-lang" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/help">Help</a><a href="https://github.com/strict-lang">GitHub</a><a class="github-button" href="https://github.com/strict-lang/strict.dev" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 strict-lang</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '7f6e29123c9235b4420f116e437ef737',
+                indexName: 'strict-lang',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
