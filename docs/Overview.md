@@ -3,7 +3,7 @@ id: Overview
 title: Overview
 ---
 
-A typical _Strict_ file is easy to understand and very short. Unlike other languages following the [Coding Style](CodingStyle.md) is enforced. That is why the language is called Strict, humans and machines can understand it easily, machines can generate code easily and overall it is fun to use!
+A typical _Strict_ file is easy to understand and very short. Unlike other languages following the [Coding Style](CodingStyle.md) is enforced. That is why the language is called Strict, humans and machines can understand it easily, machines can generate code easily and overall it is fun to use! **Strict** is a simple, efficient, and portable programming language that is mostly working like functional programming languages. It only includes the minimum set of features needed to write meaningful, efficient, and portable programs.
 
 # Example
 
@@ -14,7 +14,7 @@ Run
   log.Write("Hello World")
 ```
 
-The first line implements the *App* trait (think interface), which provides us with the *Run* entry point method. The next line injects the *Log* class, the member is called *log*, the parser automatically interprets this as the type *Log*, which isn't written (same as number). Normally every method starts with a test, but if a method doesn't mutate anything and doesn't return, there is nothing we can or need to test.
+The first line implements the *App* interface, which provides us with the *Run* entry point method. The next line injects the *Log* class, the member is called *log*, the parser automatically interprets this as the type *Log*, which isn't written. Normally every method starts with a test, but if a method doesn't mutate anything and doesn't return, there is nothing we can or need to test.
 
 # Why?
 
@@ -46,6 +46,39 @@ How do we archive this? Strict checks ALL public code that exists at all times, 
 Packages are small and are very different from what you might know from big frameworks like Java, .NET or std. Strict starts out empty, it doesn't know anything, there are no classes known by default. Most of the time you use the Strict.Base package by using any base type like *Any*, *Number*, *Type*, *Iteration*, etc. but you don't have to. If you are writing a library the *App* trait is never imported or used. Simply generate a small bit of strict code to any other language and you will see only the types that were used are generated (which is a super tiny fraction). This makes the language very fast to parse and use.
 
 All packages are automatically imported and used (based on build.yml settings, by default anything locally available and that can be downloaded from https://github.com/strict-lang), there is no import, include or using statement, the Editor figures this all out for you. You just type what you want to do and if there is a type already, it will be presented to you, otherwise you become the creator of a new feature (for everyone to use if you choose to publish publicly).
+
+## Namespaces
+
+Strict source files are stored in folders (directories) whose names are used as the last element of the namespace (package if it is at the root level) name. The preceding elements, if any, are made up of the parent folders’ name(s) so that the topmost parent folder adds the first element of the dotted package name, its first child adds the second element of the dotted package name, and so on, until the innermost folder, which adds the final element of the dotted package name.
+
+## Files
+
+Strict source files ends in the extension `.strict`. The filename is always the type name and the folder structure must always match the namespace.
+
+Each source file is divided into one or more lines. Empty lines may not appear in Strict source files. The line separator character is always the _\n_ line-feed (utf8 character 10 - LF) character, never utf8 character 13 - Carriage Return or a combination of these two.
+
+Each source file consists of one or more lines **separated** by line-feed character (_\n_). The last line must not end with _\n_, no padding is allowed anywhere in the file.
+
+## Characters
+
+Each source file’s character encoding format is **always** Unicode UTF-8 without a Byte Order Mark (BOM).  A BOM will cause the file to be rejected. These characters may **not** appear in Strict source files at all:
+1. ASCII 0 (`NUL`) through ASCII 8 (Backspace, `BS`).
+2. ASCII 11 (Vertical Tab, `VT`) through ASCII 31 (Unit Separator, `US`).
+3. ASCII 127 (Delete, `DEL`).
+
+The presence of an invalid Unicode UTF-8 byte sequence or an invalid Unicode code point will cause the source file to be rejected by the compiler.
+
+## Indentation
+
+Indentation is always done using tab (utf8 character 9 - Horizontal Tabulator) characters only. Thus space (utf8 character 32) may **never** appear in indentation (similar to python, only one way to indent is allowed). A single tabulator stop character is visibly shown as two space characters, thus the indenting level is two characters per level.
+
+## Comments
+
+Strict does not allow comments at all because of the extremely simple nature of most Strict modules. Most files don’t need elaborate commenting as the code should be always self explanatory (otherwise the AI could not read it anyways). If you need to explain some behavior or internals about the code use a Readme.md in the folder.
+
+## External Code
+
+Code from the outside can be imported via _external Method(parameters)_ feature (just to interface to C, for C++ or C# or Java put it in a type matching the class name). If a namespace doesn't match use _external namespace Name_.
 
 ## Statically Checked
 
