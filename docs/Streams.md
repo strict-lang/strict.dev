@@ -4,6 +4,65 @@ title: Streams
 sidebar_label: Streams
 ---
 
+# New ideas 2022
+Basically any enum can have sub expressions, which does the pipe stuff automatically
+```
+has numbers
+FirstNonConsecutive returns Number
+	test(1, 2, 3, 5, 6) is 5
+	for index from 1 to numbers.Length
+		if numbers[index] is not numbers[index - 1]
+			return numbers[index]
+	return 0
+GetSquaredTexts returns Texts
+	test(1, 2) is ("1", "4")
+	return numbers
+		to Text
+		result.Length * result.Length
+		result * 3 + 4
+		to Text
+//earlier idea:
+    number * number //Square//number * number
+		number * 3 + 4//Complexomato //test
+		to text //ToText//number to Text //not really needed, would be done automatically when saying to Texts
+Complexomato(number) returns Number
+	test(3) is 13
+	return number * 3 + 4
+Square(number) returns Number
+	test(3) is 9
+	return number * number
+ToText(number) returns Text
+	test(5) is "5"
+	return number to Text
+GetSquaredTexts returns Texts
+	test(1, 2) is ("1", "4")
+	return for number in numbers
+    number * number
+		number to Text
+
+GetSomeArticles(texts) returns Texts
+	test("a", "b") is empty
+	return for text in texts //stream/pipe
+    if text.Length > 1000 // where
+			text.Length, text // trying map
+
+//https://martinfowler.com/articles/collection-pipeline/
+//example 1
+some_articles
+  .group_by {|a| a.type}
+  .map {|pair| [pair[0], pair[1].size]}
+  .to_h
+//example 2
+some_articles
+  .filter (a) ->
+    a.words > 1000
+  .map (a) ->
+    a.words
+  .reduce (x, y) -> x + y
+(a.words for a in some_articles when a.words > 1000)
+.reduce (x
+```
+
 Streams (also called [pipelines or pipes from the functional world](https://martinfowler.com/articles/collection-pipeline/)) help us to process data in an easy way and also handles asyncronly nicely for us. It lets the caller decide what to do and gives the implementation the flexibility to go over the data in various forms. Programming streams is a bit different from sequential or procedual programming and needs some time to get used to. In functional languages it often simplifies problems a lot.
 
 ![Async flow](https://mdn.mozillademos.org/files/15911/promises.png)
