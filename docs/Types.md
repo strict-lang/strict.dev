@@ -48,7 +48,7 @@ Common/city.type (bunch of other types used, can be more simple or more complex 
 
 name
 location
-list[Person] citizens
+list(Person) citizens
 ```
 
 # Build-In Types
@@ -74,12 +74,12 @@ isEven = value % 2 == 0
 list is any array or list and gets an extra parameter for the type of the list (like generics in C#), here is an important read on not using arrays for passing data around. Vector, list, array, sets, queue, stack, etc. all become simple lists (check this for the huge amount of collections in .NET, very similar in other languages, also see this great talk from Bjarne Stroustrup Vector vs Linked Lists, always use array data for performance). Lists should also be used for returning multiple elements or using pairs or more complex simple structures. Lists and maps must always be fully specified, you cannot just have a type "list" like "number", it always must be a list of type, e.g.
 
 ```
- list[number], list[string], list[bool]
-values = 1, 2, 3 // in C# you would write List<int>, here it is an implicit System.Console.WriteLine(list[number])
+ list(number), list(string), list(bool)
+values = 1, 2, 3 // in C# you would write List<int>, here it is an implicit System.Console.WriteLine(list(number))
 for each value in values
   System.Console.WriteLine(value)
 nodes = Node.create(), Node.create()
-combined = values + nodes // this is a list[anything] (in C# List<object>) and can hold anything, the results of adding two lists is their lowest common type
+combined = values + nodes // this is a list(anything) (in C# List<object>) and can hold anything, the results of adding two lists is their lowest common type -> This is not supported anymore
 ```
 
 map is a dictionary structure with key and value. value can be anything like for list, key however must be a number or a string (all methods are optimized for those, sorting and access is much faster this way)! It is needed much less than all of the types above, but still very important in some cases. Think of it as a table with the key as the line number and the value as all the other values (usually just one, but can be a list). Internally works like a Dictionary in .NET (hashtable, unique keys, using hash comparisons for good performance). Other languages have tons of collection and map types (boost, clojure, C#, Java), but it turns out that aside from lists and maps the other collection types are rarely used and can mostly be emulated with list and map here. If you are not happy, feel free to import external types and use them. Iterating through maps is only possible by their keys like for lists, but instead of returning key value pairs like in other languages you just get a key (same behavior as a list again) and can use it to access the value of the map via the Get method. This makes the code much clearer, maybe a bit more verbose, but it allows easier optimization and refactoring. Also keep in mind that higher language constructs like Linq are not possible in Strict and you always need to have low level code or call helpful methods to do compositions. Again this keeps things simple and understandable.
@@ -196,7 +196,7 @@ method isEven(value) // this becomes a file: isEven.value.method, value is impli
   return value % 2 == 0
 ```
 
-Not only do you have to write out the names for list and map types in this manner, you can also specify "generic" types for other things in this fashion like "entities[Drawable]", which only would accept drawable entities. You can also filter things by just assigning general instances to more specific instances like "list[Drawable] drawables = entities". From the example above you can also see that "isEven" is not just a good name for the member, but also leads to refactorings where even checks are at other places in the code and provides the IsEven method, which can be called at all such places. Strict will from now on understand that "is even" means "value modulated by 2 should be 0" and from the test cases he knows some examples as well.
+Not only do you have to write out the names for list and map types in this manner, you can also specify "generic" types for other things in this fashion like "entities(Drawable)", which only would accept drawable entities. You can also filter things by just assigning general instances to more specific instances like "list(Drawable) drawables = entities". From the example above you can also see that "isEven" is not just a good name for the member, but also leads to refactorings where even checks are at other places in the code and provides the IsEven method, which can be called at all such places. Strict will from now on understand that "is even" means "value modulated by 2 should be 0" and from the test cases he knows some examples as well.
 
 Maybe later or in higher level constructs: Names can be multiple words separated by spaces even in collapsed mode, so the user just writes english sentences. Each word in a name can also have links to the meaning where it is used otherwise, like "greater or equal" knows that "greater" and "equal" are also methods, which are used here and the "or" describes how they are connected (as a binary expression), thus Strict understands that this is a composite and can deduct greater or smaller automatically :) Thinking a bit more about this would also lead to better understanding singular and plural words, number is a single number, while numbers is a list of numbers, same with string and strings, etc. This would make the code shorter and give additional meaning to using plurals in the language (like in English, when there is a difference between book and books).
 
