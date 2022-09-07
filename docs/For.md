@@ -1,7 +1,7 @@
 ---
-id: Streams
-title: Streams
-sidebar_label: Streams
+id: For
+title: For
+sidebar_label: For
 ---
 
 # New ideas 2022
@@ -62,11 +62,30 @@ some_articles
 (a.words for a in some_articles when a.words > 1000)
 .reduce (x
 ```
-
-Streams (also called [pipelines or pipes from the functional world](https://martinfowler.com/articles/collection-pipeline/)) help us to process data in an easy way and also handles asyncronly nicely for us. It lets the caller decide what to do and gives the implementation the flexibility to go over the data in various forms. Programming streams is a bit different from sequential or procedual programming and needs some time to get used to. In functional languages it often simplifies problems a lot.
-
-![Async flow](https://mdn.mozillademos.org/files/15911/promises.png)
-
+# For
+Strict has a flexible and simple way to utilize For loop. Like in any other programming language, you can easily iterate through the elements:
+```
+let count
+for Range(0, 10)
+	count.Increment
+count
+  ```
+You can also iterate through elements without specifying any ending condition or indices: 
+```
+let reversedList List(Generic)
+	let index = 0
+	for elements
+		reversedList(elements.Length - 1 - index) = value
+	reversedList
+```
+Furthermore you can perform an operation to object and return it in a single line within the for loop, consider this examplle of Range summation. In Range.strict:
+```
+Sum
+	Sum(Range(2, 5)) is 2 + 3 + 4
+	Sum(Range(42 45)) is 42 + 43 + 44
+	for value
+		+ value
+```
 # Haskell
 
 ```haskell

@@ -11,6 +11,10 @@
       "Concurrency": {
         "title": "Concurrency"
       },
+      "For": {
+        "title": "For",
+        "sidebar_label": "For"
+      },
       "GettingStarted": {
         "title": "Getting Started"
       },
@@ -29,10 +33,6 @@
       },
       "Overview": {
         "title": "Overview"
-      },
-      "Streams": {
-        "title": "Streams",
-        "sidebar_label": "Streams"
       },
       "Types": {
         "title": "Types",
