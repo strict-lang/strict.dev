@@ -82,7 +82,7 @@ Furthermore you can perform an operation to object and return it in a single lin
 ```
 Sum
 	Sum(Range(2, 5)) is 2 + 3 + 4
-	Sum(Range(42 45)) is 42 + 43 + 44
+	Sum(Range(42, 45)) is 42 + 43 + 44
 	for value
 		+ value
 ```
@@ -90,7 +90,7 @@ The above code would iterate through the 'value' (which is basically a pointer t
 ```
 Sum
 	Sum(Range(2, 5)) is 2 + 3 + 4
-	Sum(Range(42 45)) is 42 + 43 + 44
+	Sum(Range(42, 45)) is 42 + 43 + 44
 	let result = Mutable(0)
 	for num in Range(value.Start, value.End)
 		result = result + num
