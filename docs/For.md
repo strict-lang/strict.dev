@@ -63,22 +63,26 @@ some_articles
 .reduce (x
 ```
 # For
-Strict has a flexible and simple way to utilize For loop. Like in any other programming language, you can easily iterate through the elements:
+Strict has a flexible and simple way to utilize `For` loop. The `for` statement has a variation of syntatic uses:
+- `for in` loops -  which are simple syntatic sugar over traditional `for` loops, in Strict the purpose of using `for in` loops is usually to have a loop variable - such as index : ``` for index in Range(0, 10) ... ```
+- `for with an iterable object` - a for loop that does not require a loop variable and can be directly iterated through an iterable (see example below) 
+
+Like in any other programming language, you can easily iterate through the elements using `for in` loops :
 ```
 let count
-for Range(0, 10)
-	count.Increment
+for index in Range(0, 10)
+	count = count + index
 count
-  ```
-You can also iterate through the elements without specifying any ending condition or indices: 
 ```
-let reversedList List(Generic)
+As mentioned above, you can iterate through the elements without specifying any ending condition or indices: 
+```
+reversedList List(Generic)
 	let index = 0
 	for elements
 		reversedList(elements.Length - 1 - index) = value
 	reversedList
 ```
-Furthermore you can perform an operation to object and return it in a single line within the for loop, consider this example of Range summation. In Range.strict:
+Furthermore you can perform an operation to object and return it in a single line within the `for` loop, consider this example of Range summation. In Range.strict:
 ```
 Sum
 	Sum(Range(2, 5)) is 2 + 3 + 4
@@ -97,7 +101,7 @@ Sum
 	result
 ```
 
-Nested loop works similarly of other programming languages:
+Nested loop works similarly to other programming languages:
 ```
 for i in Range(0, 10)
 	for j in Range(0, 10)
