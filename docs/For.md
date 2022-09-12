@@ -64,13 +64,13 @@ some_articles
 ```
 # For
 Strict has a flexible and simple way to utilize `For` loop. The `for` statement has a variation of syntatic uses:
-- `for in` loops -  which are simple syntatic sugar over traditional `for` loops, in Strict the purpose of using `for in` loops is usually to have a loop variable - such as index : ``` for index in Range(0, 10) ... ```
+- `for in` loops -  which are simple syntatic sugar over traditional `for` loops, in Strict the purpose of using  `for in` loops is usually to have a loop variable - such as index : ``` for index in Range(0, 10) ... ```
 - `for with an iterable object` - a for loop that does not require a loop variable and can be directly iterated through an iterable (see example below) 
 
 Like in any other programming language, you can easily iterate through the elements using `for in` loops :
 ```
 let count
-for index in Range(0, 10)
+for in Range(0, 10)
 	count = count + index
 count
 ```
