@@ -63,14 +63,23 @@ some_articles
 .reduce (x
 ```
 # For
-Strict has a flexible and simple way to utilize `For` loop. The `for` statement has a variation of syntatic uses:
-- `for in` loops -  which are simple syntatic sugar over traditional `for` loops, in Strict the purpose of using  `for in` loops is usually to have a loop variable - such as index : ``` for index in Range(0, 10) ... ```
-- `for with an iterable object` - a for loop that does not require a loop variable and can be directly iterated through an iterable (see example below) 
-
-Like in any other programming language, you can easily iterate through the elements using `for in` loops :
+Strict has a flexible and simple way to utilize `for` loop. The `for` statement has a variation of syntatic uses:
+- Standard `for` loop -  The most common type of `for` loops in Strict, you can iterate through the elements without specifying the iterator variable since it already has implicit `index` variable: 
 ```
-let count
-for in Range(0, 10)
+for Range(0, 10)
+	log.Write(index)
+```
+- `for in` loops -  which are simple syntatic sugar over traditional `for` loops, in Strict the purpose of using  `for in` loops is usually to have a custom loop variable: 
+```
+for myIndex in Range(0, 10)
+	...
+ ```
+- `for with an iterable object` - a for loop that does not require a loop variable and can be directly iterated through an iterable (see examples below) 
+
+Like in any other programming language, you can easily iterate through the elements using `for` loops, note that index variable is inferred here, you don't need to declare it manually:
+```
+let count = Mutable(0)
+for Range(0, 10)
 	count = count + index
 count
 ```
@@ -106,6 +115,12 @@ Nested loop works similarly to other programming languages:
 for i in Range(0, 10)
 	for j in Range(0, 10)
 		log.Write(i * j)
+```
+
+One of the most important use case of `for` loops in Strict, in a more advanced context is looping using multiple variables, which is easily possible in Strict, consider this example:
+```
+for r, g, b in Colors
+	log.Write(r + g + b)
 ```
 # Haskell
 
@@ -185,7 +200,7 @@ PipeFSharpExample
 
 The method will return a *Sequence* of strings (the Editor will show you that always) and you can see it anyways from the test in the first line. The stream is constructed on the Range 0, 1, 2 and number is used in the first line of the pipe (at any point you can create new types and whatever is returned is used downwards, simple things like filters are done via booleans and any operator on an existing type will return the type again).
 
-Pretty selfexplanatory for now. This is not implemented in the [sdk](https://github.com/strict-lang/sdk) yet and this documentation needs to be updated one that is done.
+Pretty self explanatory for now. This is not implemented in the [sdk](https://github.com/strict-lang/sdk) yet and this documentation needs to be updated one that is done.
 
 # References
 
