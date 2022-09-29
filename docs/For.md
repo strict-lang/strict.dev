@@ -94,16 +94,16 @@ reversedList List(Generic)
 Furthermore you can perform an operation to object and return it in a single line within the `for` loop, consider this example of Range summation. In Range.strict:
 ```
 Sum
-	Sum(Range(2, 5)) is 2 + 3 + 4
-	Sum(Range(42, 45)) is 42 + 43 + 44
+	Range(2, 5).Sum is 2 + 3 + 4
+	Range(42, 45).Sum is 42 + 43 + 44
 	for value
 		+ value
 ```
 The above code would iterate through the 'value' (which is basically a pointer to the current class, like "this" in C++ or C#), add the corresponding ranges and return the summation. You can rewrite the above code as such:
 ```
 Sum
-	Sum(Range(2, 5)) is 2 + 3 + 4
-	Sum(Range(42, 45)) is 42 + 43 + 44
+	Range(2, 5).Sum is 2 + 3 + 4
+	Range(42, 45).Sum is 42 + 43 + 44
 	let result = Mutable(0)
 	for num in Range(value.Start, value.End)
 		result = result + num
