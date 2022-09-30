@@ -5,7 +5,7 @@ author: Murali Tandabany
 
 In Strict programming language, every member or variable is immutable by default. i.e. value can be only assigned during member/variable initialization. Thus, any has or let is constant by default. Strict also supports Mutable types so that member/variable values can be changed after initialization as well. This can be achieved by explicitly specifying the type as Mutable during initialization or if the type implements Mutable trait.
 
-##How to define Mutable types?
+## How to define Mutable types?
 
 There are three ways to define Mutable types.
 	1. Explicitly mention the type as Mutable during member/variable assignment. 
@@ -28,7 +28,7 @@ There are three ways to define Mutable types.
 All of the above three ways does the same operation and enable mutability to member/variable in strict.
 	
 
-##Immutable Types Cannot Be Reassigned
+## Immutable Types Cannot Be Reassigned
 
 Parser always checks the type of the member/variable before reassigning value to it. When any immutable type values are reassigned in strict program, parser will throw ImmutableTypesCannotBeReassigned exception.
 
