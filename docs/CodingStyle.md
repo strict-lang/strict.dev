@@ -122,6 +122,7 @@ Normally a method should only need 3-5 lines of code, the limit is 10 lines of c
 |  public methods | 1       | 0-3  | 5     | Classes must have at least one callable method, but not more than a few |
 | private methods | 0       | 0-5  | 16    |  Short helper methods are usually needed to get stuff done              |
 |      line count | 2       | 5-50 | 256   |          Classes must be short and easily readable                      |
+| character count | 1       | 1-80 | 120   |          Each line should be short and have better readability          |
 |         nesting | 0       | 1-3  | 5     | Do not use indentation too much, same for packages and namespaces       |
 |         comment | 0       | 0    | 3     | Do not use comments, only allowed before methods for extra help         |
 
