@@ -5,11 +5,11 @@ author: Benjamin Nitschke & Murali Tandabany
 
 It is true that we can have programming languages without supporting generics like first versions of Java (till much later) or C# (till .net 2.0) or Go (for 12+years). They didn't have generics at all and a programmer could do everything still fine using polymorphism and runtime checks as well. However, generics make things not just more flexible, but allow the compiler to do MANY checks before anything even runs. You can think of it as "anything can be a object" casted down to specific interfaces.
 
-##How did we start implementing Generics in Strict?
+## How did we start implementing Generics in Strict?
 
 We had to disallow ANY "any" for the moment to make the focus on generics very clear, we don't want the "Any" Type anymore except for the automatic base class (ala "object" in c#). This made many things to not compile or work. These things didn't really work anyway, they just compiled and would not run (except if just using "object" in the transpiled c#, but in cuda there is no equivalent)
 
-##How did we fix it?
+## How did we fix it?
 
 The first thing that didn't work anymore was all of the methods returning Any because we didn't had generics or conversions to get a type of an instance or converting from one instance type to another, e.g. BinaryOperator.strict (while this is not used directly, it directs on what the compiler will parse it as)
 
@@ -50,7 +50,7 @@ Compute returns Number
 		
 (btw: I invented switch statements here by allowing to split if expression into multiple choices), the "if value" can also be optimized to "if", which just forwards the "value" from the above scope to below. But this is yet to be implemented in the near future
 
-##How to use Generics in Strict program?
+## How to use Generics in Strict program?
 
 Input.strict base type should be limited to what works for now and what is needed, which is Text reading
 
@@ -69,7 +69,7 @@ Write(number)
 
 Remaining methods like Write(xml), Write(json), Write(type), etc. can be added when needed and we are not that far yet. Currently there is no method overloading, so maybe this is internally just a generic implementation or we just allow different parameters for the same named method (and just point to the correct one as we know each type at compile time so far). Only problem here is if there is polymorphism (which we also don't have yet), then the decision has to be still done at run time (compiler can only check that it makes sense up to the trait/interface)
 
-##Applications of Generics
+## Applications of Generics
 
 The first and important application of Generics inside Strict language is List which is the reason for implementing Generics at this time. Therefore, after Generics, statements like 
 
@@ -80,7 +80,8 @@ has anys -> won't be supported
 Instead, we need to mention the specific type for example,
 
 ```
-has numbers List(Number)
+has numbers -> List of Number
+has elements -> Numbers indirectly mean the same List of Number type
 ```
 
 This means numbers is a type of List of Number and in this way the compiler will directly know the type without the need of conditional castings and thus makes all the operations of the type faster than before.

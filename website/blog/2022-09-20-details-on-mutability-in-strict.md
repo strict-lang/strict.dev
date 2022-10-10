@@ -27,7 +27,6 @@ There are three ways to define Mutable types.
 
 All of the above three ways does the same operation and enable mutability to member/variable in strict.
 	
-
 ## Immutable Types Cannot Be Reassigned
 
 Parser always checks the type of the member/variable before reassigning value to it. When any immutable type values are reassigned in strict program, parser will throw ImmutableTypesCannotBeReassigned exception.

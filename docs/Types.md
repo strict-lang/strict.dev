@@ -243,3 +243,10 @@ For more details see Statements
 
 - are just build in methods (starting with a lower case letter, e.g. create, add, etc.)
 - details can be found on the Statements page
+
+## Generics
+
+- Introduced Generics in Strict which helps us to support now all List features without code duplication and it can be extended for all other types as well.
+- Generics can be applied to both class level and methods level. A type or a method can be declared as Generic by using the Generic keyword. 
+- As of now, any type which has Generic type member or the name itself is Generic, then we treat that type as a Generic type. This means that the Generic type cannot be instantiated without an actual specific implementation. Also, all of the base Generic type methods and members are available to the specific implementation types as well similar to other programming languages such as C#, Java etc.
+- A method can be declared as Generic, when any of it's parameter is declared as Generic type
