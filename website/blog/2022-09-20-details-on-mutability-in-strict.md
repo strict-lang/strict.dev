@@ -9,18 +9,23 @@ In Strict programming language, every member or variable is immutable by default
 
 There are three ways to define Mutable types.
 	1. Explicitly mention the type as Mutable during member/variable assignment. 
+	
 	```
 	has counter = Mutable(0)
 	let counter = Mutable(0) //now counter variable is mutable and its value can be changed
 	for Range(0, 5)
 		counter = counter + 1
 	```
+	
 	2. Use the types that implements Mutable as your member/variable type.
+	
 	```
 	has counter = Count(0) //here Count is the type that implements Mutable in their class implementation
 	let counter = Count(0)
 	```
+	
 	3. Directly use the type which implements Mutable trait in their class
+	
 	```
 	has count //here count is the type that implements Mutable 
 	```
