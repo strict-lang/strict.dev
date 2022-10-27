@@ -113,18 +113,19 @@ Normally a method should only need 3-5 lines of code, the limit is 10 lines of c
 
 ## Number Of Code Lines
 
-|      Code block | Minimum | Good | Limit |                            Notes                                        |
-| --------------: | ------- | ---- | ----- | :---------------------------------------------------------------------: |
-|     test length | 1       | 1-3  | 10    |             Every method needs at least one test                        |
-|   method length | 1       | 1-5  | 12    | Every method should be short and needs to return or do something        |
-|      parameters | 0       | 0-2  | 3     |            Parameters should be kept to a minimum                       |
-|          fields | 0       | 0-3  | 10    |  Classes should not have too many parameters, split them up             |
-|  public methods | 1       | 0-3  | 5     | Classes must have at least one callable method, but not more than a few |
-| private methods | 0       | 0-5  | 16    |  Short helper methods are usually needed to get stuff done              |
-|      line count | 2       | 5-50 | 256   |          Classes must be short and easily readable                      |
-| character count | 1       | 1-80 | 120   |          Each line should be short and have better readability          |
-|         nesting | 0       | 1-3  | 5     | Do not use indentation too much, same for packages and namespaces       |
-|         comment | 0       | 0    | 3     | Do not use comments, only allowed before methods for extra help         |
+|      Code block | Minimum |  Good 	 | Limit |                            Notes                                        |
+| --------------: | ------- |  ---- 	 | ----- | :---------------------------------------------------------------------: |
+|     test length | 1       |  1-3  	 | 10    |             Every method needs at least one test                        |
+|   method length | 1       |  1-5  	 | 12    | Every method should be short and needs to return or do something        |
+|      parameters | 0       |  0-2  	 | 3     |            Parameters should be kept to a minimum                       |
+|          fields | 0       |  0-3  	 | 10    |  Classes should not have too many parameters, split them up             |
+|  public methods | 1       |  0-3  	 | 5     | Classes must have at least one callable method, but not more than a few |
+| private methods | 0       |  0-5  	 | 16    |  Short helper methods are usually needed to get stuff done              |
+|      line count | 2       |  5-50 	 | 256   |          Classes must be short and easily readable                      |
+| character count | 1       |  1-80 	 | 120   |          Each line should be short and have better readability          |
+|         nesting | 0       |  1-3  	 | 5     | Do not use indentation too much, same for packages and namespaces       |
+|         comment | 0       |  0    	 | 3     | Do not use comments, only allowed before methods for extra help         |
+| enum line count | 1       |  10 - 20   | 50    | Do not use comments, only allowed before methods for extra help         |
 
 Compiling code that exceeds the limits is not possible unless you change the `build.yml` file. All limits can be configured manually in this file, but any code exceeding any of the limits above will not be accepted into the strict language SDK or default packages repository.
 
