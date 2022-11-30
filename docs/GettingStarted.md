@@ -3,7 +3,23 @@ id: GettingStarted
 title: Getting Started
 ---
 
-Introduction guide and tutorials go here!
+# Saying Hello World!
+
+```
+HelloWorld.strict --> File Name and will be treated as Type name in strict
+has log
+PrintHelloWorld Text
+  log.Write("Hello World!")
+```
+
+Explanation for the program is as follows,
+
+* 'has' keyword is used to define the member named 'log' for the type. Since Log is a known base type in strict and doesn't require any construtor arguments, this line of code will be parsed. We can also define members like ```has input Number``` here input is the member Name and Number is the type of the member.
+* Method definition should follow the member definition line. Syntax for the method definition is ```MethodName(parameter1Name Parameter1TypeName,..) ReturnTypeName```. In this example program, PrintHelloWorld is the method name, Text is the return type and parameters are optional. Brackets are allowed only if method has any parameters
+* Method body should always start with single tab
+* Use let keyword to define any local method variable. For example, ``` let result = input + 5```
+* Members defined are available throughout the type, so using log we can print "Hello World" as output.
+* At the moment, If statements, for loops are supported. Refer 'If' and 'For' page for more details about the syntax and examples
 
 # Strict Is
 
