@@ -8,7 +8,7 @@ title: Everything you need for the Weekly Kata
 1. Use Visual Studio Code
 2. Click Extensions tab on Left Navigation bar (L=last one in the list)
 3. Click ... menu above Search placeholder and click Install from VSIX
-4. Download Strict extension using this link https://drive.google.com/file/d/1CEFDCB3OIEDEJOV8vfz2ErXxVBZZthKy/view?usp=share_link and use the vsix file
+4. Download Strict extension using this link https://drive.google.com/file/d/1CEFDCB3OIEDEJOV8vfz2ErXxVBZZthKy/view and use the vsix file
 5. Create a new folder and name it as "Kata" (like namespace in CSharp)
 6. Create a new file and name it as "ClassNameForKata.strict" (use best suitable class name for the Kata)
 7. Clone Strict repository into your machine
