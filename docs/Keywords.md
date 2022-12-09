@@ -39,35 +39,44 @@ You will understand any .strict code you read, writing code is much harder due t
 - try
 - returns
 - return
-- let and = to assign initial value
+- constant and = to assign initial value
 
 # Buildin Types
 
-Everything in [Strict.Base](https://github.com/strict-lang/Strict.Base/tree/master/src) is always available, everything else you can just import
+Everything in [Strict.Base](https://github.com/strict-lang/Strict.Base) is always available, everything else you can just import
 
+- Any
+- App
 - Number
 - Text
-- Bool
-- Any
+- Boolean
+- Directory
 - Character
-- String
-- Computation
 - Count
+- Log
+- Method
+- Output
+- Stacktrace
+- System
+- List
+- Input
 - Iteration
 - Sequence
 - Mutable
 - Range
 - Error
+- HashCode
+- File
 - Slice
 - Type
 
 # Assignments
 
-Strict only allows assignment at creation time, which is when the let keyword is used.
+Strict only allows assignment at creation time, which is when the constant keyword is used.
 
 ```ocaml
-let number = 5
-let text = "Hey"
+constant number = 5
+constant text = "Hey"
 ```
 
 Only mutable types can even change their state, and they are rarely used (linked lists or counts). In this example count, list and index are all mutable, the compiler can still optimize index away, but count and list will prevent this code from running automatically in parallel like all immutable code will do in any loop.

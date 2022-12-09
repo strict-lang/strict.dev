@@ -128,8 +128,8 @@ With Strict everything is in one pipeline, the parser, compiler, SCrunch, Refact
 # Sort example
 
 ```ocaml
-implement Sort<Compared>
-has elements Mutable<Iterator<Compared>>
+implement Sort(Compared)
+has elements Mutable(Iterator(Compared))
 Sort
   test(3, 2, 1) is (1, 2, 3)
   test(7, 77, 111, -1, 11) is (-1, 7, 11, 77, 111)

@@ -3,24 +3,6 @@ id: GettingStarted
 title: Getting Started
 ---
 
-# Saying Hello World!
-
-```
-HelloWorld.strict --> File Name and will be treated as Type name in strict
-has log
-PrintHelloWorld Text
-  log.Write("Hello World!")
-```
-
-Explanation for the program is as follows,
-
-* 'has' keyword is used to define the member named 'log' for the type. Since Log is a known base type in strict and doesn't require any construtor arguments, this line of code will be parsed. We can also define members like ```has input Number``` here input is the member Name and Number is the type of the member.
-* Method definition should follow the member definition line. Syntax for the method definition is ```MethodName(parameter1Name Parameter1TypeName,..) ReturnTypeName```. In this example program, PrintHelloWorld is the method name, Text is the return type and parameters are optional. Brackets are allowed only if method has any parameters
-* Method body should always start with single tab
-* Use let keyword to define any local method variable. For example, ``` let result = input + 5```
-* Members defined are available throughout the type, so using log we can print "Hello World" as output.
-* At the moment, If statements, for loops are supported. Refer 'If' and 'For' page for more details about the syntax and examples
-
 # Strict Is
 
 * A computer language to be written by a computer programs (and humans) intelligently (not really calling this AI).
@@ -65,6 +47,24 @@ Dynamic languages would traditionally be a better fit for AI projects and one co
 # Importing Code
 
 Importing code is not that hard, but very time consuming until it fits into the model of Strict. All language aspects need to be fully specified and filled out, Strict is a more detailed language, 100% tests and test coverage are needed, not just on a global scale, but each method itself must test itself, which is very different on how most programmers write code. It is much easier to just call external code, which is completely allowed (all .NET types and basic namespaces are always available, other things will be found in the GAC automatically, later we might include extra import statements to load more types or get external data over the internet or native code or other means). It is important to note that external code is NEVER understood by Strict or its governing intelligence, it is just something that can be called, but except for the context where it is used, there is no understanding how it works. This means the more external code Strict uses, the more powerful it gets, but also the more stupid it is. The goal is to use a few I/O related external methods, but keep everything else inside of Strict so the AI can benefit.
+
+# Saying Hello World!
+
+```
+HelloWorld.strict --> File Name and will be treated as Type name in strict
+has log
+PrintHelloWorld Text
+  log.Write("Hello World!")
+```
+
+Explanation for the program is as follows,
+
+* 'has' keyword is used to define the member named 'log' for the type. Since Log is a known base type in strict and doesn't require any construtor arguments, this line of code will be parsed. We can also define members like ```has input Number``` here input is the member Name and Number is the type of the member.
+* Method definition should follow the member definition line. Syntax for the method definition is ```MethodName(parameter1Name Parameter1TypeName,..) ReturnTypeName```. In this example program, PrintHelloWorld is the method name, Text is the return type and parameters are optional. Brackets are allowed only if method has any parameters
+* Method body should always start with single tab
+* Use let keyword to define any local method variable. For example, ``` let result = input + 5```
+* Members defined are available throughout the type, so using log we can print "Hello World" as output.
+* At the moment, If statements, for loops are supported. Refer 'If' and 'For' page for more details about the syntax and examples
 
 # Files: Types, Methods and their Statements
 
