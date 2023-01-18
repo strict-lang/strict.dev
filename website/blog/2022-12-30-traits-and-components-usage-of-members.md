@@ -8,14 +8,14 @@ In this blog, we are going to discuss about how we can use a strict type as a tr
 After we removed the `implement` keyword and overloaded that behavior to `has` keyword, we need a new way to identify whether the type used as a member is intended as a trait or a component at the parser level. For example, see the below code snippet. 
 
 ```
-CustomApp.strict
+Calculator.strict
 
 has App
 has file
 ...
 ```
 
-Type CustomApp has two members `App` and `file` and both types are traits(no implementation provided for the methods). Out of these two, we cannot infer that `App` type is used as a trait and this program type should implement the Run method from the `App` type. Also, `file` type is a component to this type and all the public methods and members of the `file` type will be used in this program.
+Type Calculator has two members `App` and `file` and both types are traits(no implementation provided for the methods). Out of these two, we cannot infer that `App` type is used as a trait and this program type should implement the Run method from the `App` type. Also, `file` type is a component to this type and all the public methods and members of the `file` type will be used in this program.
 
 ## Trait
 
