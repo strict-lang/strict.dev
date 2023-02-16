@@ -198,7 +198,6 @@ Members or variables declared as constant are always immutable and cannot be cha
 
 Members or variables defined using constant keyword are always immutable. In fact, everything in Strict is immutable unless it is declared as Mutable using below syntax,
 
-Note - This is not working yet but will be made soon this week. Until that use alternative syntax
 ```
 mutable memberName = Assignment expression
 mutable variableName = Assignment expression
@@ -208,13 +207,6 @@ Example:
 ```
 mutable result = Numbers // this assigns a mutable empty list expression of type number to the member result
 mutable counter = 0 // this assigns a mutable number expression with value 0 to the variable counter
-```
-
-Current working synatx to declare assignments
-
-```
-constant variableName = Mutable(expression)
-constant variableName = Mutable(TypeName) // this is used to instantiate expression of the mentioned type with empty value
 ```
 
 # Range

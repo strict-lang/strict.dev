@@ -51,7 +51,7 @@ Importing code is not that hard, but very time consuming until it fits into the 
 # Saying Hello World!
 
 ```
-HelloWorld.strict --> File Name and will be treated as Type name in strict
+HelloWorld.strict --> File Name will be treated as Type name in strict
 has log
 PrintHelloWorld Text
   log.Write("Hello World!")
@@ -80,69 +80,44 @@ Merging two Strict files will be done with traditional tools (git and mercurial 
 This all leads to files stored like this (the names are subject to change and files will look more complex with changes):
 
 ```
-Vector2D.type
-number x
-number y
-add.first(x.y).second(x.y).method
-
-return
-  new
-    add
-      first.x
-      second.x
-    add
-      first.y
-      second.y
+Vector2.strict
+has numbers with Length is 2
+has One = Vector2(1, 1)
+has Left = Vector2(-1, 0)
+Normalize Vector2
+	Vector2.One.Normalize is Vector2.One
+	Vector2(0, 5).Normalize is Vector2(0, 1)
+	Vector2(3, 4).Normalize.Length is 1
+	value / Length
 ```
 
-The `Vector2D.type` class just describes the members of the `Vector2D` type, where it is defined is given by the folder name the file sits in. There is no more information in that file, all other information comes from users of this `Vector2D` type. The `add` method is accepting two parameters (`first` and `second`), which both must have `x` and `y` members that can be added. It does not care if the input is a `Vector2D` or anything else. A `Vector3D` would work as well or any other type that has `x` and `y`, but only if there is not another `add` method for it (would make sense to have an `add.first(x.y.z).second(x.y.z).method` for `Vector3D` of course). Please note that `add` is internally a special method that applies to all `add` calls, but that is no different from any other method call (they all share the same features), it is automatically converted from collapsed code where + operators are used.
+The `Vector2.strict` type just describes the members of the `Vector2` type, where it is defined is given by the folder name the file sits in. There is no more information in that file, all other information comes from users of this `Vector2` type.
 
 Please note that this is just an example, add, subtract, multiply, divide, etc. are provided automatically for all types just containing numbers, you would never have to write those yourself, only if you want to change their behavior (multiply for matrix is not simply multiplying all values and you might want to have matrix multiplication with vectors).
 
 Naming members is extremely important and refactoring their names is dangerous as all methods would have to change as well. As long as there are no other types also using those methods, it is easy to do, but if there are other users we are in trouble and renaming would cause other statements to be wrong. Renaming a method is simple in Strict, all its users are linked to it and are renamed automatically as they just use the same method via a reference (still causes lots of code to be changed and saved again, but the internal structure is completely unchanged, all that changes is a single string). In the example above the `add.first(x.y).second(x.y).method` cannot allow simply renaming the `x` and `y` members when `Vector2D` has changed as other users might rely on having that method to do their `x` and `y` adding. So instead what happens is that for a renamed member in a type all methods are duplicated to reflect the new naming. If Strict detects a method is not longer used by anyone, it will be "garbage collected" and removed automatically. In any case renaming members should happen early and not when there are a lot of users of a type already.
 
-# Constant and Static
+# Constant and Mutable
 
 Sometimes you might want to reuse the same value over and over. If it just needed in a method (and nested methods, which is good practice in Strict) just declare a member and assign a constant value to it. The type will be inferred and the member is constant automatically (for any `number`, `bool`, or `string`). The same can be done when defining a type. In fact these constant members are always inlined and will make execution fast.
 
 For loop iterators, list and map their values have to change over time. They are still immutable, but can point to a new instance when reassigning them (or when the next for loop iteration is started). For all other composed types the same applies, they are immutable too and assigning them again will just create a new instance and throw the old one away.
 
-`Static` is very similar, but should be used less often and only if there is no way around it. The difference is that `static` allows remapping of the value as many times as you want and all threads get the new value when they access it next. `Static` is only allowed for `number`, `bool` and `string`, all other types cannot be safely modified and you should use different constructs to do `static`-like things. Go and Clojure have tons of tips on this. If possible try to use `static` only in the method where you need a static number you want to count up. If you really need it in multiple methods and have to share the same value, put it in the type. Strict will automatically refactor it into a method when only one method uses a static. Some examples:
+In Strict programming language, every member or variable is immutable by default. i.e. value can be only assigned during member/variable initialization. Thus, any has or let is constant by default. Strict also supports Mutable types so that member/variable values can be changed after initialization as well. This can be achieved by explicitly specifying the type as Mutable during initialization or if the type implements Mutable trait. `Static` is not allowed in Strict and the goal is to make Strict code as immutable as possible. Some examples:
+
+Constant Member Examples:
 
 ```
-user.type
-
-number id
-static idCounter = 0
-string name
-string email
-create(name,email)user.method
-
-id = idCounter
-idCounter
-  add
-    idCounter
-    1
+has inputList = (1, 2, 3)
+has input = 5
 ```
 
-**Note:**
-As described in Statements, where this example is from, `name` and `email` are automatically assigned to the type members. All parameters of a method must always be used, otherwise the code is not valid.
-
+Mutable Member Examples:
 ```
-calculator.type
-
-Pi = 3.1415926
-PiTimesTwo = 6.2831852
-calculate(number)calculator.method
-
-list[string] parts = input.split()
-if parts[0] is "PI"
-  return Pi
-if parts[0] is "PI" and parts[1] is "*" and parts[2] is "2"
-  return PiTimesTwo
-if parts[1] is "+"
-  return number.parse(parts[0]) + number.parse(parts[2])
-error parts[1] + " is not supported"
+mutable memberName = Assignment expression
+mutable variableName = Assignment expression
+mutable result = Numbers // this assigns a mutable empty list expression of type number to the member result
+mutable counter = 0 // this assigns a mutable number expression with value 0 to the variable counter
 ```
 
 # The Name Strict

@@ -23,7 +23,7 @@ We don't want to repeat other great style guides here, many things in Strict wil
 
 # IDE
 
-The official [Strict IDE](https://github.com/strict-lang/ide) is based on IntelliJ and should feel familiar to any Java or C# (with ReSharper) developer (or PyCharm, Kotlin, etc.). The IDE is not required, you can also use Visual Studio Code or simply any text editor, but it is highly recommended to use [SCrunch](https://github.com/strict-lang/scrunch) continuous testing tool as build into the IDE.
+The official [Strict IDE](https://github.com/strict-lang/strict-vscode-client) is based on Visual Studio Code and should feel familiar to any Java or C# (with ReSharper) developer (or PyCharm, Kotlin, etc.). The IDE is not required but it is highly recommended to use [SCrunch]() continuous testing tool as build into the IDE.
 
 The Strict runtime, the language, framework and IDE follow the motto of _no logs, no errors, no messing around_. Whenever there is an issue in the code, an error is displayed and building won't be possible, it must be fixed first. This includes trying to write code without writing test code first. Code is also immediately executed, tested and optimized, unused code parts will be deleted, imports will be removed and added when needed and Strict might also restructure your code directly if there is a more efficient way.
 
@@ -125,7 +125,7 @@ Normally a method should only need 3-5 lines of code, the limit is 10 lines of c
 | character count | 1       |  1-80 	 | 120   |          Each line should be short and have better readability          |
 |         nesting | 0       |  1-3  	 | 5     | Do not use indentation too much, same for packages and namespaces       |
 |         comment | 0       |  0    	 | 3     | Do not use comments, only allowed before methods for extra help         |
-| enum line count | 1       |  10 - 20   | 50    | Do not use comments, only allowed before methods for extra help         |
+| enum line count | 1       |  10 - 20 | 50    | Enums are recommended wherever possible to improve code readability     |
 
 Compiling code that exceeds the limits is not possible unless you change the `build.yml` file. All limits can be configured manually in this file, but any code exceeding any of the limits above will not be accepted into the strict language SDK or default packages repository.
 
