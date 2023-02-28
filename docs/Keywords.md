@@ -11,35 +11,26 @@ You will understand any .strict code you read, writing code is much harder due t
 # Loops and control flow
 
 - for
-- in
-- from
+- in (part of `for` loop syntax)
 - if
 - else
-- yield
-- continue
-- break
-- do
 
 # Comparsions and Operators
 
 - is (any equal comparsion)
 - not (negation)
-- as, to (type conversion)
+- to (type conversion)
 - and, or (english words instead of strange C operators)
-- +, -, \*, /, %, xor (for math)
+- +, -, \*, /, ^, %, <, >, <=, >=, xor (for math)
+- ? (conditional operator to use if else expression in one line followed with else keyword)
 - () for lists/arrays, which includes method parameters and method call arguments, there is no empty list (), it is never written and just None. Thus method and method calls must not use empty ().
 
 # General
 
-- implement
-- import
-- test
-- create
-- throw
-- try
-- returns
+- has (used to define member either as component or trait)
 - return
 - constant and = to assign initial value
+- mutable and = to assign initial value
 
 # Buildin Types
 
@@ -52,7 +43,6 @@ Everything in [Strict.Base](https://github.com/strict-lang/Strict.Base) is alway
 - Boolean
 - Directory
 - Character
-- Count
 - Log
 - Method
 - Output
@@ -60,26 +50,28 @@ Everything in [Strict.Base](https://github.com/strict-lang/Strict.Base) is alway
 - System
 - List
 - Input
-- Iteration
-- Sequence
+- Iterator
 - Mutable
 - Range
 - Error
 - HashCode
 - File
-- Slice
 - Type
+- Enum
+- Generic
+- Member
+- Dictionary
 
 # Assignments
 
-Strict only allows assignment at creation time, which is when the constant keyword is used.
+Assignments can be done only once for a constant type member/variable/parameter and which is during constant declaration.
 
 ```ocaml
 constant number = 5
 constant text = "Hey"
 ```
 
-Only mutable types can even change their state, and they are rarely used (linked lists or counts). In this example count, list and index are all mutable, the compiler can still optimize index away, but count and list will prevent this code from running automatically in parallel like all immutable code will do in any loop.
+For mutable member/variable/parameter, the value can be reassigned as many times as required. Only mutable types can even change their state, and they are rarely used (linked lists or counts). In this example count, list and index are all mutable, the compiler can still optimize index away, but count and list will prevent this code from running automatically in parallel like all immutable code will do in any loop.
 
 ```ocaml
 let count = Count(0)
@@ -107,18 +99,6 @@ A Strict package folder looks like this (folder must match project name):
 - .editorconfig (defaults to tabs with 2 spaces and the default styling used for Strict, this way all editors will behave the normal way)
 - any other file MUST be a .strict file, which defines a type each (class or trait)
 - - SubFolder can contain more .strict files
-
-# Program example
-
-Runnable apps must contain a Program.strict file, which defines allows code that is called automatically when the app starts (think main())
-
-```ocaml
-has log Log
-
-test()
-  log.LastLine() is "Hello World"
-log.Write("Hello World")
-```
 
 # Examples
 

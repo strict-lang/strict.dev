@@ -71,13 +71,7 @@ class HomeSplash extends React.Component {
             <Button href="https://github.com/strict-lang/strict-vscode-client">
               IDE
             </Button>
-            <Button href="">
-              Packages
-            </Button>
             <Button href="https://github.com/strict-lang/sdk">SDK</Button>
-            <Button href="">
-              Strict VM
-            </Button>
           </PromoSection>
         </div>
       </SplashContainer>
