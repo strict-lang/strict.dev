@@ -99,7 +99,7 @@ Most mocks are just stubs or fake objects to be able to test quickly without inv
 
 # Limits
 
-Public methods are also limited to 10 per class, private methods are not limited, but a class should be as short and concise as possible (around max. 200-400 lines). Each public method should be followed by the private methods that are called in it in the same order.
+Public methods are also limited to 5 per class, private methods are not limited, but a class should be as short and concise as possible (around max. 200-400 lines). Each public method should be followed by the private methods that are called in it in the same order.
 
 Each method should do one thing, and only have zero or one parameter. If required use two parameters, three should be the absolute limit. The same is true for constructor parameters, split up your functionality into several classes or use Property Injection if you need access to more things. The only exception should be constructors of manager type classes (but don't name them manager or helper), for example it is perfectly okay for the `Input` class to get injected by all kind of devices because that is what this class is for. Doing one thing means:
 
