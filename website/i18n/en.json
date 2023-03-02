@@ -5,6 +5,9 @@
     "previous": "Previous",
     "tagline": "Create well written and efficient code quickly",
     "docs": {
+      "CodeValidations": {
+        "title": "Code Validations"
+      },
       "CodingStyle": {
         "title": "Coding Style"
       },
