@@ -104,3 +104,5 @@ dist
 .tern-port
 
 build/
+website/yarn.lock
+website/package-lock.json
