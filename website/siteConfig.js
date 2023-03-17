@@ -10,7 +10,7 @@ const users = [
 const siteConfig = {
   title: "Strict Programming Language",
   tagline: "Create well written and efficient code quickly",
-  url: "https://strict.dev",
+  url: "https://strict.dev/",
   baseUrl: '/',
   projectName: "strict.dev",
   organizationName: "strict-lang",
