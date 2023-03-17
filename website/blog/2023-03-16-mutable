@@ -1,0 +1,108 @@
+---
+title: March 2023 Mutable
+author: Benjamin Nitschke
+---
+
+Strict is coming along nicely and all low level features are done, the early version of the VM is working, but needs some serious optimizations to be fast and useful for more complex problems. However currently it is still easy to add more language features or simplify some common programming issues, so I guess we are spending a bit more time on those things instead of finishing up.
+
+Murali wrote about mutability last September already, this is a continuation of that blog post: https://strict.dev/blog/2022/09/20/details-on-mutability-in-strict
+
+## By default everything is constant
+
+Last year we used "has" for members in types and "let" for constants inside method bodies. We already knew for years that mutable things are no good and want to code things as functional as possible. So "mutable" was used to describe when things had to be mutable, most of the time it was hidden away (like a for loop index counter).
+
+To make things more clear "let" was renamed to "constant" because it will only compute a constant value or be used as a named inline. In method bodies you can use the "mutable" keyword instead of "constant" to make an actual variable you can change over time (and pass or return if needed). In all other cases "mutable" is not an available keyword, so instead you have to use the Mutable(Type) syntax, e.g. for return types or type members.
+
+It is important to note that "mutable" code runs very different from normal code, many optimizations won't work and one of the main things that make Strict fast is not possible with "mutable": calculating once!
+
+## The Optimizer
+Take this example:
+```
+	2 is in Dictionary((1, 1), (2, 2))
+```
+
+Here the Dictionary.in method is called (and tested, this test is actually from that method itself). On the left side we have a 2, which doesn't need any more optimizations or caching, it is just the number 2. On the right we are calling the Dictionary from constructor with a list of 2 lists containing 1, 1 and 2, 2. This will be done once and cached for a very short time (as the compiler will see no use for it after a few lines and discard it, the optimizer will already have checked for smiliar usages).
+
+in the VM it looks like this:
+```
+  cached1122Dictionary.in(2) is true
+```
+
+Next up is the actual comparison if the in method returns true for the key 2, which returns true. If false would be returned, the program ends right here and the error is shown, we can't continue with any code path that leads here (TDD yo). So the VM can safely optimize this whole line away into: true, which clearly doesn't do anything useful and can be discarded alltogether (all unit tests work this way).
+
+The same will happen for any other code of course. It is hard to show an example because useless code is not allowed and will lead to a compiler error unlike test code, which checks behavior and gets optimized away when execution is fine. But lets say we are looking at something like the Number.Floor method:
+
+```
+Floor Number
+	1.Floor is 1
+	2.4.Floor is 2
+	value - value % 1
+```
+
+Again, here we can optimize both tests away as they are both true, but let's look in more detail how "value - value % 1" becomes 2 for the input 2.4. The VM will run the second test like this:
+
+```
+  Number(2.4).Floor is 2
+```
+
+which leads to the constant number 2.4 being cached
+```
+  value24 - value24 % 1 is 2
+```
+
+value24 % 1 is everything after the decimal point, so it becomes another constant number with the value 0.4
+```
+  value24 - value04 is 2
+```
+
+value24 - value04 is 2 (a bit cumbersome to read here, but this is all just optimization steps, nothing is actually computed or cached this way, it is just numbers), which makes the whole expression true and the test passes.
+
+The point is that the compiler might find a faster or more efficient way in the future to calculate the floor of a number (without having to change any code) and nothing here changes. In fact nothing is even recalculated as all values were correct, only new code would be affected. Long term we want to keep results around in the VM, the strict packages and SCrunch, some of that works in memory, but since the VM is not done and optimized, not ready yet.
+
+All non-mutable code is by default parallel, will be executed by as many CPU threads and GPU cores available and on as many computers as provided. Everything always runs asyncronly in the background and the compiler figures out himself how to put data back together if there were big loops or calculations involved.
+
+## Mutable
+With mutable code most of these optimizations won't work at all or not in the same way. Let's look at an example from Number.Increment, method for mutable numbers:
+
+```
+	Mutable(5).Increment.Decrement.Increment is 6
+```
+
+The initial number 5 can't really be cached into value5 or something, as the very first operation makes it 6, then 5 again, then 6 again. We also cannot cache or optimize any steps in between as we can't know if the mutable outside of one of the mutable methods will mutate it further. Imaging running this in a big loop for every pixel of a 4k image, no good.
+
+Here the compiler can obviously see that the final result of the last Increment is never used again as a mutable and convert it back to a constant and then roll back the whole calculation into:
+```
+	5 + 1 - 1 + 1 is 6
+```
+
+which again is true and can be optimized away. However the Mutable(Number).Increment method can't be optimized or used in the same as the Floor method above. The normal way to calculate a new number is of course not using Mutable, but just calculating the value with any operation you like and storing it somewhere else. Also using Mutable only in one place and NOT overwriting it for a long time can still be optimized very well (e.g. an image might be mutable overall, but within a method we will only set one pixel at a time, all pixel operations can be parallized).
+
+## Signals
+Signals are used in many UI frameworks (javascript, typescript) and engines (godot) and are bascially the observer pattern but with UI elements. They are usually very cumbersome and hard to use, many game engines have something like this as well, but again, very specialized for ui elements or require to write a ton of boilerplate code to connect events (e.g. update ui label when hitpoints change).
+
+I recently saw a very simple implementation and that got me thinking that this would be very useful for strict, obviously it requires a mutable thing, but since mutable is supposed to be used rarely, why not provide this feature for free: https://github.com/motion-canvas/examples/blob/master/examples/motion-canvas/src/scenes/signalsCode.tsx
+
+The following code simply creates a radius 3 (mutable in strict) and then uses it for the area calculation (pi*radius squared). whenever you change radius, area automatically is updated (so internally each signal keeps track on where it is used and updates the outer signal as well, all event driven)
+```
+ const radius = createSignal(3);
+ const area = createSignal(() => Math.PI * radius() * radius());
+```
+
+In strict:
+
+```
+mutable length = 3
+mutable squareArea = length * length
+squareArea is 9
+length = 4
+squareArea is 16
+```
+
+Simple, isn't it? also fits to our earlier ideas that all mutables become lambda calculations automatically anyways (more on that in a later blog post, mutable method calls are really interesting as they are always like lambdas in other languages).
+
+To optimize code you can get away from mutable and lose this feature:
+```
+constant squareArea = length * length
+```
+
+Now there is no recalculation happening and it always will stay its initial value.

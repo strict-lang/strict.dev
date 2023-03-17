@@ -1,5 +1,5 @@
 ---
-title: January 2022 Namings in Strict
+title: January 2023 Namings in Strict
 author: Murali Tandabany
 ---
 
