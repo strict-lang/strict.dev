@@ -23,7 +23,7 @@ We don't want to repeat other great style guides here, many things in Strict wil
 
 # IDE
 
-The official [Strict IDE](https://github.com/strict-lang/ide) is based on IntelliJ and should feel familiar to any Java or C# (with ReSharper) developer (or PyCharm, Kotlin, etc.). The IDE is not required, you can also use Visual Studio Code or simply any text editor, but it is highly recommended to use [SCrunch](https://github.com/strict-lang/scrunch) continuous testing tool as build into the IDE.
+The official [Strict IDE](https://github.com/strict-lang/strict-vscode-client) is based on Visual Studio Code and should feel familiar to any Java or C# (with ReSharper) developer (or PyCharm, Kotlin, etc.). The IDE is not required but it is highly recommended to use [SCrunch]() continuous testing tool as build into the IDE.
 
 The Strict runtime, the language, framework and IDE follow the motto of _no logs, no errors, no messing around_. Whenever there is an issue in the code, an error is displayed and building won't be possible, it must be fixed first. This includes trying to write code without writing test code first. Code is also immediately executed, tested and optimized, unused code parts will be deleted, imports will be removed and added when needed and Strict might also restructure your code directly if there is a more efficient way.
 
@@ -99,7 +99,7 @@ Most mocks are just stubs or fake objects to be able to test quickly without inv
 
 # Limits
 
-Public methods are also limited to 10 per class, private methods are not limited, but a class should be as short and concise as possible (around max. 200-400 lines). Each public method should be followed by the private methods that are called in it in the same order.
+Public methods are also limited to 5 per class, private methods are not limited, but a class should be as short and concise as possible (around max. 200-400 lines). Each public method should be followed by the private methods that are called in it in the same order.
 
 Each method should do one thing, and only have zero or one parameter. If required use two parameters, three should be the absolute limit. The same is true for constructor parameters, split up your functionality into several classes or use Property Injection if you need access to more things. The only exception should be constructors of manager type classes (but don't name them manager or helper), for example it is perfectly okay for the `Input` class to get injected by all kind of devices because that is what this class is for. Doing one thing means:
 
@@ -113,17 +113,19 @@ Normally a method should only need 3-5 lines of code, the limit is 10 lines of c
 
 ## Number Of Code Lines
 
-|      Code block | Minimum | Good | Limit |                            Notes                                        |
-| --------------: | ------- | ---- | ----- | :---------------------------------------------------------------------: |
-|     test length | 1       | 1-3  | 10    |             Every method needs at least one test                        |
-|   method length | 1       | 1-5  | 12    | Every method should be short and needs to return or do something        |
-|      parameters | 0       | 0-2  | 3     |            Parameters should be kept to a minimum                       |
-|          fields | 0       | 0-3  | 10    |  Classes should not have too many parameters, split them up             |
-|  public methods | 1       | 0-3  | 5     | Classes must have at least one callable method, but not more than a few |
-| private methods | 0       | 0-5  | 16    |  Short helper methods are usually needed to get stuff done              |
-|      line count | 2       | 5-50 | 256   |          Classes must be short and easily readable                      |
-|         nesting | 0       | 1-3  | 5     | Do not use indentation too much, same for packages and namespaces       |
-|         comment | 0       | 0    | 3     | Do not use comments, only allowed before methods for extra help         |
+|      Code block | Minimum |  Good 	 | Limit |                            Notes                                        |
+| --------------: | ------- |  ---- 	 | ----- | :---------------------------------------------------------------------: |
+|     test length | 1       |  1-3  	 | 10    |             Every method needs at least one test                        |
+|   method length | 1       |  1-5  	 | 12    | Every method should be short and needs to return or do something        |
+|      parameters | 0       |  0-2  	 | 3     |            Parameters should be kept to a minimum                       |
+|          fields | 0       |  0-3  	 | 10    |  Classes should not have too many parameters, split them up             |
+|  public methods | 1       |  0-3  	 | 5     | Classes must have at least one callable method, but not more than a few |
+| private methods | 0       |  0-5  	 | 16    |  Short helper methods are usually needed to get stuff done              |
+|      line count | 2       |  5-50 	 | 256   |          Classes must be short and easily readable                      |
+| character count | 1       |  1-80 	 | 120   |          Each line should be short and have better readability          |
+|         nesting | 0       |  1-3  	 | 5     | Do not use indentation too much, same for packages and namespaces       |
+|         comment | 0       |  0    	 | 3     | Do not use comments, only allowed before methods for extra help         |
+| enum line count | 1       |  10 - 20 | 50    | Enums are recommended wherever possible to improve code readability     |
 
 Compiling code that exceeds the limits is not possible unless you change the `build.yml` file. All limits can be configured manually in this file, but any code exceeding any of the limits above will not be accepted into the strict language SDK or default packages repository.
 

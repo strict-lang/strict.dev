@@ -3,11 +3,13 @@
     "Documentation": [
       "Overview",
       "GettingStarted",
+      "EverythingNeededForKata",
       "CodingStyle",
+      "CodeValidations",
       "Naming",
       "UsingApis"
     ],
-    "API": ["Keywords", "Streams"],
+    "API": ["Keywords", "For"],
     "Future": ["Concurrency", "Microservices", "Ideas", "Types"]
   }
 }

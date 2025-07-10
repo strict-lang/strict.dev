@@ -5,14 +5,28 @@
     "previous": "Previous",
     "tagline": "Create well written and efficient code quickly",
     "docs": {
+      "CodeValidations": {
+        "title": "Code Validations"
+      },
       "CodingStyle": {
         "title": "Coding Style"
       },
       "Concurrency": {
         "title": "Concurrency"
       },
+      "EverythingNeededForKata": {
+        "title": "Everything you need for the Weekly Kata"
+      },
+      "For": {
+        "title": "For",
+        "sidebar_label": "For"
+      },
       "GettingStarted": {
         "title": "Getting Started"
+      },
+      "If": {
+        "title": "If",
+        "sidebar_label": "If"
       },
       "Keywords": {
         "title": "Keywords",
@@ -29,10 +43,6 @@
       },
       "Overview": {
         "title": "Overview"
-      },
-      "Streams": {
-        "title": "Streams",
-        "sidebar_label": "Streams"
       },
       "Types": {
         "title": "Types",

@@ -8,7 +8,7 @@ A typical _Strict_ file is easy to understand and very short. Unlike other langu
 # Example
 
 ```ocaml
-implement App
+has App
 has log
 Run
   log.Write("Hello World")
@@ -128,18 +128,17 @@ With Strict everything is in one pipeline, the parser, compiler, SCrunch, Refact
 # Sort example
 
 ```ocaml
-implement Sort<Compared>
-has elements Mutable<Iterator<Compared>>
+mutable elements Iterator(Compared)
 Sort
-  test(3, 2, 1) is (1, 2, 3)
-  test(7, 77, 111, -1, 11) is (-1, 7, 11, 77, 111)
+  Sort(3, 2, 1) is (1, 2, 3)
+  Sort(7, 77, 111, -1, 11) is (-1, 7, 11, 77, 111)
   for rightIndex from elements.Range()
     for leftIndex from 0 to elements.Range().End - rightIndex
       maybeSwap(leftIndex)
 maybeSwap(index)
   Sort(1, 2, 3).maybeSwap(1) is (1, 2, 3)
   Sort(3, 1).maybeSwap(0) (1, 3)
-  if elements[index] > elements[index + 1]
+  if elements(index) > elements(index) + 1
     elements.Swap(index, index + 1)
 ```
 
