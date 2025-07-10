@@ -13,3 +13,9 @@ Run your dev server:
 ```sh
 $ yarn start
 ```
+
+Build to create all the html/js files to copy onto production webserver:
+
+```sh
+$ yarn build
+```
